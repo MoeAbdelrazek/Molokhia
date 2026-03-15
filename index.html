@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Media Audit — Molokhia Restaurant KSA | Elite Consultant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ──────────────────────────────────────────────────────────────── */
+:root {
+  --bg:        #0d0f0d;
+  --bg2:       #141614;
+  --bg3:       #1a1d1a;
+  --bg4:       #202320;
+  --gold:      #c9a86a;
+  --gold-lt:   #e8cc90;
+  --gold-dim:  #6b5730;
+  --cream:     #f0edd6;
+  --muted:     #7a7a64;
+  --muted2:    #4a4a3a;
+  --red:       #e05252;
+  --red-bg:    #1e0f0f;
+  --amber:     #f4a533;
+  --amber-bg:  #1e1608;
+  --green:     #52b788;
+  --green-bg:  #0a1e14;
+  --blue:      #60a5fa;
+  --blue-bg:   #0a1020;
+  --font-disp: 'Cormorant Garamond', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --ease:      cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── RESET ───────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.7;
+  overflow-x: hidden;
+  cursor: none;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; }
+::selection { background: var(--gold-dim); color: var(--gold-lt); }
+
+/* ── CUSTOM CURSOR ───────────────────────────────────────────────────────── */
+.cursor {
+  position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+  mix-blend-mode: difference;
+}
+.cursor-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold-lt);
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s var(--ease);
+}
+.cursor-ring {
+  position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998;
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1px solid var(--gold);
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s var(--ease), width 0.3s var(--ease), height 0.3s var(--ease), opacity 0.3s;
+  opacity: 0.6;
+}
+body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring {
+  width: 48px; height: 48px; opacity: 1;
+}
+
+/* ── NOISE OVERLAY ───────────────────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.35;
+}
+
+/* ── SCROLLBAR ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+/* ── NAV ─────────────────────────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 3rem;
+  border-bottom: 1px solid transparent;
+  transition: background 0.4s, border-color 0.4s, padding 0.4s;
+}
+nav.scrolled {
+  background: rgba(13,15,13,0.92);
+  border-color: var(--gold-dim);
+  padding: 0.875rem 3rem;
+  backdrop-filter: blur(16px);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-disp); font-size: 1.15rem; font-weight: 600;
+  color: var(--gold-lt); letter-spacing: 0.04em;
+}
+.nav-logo svg { width: 28px; height: 28px; }
+.nav-links {
+  display: flex; align-items: center; gap: 2.5rem;
+  list-style: none; font-size: 0.78rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+}
+.nav-links a { transition: color 0.2s; }
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold);
+  border: 1px solid var(--gold-dim); padding: 0.55rem 1.2rem;
+  border-radius: 2px; transition: all 0.25s;
+}
+.nav-cta:hover { background: var(--gold); color: var(--bg); border-color: var(--gold); }
+
+/* ── PROGRESS BAR ────────────────────────────────────────────────────────── */
+#progress {
+  position: fixed; top: 0; left: 0; height: 2px; z-index: 200;
+  background: linear-gradient(90deg, var(--gold-dim), var(--gold), var(--gold-lt));
+  width: 0%; transition: width 0.1s linear;
+}
+
+/* ── HERO ────────────────────────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  padding: 8rem 3rem 6rem;
+}
+.hero-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(201,168,106,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,106,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+}
+.hero-glow {
+  position: absolute; width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,106,0.06) 0%, transparent 70%);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  animation: pulse 6s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{transform:translate(-50%,-50%) scale(1);opacity:1} 50%{transform:translate(-50%,-50%) scale(1.15);opacity:0.7} }
+
+.hero-inner { position: relative; text-align: center; max-width: 900px; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gold);
+  border: 1px solid var(--gold-dim); padding: 0.4rem 1rem;
+  border-radius: 2px; margin-bottom: 2.5rem;
+  animation: fadeUp 0.8s var(--ease) both;
+}
+.hero-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--gold); animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.hero-title {
+  font-family: var(--font-disp); font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 300; line-height: 1.05; letter-spacing: -0.01em;
+  color: var(--gold-lt); margin-bottom: 0.5rem;
+  animation: fadeUp 0.9s 0.1s var(--ease) both;
+}
+.hero-title em { font-style: italic; color: var(--cream); }
+.hero-sub {
+  font-family: var(--font-disp); font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: var(--muted); font-weight: 300; letter-spacing: 0.05em;
+  margin-bottom: 3rem;
+  animation: fadeUp 0.9s 0.2s var(--ease) both;
+}
+.hero-score-wrap {
+  display: flex; align-items: center; justify-content: center;
+  gap: 3rem; flex-wrap: wrap;
+  animation: fadeUp 0.9s 0.3s var(--ease) both;
+}
+.hero-score-card {
+  text-align: center; padding: 2rem 2.5rem;
+  border: 1px solid var(--gold-dim);
+  background: rgba(201,168,106,0.03);
+  position: relative; overflow: hidden;
+}
+.hero-score-card::before {
+  content:''; position:absolute; inset:0;
+  background: linear-gradient(135deg, rgba(201,168,106,0.05), transparent);
+}
+.score-num {
+  font-family: var(--font-disp); font-size: 4.5rem; font-weight: 600;
+  color: var(--gold); line-height: 1; display: block;
+}
+.score-label { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 0.4rem; }
+.hero-platforms {
+  display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; justify-content: center;
+  animation: fadeUp 0.9s 0.4s var(--ease) both;
+  margin-top: 2.5rem;
+}
+.plat-chip {
+  font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 0.35rem 0.85rem;
+  border: 1px solid var(--muted2); color: var(--muted);
+  border-radius: 2px; transition: all 0.2s;
+}
+.plat-chip:hover { border-color: var(--gold); color: var(--gold); }
+
+.hero-scroll {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
+  animation: fadeUp 1s 0.8s var(--ease) both;
+}
+.scroll-line { width: 1px; height: 40px; background: linear-gradient(var(--gold-dim), transparent); animation: scrollAnim 2s ease-in-out infinite; }
+@keyframes scrollAnim { 0%{opacity:0;transform:scaleY(0);transform-origin:top} 50%{opacity:1;transform:scaleY(1)} 100%{opacity:0;transform:scaleY(1);transform-origin:bottom} }
+
+/* ── SCROLL ANIMATIONS ───────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+.stagger > * { opacity: 0; transform: translateY(24px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+.stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:0s; }
+.stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.08s; }
+.stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.16s; }
+.stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.24s; }
+.stagger.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay:0.32s; }
+.stagger.visible > *:nth-child(6) { opacity:1; transform:none; transition-delay:0.40s; }
+.stagger.visible > *:nth-child(7) { opacity:1; transform:none; transition-delay:0.48s; }
+
+/* ── LAYOUT ──────────────────────────────────────────────────────────────── */
+.section { padding: 7rem 3rem; position: relative; }
+.section + .section { border-top: 1px solid var(--muted2); }
+.container { max-width: 1160px; margin: 0 auto; }
+.section-number {
+  font-family: var(--font-mono); font-size: 0.7rem; color: var(--gold-dim);
+  letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem;
+}
+.section-title {
+  font-family: var(--font-disp); font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 400; color: var(--gold-lt); line-height: 1.1; margin-bottom: 0.75rem;
+}
+.section-title em { font-style: italic; color: var(--cream); }
+.section-lead {
+  font-size: 1rem; color: var(--muted); max-width: 680px;
+  line-height: 1.75; margin-bottom: 3.5rem;
+}
+.gold-rule { width: 60px; height: 1px; background: var(--gold); margin: 1.5rem 0; }
+
+/* ── CALLOUT ─────────────────────────────────────────────────────────────── */
+.callout {
+  border-left: 3px solid var(--gold);
+  background: rgba(201,168,106,0.04);
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+}
+.callout.red { border-color: var(--red); background: rgba(224,82,82,0.06); }
+.callout.amber { border-color: var(--amber); background: rgba(244,165,51,0.06); }
+.callout.green { border-color: var(--green); background: rgba(82,183,136,0.06); }
+.callout-label {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.5rem;
+}
+.callout.red .callout-label { color: var(--red); }
+.callout.amber .callout-label { color: var(--amber); }
+.callout p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+.callout strong { color: var(--cream); font-weight: 500; }
+
+/* ── SCORE CARDS ─────────────────────────────────────────────────────────── */
+.score-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1px; background: var(--muted2); margin: 2.5rem 0;
+}
+.score-card {
+  background: var(--bg2); padding: 2rem 1.75rem;
+  position: relative; overflow: hidden;
+  transition: background 0.3s;
+}
+.score-card:hover { background: var(--bg3); }
+.score-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--gold-dim); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s var(--ease);
+}
+.score-card:hover::after { transform: scaleX(1); }
+.sc-platform {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 1rem;
+}
+.sc-score {
+  font-family: var(--font-disp); font-size: 3.5rem; font-weight: 600; line-height: 1;
+  margin-bottom: 1rem;
+}
+.sc-bar { height: 2px; background: var(--muted2); margin-bottom: 1.25rem; overflow: hidden; }
+.sc-bar-fill { height: 100%; width: 0; transition: width 1.2s var(--ease); }
+.sc-dims {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;
+}
+.sc-dim {
+  font-size: 0.72rem; color: var(--muted);
+}
+.sc-dim span { color: var(--cream); font-weight: 500; float: right; }
+.score-critical .sc-score { color: var(--red); }
+.score-critical .sc-bar-fill { background: var(--red); }
+.score-critical::after { background: var(--red); }
+.score-ok .sc-score { color: var(--amber); }
+.score-ok .sc-bar-fill { background: var(--amber); }
+.score-ok::after { background: var(--amber); }
+.score-good .sc-score { color: var(--green); }
+.score-good .sc-bar-fill { background: var(--green); }
+.score-good::after { background: var(--green); }
+
+/* ── STRENGTHS / GAPS ────────────────────────────────────────────────────── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--muted2); margin: 2rem 0; }
+.two-col-box { background: var(--bg2); padding: 2rem; }
+.tcb-title {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--muted2);
+}
+.tcb-title.green { color: var(--green); border-color: var(--green-bg); }
+.tcb-title.red { color: var(--red); border-color: var(--red-bg); }
+.check-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+.check-list li {
+  font-size: 0.88rem; color: var(--muted); padding-left: 1.4rem; position: relative;
+  line-height: 1.6;
+}
+.check-list li::before { content: '–'; position: absolute; left: 0; color: var(--gold-dim); }
+.check-list.bad li { color: var(--muted); }
+.check-list.bad li::before { content: '—'; color: var(--red); opacity: 0.7; }
+.check-list li strong { color: var(--cream); font-weight: 500; }
+
+/* ── TABLE ───────────────────────────────────────────────────────────────── */
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 1.5rem 0; }
+.data-table th {
+  text-align: left; padding: 0.85rem 1rem;
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--gold); background: var(--bg); border-bottom: 1px solid var(--gold-dim);
+}
+.data-table td {
+  padding: 0.85rem 1rem; border-bottom: 1px solid var(--muted2); color: var(--muted);
+  vertical-align: top; line-height: 1.55;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: rgba(201,168,106,0.02); color: var(--cream); }
+.data-table td strong, .data-table td b { color: var(--cream); font-weight: 500; }
+.td-gold { color: var(--gold) !important; font-weight: 500 !important; }
+.td-red { color: var(--red) !important; }
+.td-amber { color: var(--amber) !important; }
+.td-green { color: var(--green) !important; }
+.data-table .row-total td { background: var(--bg3); color: var(--gold) !important; font-weight: 600; border-top: 1px solid var(--gold-dim); }
+
+/* ── PRIORITY PILLS ──────────────────────────────────────────────────────── */
+.pill {
+  display: inline-block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 0.25rem 0.65rem; border-radius: 2px;
+}
+.pill-critical { background: var(--red-bg); color: var(--red); border: 1px solid rgba(224,82,82,0.3); }
+.pill-high     { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(244,165,51,0.3); }
+.pill-medium   { background: var(--green-bg); color: var(--green); border: 1px solid rgba(82,183,136,0.3); }
+
+/* ── KPI GRID ────────────────────────────────────────────────────────────── */
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: var(--muted2); margin: 2rem 0; }
+.kpi-card { background: var(--bg2); padding: 1.5rem; }
+.kpi-platform { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+.kpi-metric { font-size: 0.8rem; font-weight: 500; color: var(--cream); margin-bottom: 1rem; }
+.kpi-row { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--muted); padding: 0.3rem 0; border-bottom: 1px solid var(--bg3); }
+.kpi-row:last-child { border-bottom: none; }
+.kpi-row span:last-child { color: var(--green); font-weight: 500; }
+.kpi-row span:first-child { color: var(--red); }
+
+/* ── TIMELINE ────────────────────────────────────────────────────────────── */
+.timeline { position: relative; padding-left: 3rem; margin: 2rem 0; }
+.timeline::before {
+  content: ''; position: absolute; left: 0.5rem; top: 0; bottom: 0;
+  width: 1px; background: linear-gradient(var(--gold-dim), var(--muted2), var(--bg));
+}
+.timeline-phase { margin-bottom: 3rem; }
+.timeline-phase-title {
+  font-family: var(--font-disp); font-size: 1.3rem; font-weight: 500;
+  color: var(--gold); margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.timeline-phase-title::before {
+  content: ''; width: 12px; height: 12px; border-radius: 50%;
+  background: var(--gold); margin-left: -3.4rem;
+  box-shadow: 0 0 16px rgba(201,168,106,0.5);
+  flex-shrink: 0;
+}
+.timeline-item {
+  display: grid; grid-template-columns: 80px 1fr;
+  gap: 1.25rem; margin-bottom: 0.75rem; position: relative;
+}
+.timeline-item::before {
+  content: ''; position: absolute; left: -2.4rem; top: 0.6rem;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--muted2);
+  border: 1px solid var(--muted);
+}
+.tl-week {
+  font-family: var(--font-mono); font-size: 0.68rem; color: var(--gold-dim);
+  padding-top: 0.1rem; white-space: nowrap;
+}
+.tl-content { background: var(--bg2); padding: 0.85rem 1.1rem; border-left: 1px solid var(--muted2); }
+.tl-content:hover { border-color: var(--gold-dim); }
+.tl-task { font-size: 0.85rem; color: var(--cream); font-weight: 500; margin-bottom: 0.2rem; }
+.tl-meta { font-size: 0.75rem; color: var(--muted); }
+.tl-plat { color: var(--gold-dim); font-family: var(--font-mono); }
+
+/* ── PLATFORM DEEP DIVE ──────────────────────────────────────────────────── */
+.platform-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--muted2); margin-bottom: 2.5rem; overflow-x: auto; }
+.ptab {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.85rem 1.5rem; color: var(--muted); cursor: pointer;
+  border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap;
+  background: none; border-top: none; border-left: none; border-right: none;
+  font-family: var(--font-body);
+}
+.ptab.active { color: var(--gold); border-bottom-color: var(--gold); }
+.ptab:hover:not(.active) { color: var(--cream); }
+.ptab-content { display: none; }
+.ptab-content.active { display: block; }
+.metric-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--muted2); margin-bottom: 2rem; }
+.metric-box { background: var(--bg2); padding: 1.25rem 1.5rem; }
+.mb-label { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
+.mb-val { font-family: var(--font-disp); font-size: 1.6rem; font-weight: 500; color: var(--cream); }
+.mb-val.bad { color: var(--red); }
+.mb-val.ok { color: var(--amber); }
+.mb-val.good { color: var(--green); }
+.mb-note { font-size: 0.72rem; color: var(--muted); margin-top: 0.25rem; }
+
+/* ── BUDGET BARS ─────────────────────────────────────────────────────────── */
+.budget-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--muted2); margin: 2rem 0; }
+.budget-col { background: var(--bg2); padding: 2rem 1.5rem; text-align: center; }
+.bc-month { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+.bc-total { font-family: var(--font-disp); font-size: 2.4rem; font-weight: 600; color: var(--gold); margin-bottom: 1.5rem; }
+.bc-lines { text-align: left; display: flex; flex-direction: column; gap: 0.5rem; }
+.bc-line { display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--muted); padding-bottom: 0.5rem; border-bottom: 1px solid var(--bg3); }
+.bc-line:last-child { border-bottom: none; }
+.bc-line span:last-child { color: var(--cream); font-family: var(--font-mono); }
+
+/* ── MEETING AGENDA ──────────────────────────────────────────────────────── */
+.agenda-list { display: flex; flex-direction: column; gap: 1px; background: var(--muted2); margin: 2rem 0; }
+.agenda-item {
+  background: var(--bg2); display: grid; grid-template-columns: 80px 200px 1fr;
+  gap: 1.5rem; padding: 1.25rem 1.5rem; align-items: center;
+  transition: background 0.2s;
+}
+.agenda-item:hover { background: var(--bg3); }
+.ag-time { font-family: var(--font-mono); font-size: 0.78rem; color: var(--gold); }
+.ag-topic { font-size: 0.85rem; font-weight: 500; color: var(--cream); }
+.ag-points { font-size: 0.8rem; color: var(--muted); }
+
+/* ── FOOTER ──────────────────────────────────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--gold-dim); padding: 4rem 3rem;
+  text-align: center;
+}
+.footer-logo {
+  font-family: var(--font-disp); font-size: 1.5rem; color: var(--gold-lt);
+  margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+}
+.footer-tagline { font-size: 0.85rem; color: var(--muted); margin-bottom: 2rem; }
+.footer-meta { font-size: 0.72rem; color: var(--muted2); letter-spacing: 0.06em; }
+.footer-meta span { color: var(--muted); }
+
+/* ── MOBILE NAV ──────────────────────────────────────────────────────────── */
+.nav-hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; }
+.nav-hamburger span { display: block; width: 24px; height: 1px; background: var(--gold); transition: all 0.3s; }
+
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  nav.scrolled { padding: 0.75rem 1.5rem; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .hero { padding: 7rem 1.5rem 5rem; }
+  .section { padding: 5rem 1.5rem; }
+  .two-col { grid-template-columns: 1fr; }
+  .metric-2col { grid-template-columns: 1fr 1fr; }
+  .budget-grid { grid-template-columns: 1fr; }
+  .agenda-item { grid-template-columns: 60px 1fr; }
+  .ag-points { display: none; }
+  .timeline-item { grid-template-columns: 60px 1fr; }
+  body { cursor: auto; }
+  .cursor, .cursor-ring { display: none; }
+}
+
+/* ── SECTION BG ACCENTS ──────────────────────────────────────────────────── */
+.section-dark { background: var(--bg2); }
+.section-accent {
+  background: var(--bg);
+  background-image: linear-gradient(rgba(201,168,106,0.015) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(201,168,106,0.015) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── CONTENT PILLAR CARDS ────────────────────────────────────────────────── */
+.pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--muted2); margin: 2rem 0; }
+.pillar-card {
+  background: var(--bg2); padding: 1.75rem 1.5rem;
+  transition: background 0.25s;
+}
+.pillar-card:hover { background: var(--bg3); }
+.pc-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+.pc-name { font-family: var(--font-disp); font-size: 1.15rem; font-weight: 500; color: var(--gold-lt); margin-bottom: 0.35rem; }
+.pc-theme { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.75rem; }
+.pc-example { font-size: 0.75rem; color: var(--muted2); font-style: italic; line-height: 1.6; border-top: 1px solid var(--muted2); padding-top: 0.75rem; }
+
+/* ── TIKTOK CONTENT CARDS ────────────────────────────────────────────────── */
+.content-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: var(--muted2); margin: 2rem 0; }
+.cc { background: var(--bg2); padding: 1.5rem; transition: background 0.25s; }
+.cc:hover { background: var(--bg3); }
+.cc-format { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+.cc-views { font-family: var(--font-disp); font-size: 1.3rem; color: var(--green); margin-bottom: 0.5rem; }
+.cc-idea { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+/* ── SNAP LAUNCH STEPS ───────────────────────────────────────────────────── */
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--muted2); margin: 2rem 0; }
+.step { background: var(--bg2); padding: 1.75rem 1.5rem; position: relative; }
+.step-num {
+  font-family: var(--font-disp); font-size: 3rem; font-weight: 600; color: var(--muted2);
+  line-height: 1; position: absolute; top: 1rem; right: 1.25rem;
+}
+.step-wk { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 0.75rem; }
+.step-task { font-size: 0.9rem; font-weight: 500; color: var(--cream); margin-bottom: 0.4rem; }
+.step-detail { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
+
+/* ── CREDENTIALS BOX ─────────────────────────────────────────────────────── */
+.creds-box {
+  border: 1px solid var(--gold-dim); padding: 2.5rem;
+  background: rgba(201,168,106,0.03); margin: 2rem 0;
+}
+.creds-title {
+  font-family: var(--font-disp); font-size: 1.4rem; color: var(--gold-lt);
+  margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--gold-dim);
+}
+.creds-list { display: flex; flex-direction: column; gap: 0.85rem; }
+.cred-item { display: flex; gap: 1.25rem; align-items: flex-start; }
+.cred-icon { width: 32px; height: 32px; border: 1px solid var(--gold-dim); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--gold); flex-shrink: 0; font-family: var(--font-mono); }
+.cred-text { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+.cred-text strong { color: var(--cream); font-weight: 500; display: block; margin-bottom: 0.1rem; }
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor"><div class="cursor-dot" id="dot"></div></div>
+<div class="cursor-ring" id="ring"></div>
+
+<!-- PROGRESS -->
+<div id="progress"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">
+    <svg viewBox="0 0 28 28" fill="none">
+      <circle cx="14" cy="14" r="13" stroke="#c9a86a" stroke-width="1"/>
+      <circle cx="14" cy="14" r="4" stroke="#c9a86a" stroke-width="1"/>
+      <line x1="14" y1="1" x2="14" y2="7" stroke="#c9a86a" stroke-width="1"/>
+      <line x1="14" y1="21" x2="14" y2="27" stroke="#c9a86a" stroke-width="1"/>
+      <line x1="1" y1="14" x2="7" y2="14" stroke="#c9a86a" stroke-width="1"/>
+      <line x1="21" y1="14" x2="27" y2="14" stroke="#c9a86a" stroke-width="1"/>
+    </svg>
+    Elite Consultant
+  </a>
+  <ul class="nav-links">
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#gbp">GBP</a></li>
+    <li><a href="#meta">META</a></li>
+    <li><a href="#tiktok">TikTok</a></li>
+    <li><a href="#snapchat">Snapchat</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#budget">Budget</a></li>
+  </ul>
+  <a href="https://www.eliteconsultantco.com" target="_blank" class="nav-cta">Consult Our Experts</a>
+  <button class="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">● KSA Market Experts</div>
+    <h1 class="hero-title">Social Media<br><em>Audit Report</em></h1>
+    <p class="hero-sub">مطعم ملوخية — Molokhia Restaurant KSA &nbsp;|&nbsp; March 2026</p>
+    <div class="hero-score-wrap">
+      <div class="hero-score-card">
+        <span class="score-num" id="heroScore">0</span>
+        <p class="score-label">Overall Score / 100</p>
+      </div>
+      <div style="text-align:left">
+        <p style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem">Platforms Audited</p>
+        <div class="hero-platforms" style="justify-content:flex-start;margin-top:0">
+          <span class="plat-chip">GBP</span>
+          <span class="plat-chip">Facebook</span>
+          <span class="plat-chip">Instagram</span>
+          <span class="plat-chip">TikTok</span>
+          <span class="plat-chip">Snapchat</span>
+          <span class="plat-chip">X / Twitter</span>
+        </div>
+        <p style="font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:1.25rem;margin-bottom:0.5rem">Prepared by</p>
+        <p style="font-size:0.85rem;color:var(--gold)">Elite Consultant &nbsp;·&nbsp; eliteconsultantco.com</p>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══ 01 EXECUTIVE SUMMARY ══════════════════════════════════════════════════ -->
+<section class="section section-dark" id="summary">
+  <div class="container">
+    <p class="section-number reveal">01 — Executive Summary</p>
+    <h2 class="section-title reveal">From Marketing Chaos<br><em>to a Clear Strategy</em></h2>
+    <div class="gold-rule reveal"></div>
+    <p class="section-lead reveal">This audit evaluates Molokhia Restaurant's full digital presence across every platform that matters in Saudi Arabia — benchmarked against KSA F&B industry standards and current best practices.</p>
+
+    <div class="two-col reveal">
+      <div class="two-col-box">
+        <p class="tcb-title green">Strengths</p>
+        <ul class="check-list">
+          <li><strong>28,000 Facebook followers</strong> — strongest platform by volume, established brand presence</li>
+          <li><strong>Clear brand identity</strong> — the molokhia leaf concept is recognisable and unique</li>
+          <li><strong>96 Instagram posts</strong> — consistent content history to build on</li>
+          <li><strong>TikTok presence established</strong> — account exists, ready to scale</li>
+          <li><strong>Unique KSA niche</strong> — Egyptian cuisine is underserved in Riyadh's F&B market</li>
+        </ul>
+      </div>
+      <div class="two-col-box">
+        <p class="tcb-title red">Critical Gaps</p>
+        <ul class="check-list bad">
+          <li><strong>GBP unclaimed</strong> — invisible in 'near me' Google searches, the highest-intent channel</li>
+          <li><strong>Facebook engagement at 0.04%</strong> — industry benchmark is 0.5–1.0%, 10–25× gap</li>
+          <li><strong>Instagram: 1,151 vs 28,000</strong> — 20.5M KSA users being ignored</li>
+          <li><strong>Zero Snapchat presence</strong> — 18.2M KSA users, highest 18–34 reach of any platform</li>
+          <li><strong>No paid ads or influencer strategy</strong> — entirely dependent on capped organic reach</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="section-title reveal" style="font-size:1.6rem;margin-top:3.5rem;margin-bottom:1rem">Platform Scorecard</h3>
+    <div class="score-grid stagger" id="scoreGrid">
+      <div class="score-card score-critical">
+        <p class="sc-platform">Google Business Profile</p>
+        <span class="sc-score">26</span>
+        <div class="sc-bar"><div class="sc-bar-fill" data-width="26"></div></div>
+        <div class="sc-dims">
+          <p class="sc-dim">Profile Setup <span>45</span></p>
+          <p class="sc-dim">Follower Base <span>20</span></p>
+          <p class="sc-dim">Engagement <span>15</span></p>
+          <p class="sc-dim">Content <span>25</span></p>
+        </div>
+      </div>
+      <div class="score-card score-ok">
+        <p class="sc-platform">Facebook (Meta)</p>
+        <span class="sc-score">52</span>
+        <div class="sc-bar"><div class="sc-bar-fill" data-width="52"></div></div>
+        <div class="sc-dims">
+          <p class="sc-dim">Profile Setup <span>70</span></p>
+          <p class="sc-dim">Follower Base <span>65</span></p>
+          <p class="sc-dim">Engagement <span>10</span></p>
+          <p class="sc-dim">Content <span>35</span></p>
+        </div>
+      </div>
+      <div class="score-card score-critical">
+        <p class="sc-platform">Instagram (Meta)</p>
+        <span class="sc-score">30</span>
+        <div class="sc-bar"><div class="sc-bar-fill" data-width="30"></div></div>
+        <div class="sc-dims">
+          <p class="sc-dim">Profile Setup <span>55</span></p>
+          <p class="sc-dim">Follower Base <span>10</span></p>
+          <p class="sc-dim">Engagement <span>15</span></p>
+          <p class="sc-dim">Content <span>40</span></p>
+        </div>
+      </div>
+      <div class="score-card score-ok">
+        <p class="sc-platform">TikTok</p>
+        <span class="sc-score">38</span>
+        <div class="sc-bar"><div class="sc-bar-fill" data-width="38"></div></div>
+        <div class="sc-dims">
+          <p class="sc-dim">Profile Setup <span>45</span></p>
+          <p class="sc-dim">Follower Base <span>—</span></p>
+          <p class="sc-dim">Engagement <span>—</span></p>
+          <p class="sc-dim">Content <span>30</span></p>
+        </div>
+      </div>
+      <div class="score-card score-critical">
+        <p class="sc-platform">Snapchat</p>
+        <span class="sc-score">15</span>
+        <div class="sc-bar"><div class="sc-bar-fill" data-width="15"></div></div>
+        <div class="sc-dims">
+          <p class="sc-dim">Profile Setup <span>20</span></p>
+          <p class="sc-dim">Follower Base <span>—</span></p>
+          <p class="sc-dim">Engagement <span>—</span></p>
+          <p class="sc-dim">Content <span>10</span></p>
+        </div>
+      </div>
+      <div class="score-card score-critical">
+        <p class="sc-platform">X / Twitter</p>
+        <span class="sc-score">12</span>
+        <div class="sc-bar"><div class="sc-bar-fill" data-width="12"></div></div>
+        <div class="sc-dims">
+          <p class="sc-dim">Profile Setup <span>15</span></p>
+          <p class="sc-dim">Follower Base <span>—</span></p>
+          <p class="sc-dim">Engagement <span>—</span></p>
+          <p class="sc-dim">Content <span>10</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout reveal">
+      <p class="callout-label">Methodology</p>
+      <p>Each platform is rated 0–100 across four dimensions: <strong>Profile Setup, Follower Base, Engagement Rate,</strong> and <strong>Content Quality.</strong> Scores below 40 are flagged as critical. Above 60 indicates near-industry-standard performance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 02 KSA LANDSCAPE ═══════════════════════════════════════════════════════ -->
+<section class="section" id="landscape">
+  <div class="container">
+    <p class="section-number reveal">02 — KSA Digital Landscape</p>
+    <h2 class="section-title reveal">Where Saudi Arabia<br><em>Spends Its Time</em></h2>
+    <div class="gold-rule reveal"></div>
+    <p class="section-lead reveal">Saudi Arabia ranks 6th globally in daily social media usage at 3 hours 24 minutes per day. Platform selection must be driven by data, not assumption.</p>
+    <div class="reveal">
+    <table class="data-table">
+      <thead><tr><th>Platform</th><th>KSA Active Users</th><th>Time / Month</th><th>Restaurant Relevance</th></tr></thead>
+      <tbody>
+        <tr><td class="td-gold"><strong>TikTok</strong></td><td>18.6M (71.8%)</td><td class="td-amber">34h 48m</td><td>Highest time-on-app; food content dominates organically</td></tr>
+        <tr><td class="td-gold"><strong>Instagram</strong></td><td>20.5M (72.7%)</td><td>11h 17m</td><td>Primary visual food discovery — highest restaurant ROI</td></tr>
+        <tr><td class="td-gold"><strong>Snapchat</strong></td><td>18.2M (70.5%)</td><td>12h 31m</td><td>Dominant with 18–34; geofilters, Stories, direct offers</td></tr>
+        <tr><td><strong>Facebook</strong></td><td>15.2M (58.9%)</td><td>20h 31m</td><td>25–45 demographic; reviews, events, paid ads</td></tr>
+        <tr><td><strong>X (Twitter)</strong></td><td>17.1M (66.3%)</td><td>8h 1m</td><td>Real-time discovery, trending topics, customer service</td></tr>
+        <tr><td><strong>Google (GBP)</strong></td><td>N/A</td><td>N/A</td><td>Primary entry point for 'near me' restaurant searches</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="callout reveal">
+      <p class="callout-label">Key Insight</p>
+      <p>TikTok leads KSA at <strong>34 hours 48 minutes monthly</strong> — nearly 3× more than Instagram. Snapchat's 18.2M Saudi users spend more time on the platform than on Instagram. Both are dramatically underused by Molokhia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 03 GBP ═════════════════════════════════════════════════════════════════ -->
+<section class="section section-dark" id="gbp">
+  <div class="container">
+    <p class="section-number reveal">03 — Google Business Profile</p>
+    <h2 class="section-title reveal">Your Most Urgent<br><em>Priority</em></h2>
+    <div class="gold-rule reveal"></div>
+    <p class="section-lead reveal">46% of diners check Google first when searching for a restaurant. GBP is not social media — it is the primary local discovery layer. An incomplete profile costs footfall every single day.</p>
+
+    <div class="callout red reveal">
+      <p class="callout-label">Critical Status</p>
+      <p>GBP profile is effectively <strong>unclaimed and incomplete</strong>. With no verified listing, Molokhia is invisible in every 'Egyptian restaurant Riyadh' and 'restaurant near me' Google search.</p>
+    </div>
+
+    <div class="reveal">
+    <table class="data-table">
+      <thead><tr><th>GBP Element</th><th>Status</th><th>Impact</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Google Maps verification</strong></td><td class="td-red">Not verified</td><td>Unverified profiles rank below competitors in all local searches</td></tr>
+        <tr><td><strong>Opening hours</strong></td><td class="td-red">Missing</td><td>Customers cannot confirm you're open — they visit competitors instead</td></tr>
+        <tr><td><strong>Food photos (dishes)</strong></td><td class="td-red">None on GBP</td><td>Profiles with 100+ photos get 2,065% more direction requests</td></tr>
+        <tr><td><strong>Interior / exterior photos</strong></td><td class="td-red">None on GBP</td><td>No visual trust signal for first-time customers</td></tr>
+        <tr><td><strong>Menu link</strong></td><td class="td-red">Missing</td><td>Menu can appear inline in Google Search results when linked</td></tr>
+        <tr><td><strong>Google Reviews</strong></td><td class="td-red">Fewer than 5</td><td>43% of diners skip restaurants with no star rating</td></tr>
+        <tr><td><strong>GBP Posts</strong></td><td class="td-red">Inactive</td><td>Weekly posts boost algorithmic ranking and appear in search results</td></tr>
+        <tr><td><strong>Website / delivery link</strong></td><td class="td-red">Missing</td><td>No direct conversion path from Google search to an order</td></tr>
+        <tr><td><strong>Contact phone</strong></td><td class="td-amber">On Facebook — not synced</td><td>Phone on GBP is required for Google Maps call button</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3 style="font-family:var(--font-disp);font-size:1.4rem;color:var(--gold);margin:2.5rem 0 1.25rem">8-Step GBP Action Plan</h3>
+    <div class="steps stagger">
+      <div class="step"><span class="step-num">01</span><p class="step-wk">Week 1</p><p class="step-task">Claim & verify the listing</p><p class="step-detail">Search 'Molokhia Restaurant Riyadh' on Google Maps. Request ownership via postcard or phone. 5–7 days.</p></div>
+      <div class="step"><span class="step-num">02</span><p class="step-wk">Week 1</p><p class="step-task">Complete all info</p><p class="step-detail">Full name, address, phone, hours (include Ramadan schedule), category: Egyptian Restaurant.</p></div>
+      <div class="step"><span class="step-num">03</span><p class="step-wk">Week 1</p><p class="step-task">Upload 20+ photos</p><p class="step-detail">10 food dishes, 4 interior, 3 exterior/signage, 2 kitchen/staff, 1 logo. Repeat monthly.</p></div>
+      <div class="step"><span class="step-num">04</span><p class="step-wk">Week 2</p><p class="step-task">Add menu link</p><p class="step-detail">Upload menu PDF or link to Jahez/Talabat. Menu appears inline in Google Search results.</p></div>
+      <div class="step"><span class="step-num">05</span><p class="step-wk">Week 2</p><p class="step-task">Deploy review QR cards</p><p class="step-detail">Print QR linking to GBP review page. Place on every table and inside every delivery bag.</p></div>
+      <div class="step"><span class="step-num">06</span><p class="step-wk">Week 3</p><p class="step-task">Activate weekly GBP Posts</p><p class="step-detail">Post every 7 days: dish of the week, offers, events. Keeps profile algorithmically active.</p></div>
+      <div class="step"><span class="step-num">07</span><p class="step-wk">Ongoing</p><p class="step-task">Respond to all reviews within 24h</p><p class="step-detail">Both positive and negative. Response rate is a direct Google ranking factor.</p></div>
+      <div class="step"><span class="step-num">08</span><p class="step-wk">Week 2</p><p class="step-task">Enable Google Messages</p><p class="step-detail">Customers message from Maps. Assign team member — respond within 1 hour.</p></div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:2rem">
+      <p class="callout-label">90-Day Target</p>
+      <p>Achieve <strong>4.3+ star average with 50+ Google reviews</strong> within 90 days. Fully achievable by activating QR review requests at table and in delivery packaging from Day 1.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 04 META ════════════════════════════════════════════════════════════════ -->
+<section class="section section-accent" id="meta">
+  <div class="container">
+    <p class="section-number reveal">04 — META: Facebook & Instagram</p>
+    <h2 class="section-title reveal">Fixing the<br><em>Engagement Gap</em></h2>
+    <div class="gold-rule reveal"></div>
+
+    <div class="platform-tabs reveal">
+      <button class="ptab active" onclick="switchTab(this,'fb')">Facebook</button>
+      <button class="ptab" onclick="switchTab(this,'ig')">Instagram</button>
+      <button class="ptab" onclick="switchTab(this,'ads')">META Ads</button>
+    </div>
+
+    <!-- FACEBOOK TAB -->
+    <div class="ptab-content active" id="tab-fb">
+      <div class="metric-2col stagger">
+        <div class="metric-box"><p class="mb-label">Followers</p><p class="mb-val good">28,000+</p><p class="mb-note">Strongest platform by volume</p></div>
+        <div class="metric-box"><p class="mb-label">Engagement Rate</p><p class="mb-val bad">0.04%</p><p class="mb-note">Industry avg: 0.5–1.0%</p></div>
+        <div class="metric-box"><p class="mb-label">Avg. Post Interactions</p><p class="mb-val bad">~11</p><p class="mb-note">7 likes · 3 comments · 1 share</p></div>
+        <div class="metric-box"><p class="mb-label">Google Reviews</p><p class="mb-val bad">2 reviews</p><p class="mb-note">No star rating — critical gap</p></div>
+        <div class="metric-box"><p class="mb-label">Video Content</p><p class="mb-val bad">Minimal</p><p class="mb-note">Gets 135% more reach than photos</p></div>
+        <div class="metric-box"><p class="mb-label">Profile Completeness</p><p class="mb-val ok">70%</p><p class="mb-note">Email, phone, location present</p></div>
+      </div>
+      <div class="callout red reveal"><p class="callout-label">Critical Issue</p><p>With 28,000 followers, posts should organically reach 2,000–5,000 people. Current estimated reach: <strong>300–500 per post</strong>. The algorithm has effectively throttled the page due to chronic low engagement.</p></div>
+      <h3 style="font-family:var(--font-disp);font-size:1.3rem;color:var(--gold-lt);margin:2.5rem 0 1rem">Content Strategy — Shift to Community Model</h3>
+      <table class="data-table">
+        <thead><tr><th>Content Type</th><th>Frequency</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Short video / Reel</strong></td><td class="td-gold">3× / week</td><td>"Watch chef prepare the perfect molokhia" — 30-second kitchen POV, Arabic caption</td></tr>
+          <tr><td><strong>Story polls</strong></td><td class="td-gold">Daily</td><td>"Which dish should we feature tomorrow?" — drives interaction and signals to algorithm</td></tr>
+          <tr><td><strong>Customer spotlight</strong></td><td class="td-gold">2× / week</td><td>Repost a real customer photo with personalised Arabic caption and thank you</td></tr>
+          <tr><td><strong>Behind the scenes</strong></td><td class="td-gold">1× / week</td><td>Morning prep, ingredient sourcing, team moments — humanises the brand</td></tr>
+          <tr><td><strong>Offer + CTA post</strong></td><td class="td-gold">1× / week</td><td>"Order on Jahez — free drink with every molokhia meal today" — direct link</td></tr>
+          <tr><td><strong>Heritage content</strong></td><td class="td-gold">1× / week</td><td>"Did you know molokhia has been in Egyptian culture for 3,000 years?" — brand storytelling</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- INSTAGRAM TAB -->
+    <div class="ptab-content" id="tab-ig">
+      <div class="metric-2col stagger">
+        <div class="metric-box"><p class="mb-label">Followers</p><p class="mb-val bad">1,151</p><p class="mb-note">vs 28,000 on Facebook</p></div>
+        <div class="metric-box"><p class="mb-label">Following</p><p class="mb-val bad">0</p><p class="mb-note">Zero community signal</p></div>
+        <div class="metric-box"><p class="mb-label">Total Posts</p><p class="mb-val ok">96</p><p class="mb-note">Reasonable volume, low traction</p></div>
+        <div class="metric-box"><p class="mb-label">KSA Users</p><p class="mb-val good">20.5M</p><p class="mb-note">35% more than Facebook in KSA</p></div>
+      </div>
+      <div class="callout amber reveal"><p class="callout-label">The Gap Explained</p><p>1,151 vs 28,000 followers means Facebook was the only promoted channel. <strong>No cross-platform strategy was ever deployed.</strong> Instagram has 20.5M KSA users — closing this gap is a top-3 priority.</p></div>
+      <table class="data-table">
+        <thead><tr><th>Optimisation Item</th><th>Recommended Action</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Bio & Link</strong></td><td>Add Linktree in bio → menu + delivery. Rewrite bio with Arabic + English tagline</td></tr>
+          <tr><td><strong>Story Highlights</strong></td><td>Create 5 saved highlights: Menu / Reviews / Behind the Scenes / Offers / Our Story</td></tr>
+          <tr><td><strong>Reels</strong></td><td>3 Reels/week minimum — 22% more interaction than standard video on Instagram</td></tr>
+          <tr><td><strong>Hashtags</strong></td><td>15–20 tags: #مطعم_رياض #اكل_مصري #ملوخية #مطاعم_الرياض #foodriyadh #egyptianfood</td></tr>
+          <tr><td><strong>Community building</strong></td><td>Follow 200–300 Riyadh food accounts and bloggers — Instagram rewards engagement activity</td></tr>
+          <tr><td><strong>Daily Stories</strong></td><td>5–7 Stories/day: polls, Q&A sticker, behind-the-scenes clips, countdowns</td></tr>
+          <tr><td><strong>Cross-promotion</strong></td><td>Pin an Instagram CTA on Facebook weekly. Add Instagram handle to every Facebook caption.</td></tr>
+          <tr><td><strong>Collab posts</strong></td><td>Use Instagram Collab feature with a local food influencer — both audiences see one post</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- META ADS TAB -->
+    <div class="ptab-content" id="tab-ads">
+      <p class="section-lead" style="margin-bottom:1.5rem">With zero confirmed paid activity, the brand is entirely dependent on capped organic reach. A minimal META Ads investment generates outsized returns given the 28K existing audience.</p>
+      <table class="data-table">
+        <thead><tr><th>Campaign Type</th><th>Monthly Budget</th><th>Est. Reach</th><th>Primary Goal</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Brand Awareness</strong></td><td class="td-gold">SAR 500</td><td>40,000–60,000</td><td>Visibility in Riyadh F&B audience</td></tr>
+          <tr><td><strong>Instagram Growth</strong></td><td class="td-gold">SAR 500</td><td>15,000–25,000</td><td>Follower acquisition for @Molokhia.Restaurant.KSA</td></tr>
+          <tr><td><strong>Delivery Conversion</strong></td><td class="td-gold">SAR 1,000</td><td>20,000–35,000</td><td>Direct Jahez / Talabat order drive</td></tr>
+          <tr><td><strong>Review Collection</strong></td><td class="td-gold">SAR 300</td><td>5,000–10,000</td><td>GBP and Facebook review boost</td></tr>
+          <tr class="row-total"><td><strong>Total Month 1 Ads</strong></td><td><strong>SAR 2,300</strong></td><td><strong>80,000–130,000</strong></td><td>Multi-goal KSA market penetration</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 05 TIKTOK ══════════════════════════════════════════════════════════════ -->
+<section class="section section-dark" id="tiktok">
+  <div class="container">
+    <p class="section-number reveal">05 — TikTok</p>
+    <h2 class="section-title reveal">Your Biggest<br><em>Untapped Opportunity</em></h2>
+    <div class="gold-rule reveal"></div>
+    <p class="section-lead reveal">TikTok leads KSA at 34 hours 48 minutes per month — nearly 3× Instagram. Food is one of the top-performing content categories. This is Molokhia's single largest organic growth channel.</p>
+
+    <div class="callout amber reveal"><p class="callout-label">TikTok Priority</p><p>Account <strong>@molokhia.restaurant.ksa</strong> exists but appears underutilised. Estimated followers below 1,000. No bio link, no confirmed Arabic content strategy, no influencer collaborations.</p></div>
+
+    <h3 style="font-family:var(--font-disp);font-size:1.3rem;color:var(--gold-lt);margin:2.5rem 0 1rem">Content Blueprint — KSA Restaurant TikTok</h3>
+    <div class="content-cards stagger">
+      <div class="cc"><p class="cc-format">Cooking ASMR</p><p class="cc-views">10K–100K+ views</p><p class="cc-idea">Close-up of molokhia being stirred, tasha poured, bread torn — pure sound, no music</p></div>
+      <div class="cc"><p class="cc-format">Chef POV</p><p class="cc-views">5K–50K views</p><p class="cc-idea">"A day in the life of our chef" — starts at prep, ends at a served dish</p></div>
+      <div class="cc"><p class="cc-format">Order Fulfilment</p><p class="cc-views">3K–20K views</p><p class="cc-idea">Packing a delivery order showing all dishes — satisfying, popular with Riyadh audience</p></div>
+      <div class="cc"><p class="cc-format">Trending Sound + Food</p><p class="cc-views">20K–500K views</p><p class="cc-idea">Arabic trending audio with food B-roll — TikTok algorithm actively boosts these</p></div>
+      <div class="cc"><p class="cc-format">Customer Reaction</p><p class="cc-views">10K–200K views</p><p class="cc-idea">Film a customer tasting molokhia for the first time — authentic emotion performs extremely well</p></div>
+      <div class="cc"><p class="cc-format">Before / After</p><p class="cc-views">10K–50K views</p><p class="cc-idea">Raw ingredients → finished dish transformation in 15 seconds</p></div>
+    </div>
+
+    <h3 style="font-family:var(--font-disp);font-size:1.3rem;color:var(--gold-lt);margin:2.5rem 0 1rem">Posting Rules</h3>
+    <table class="data-table reveal">
+      <thead><tr><th>Rule</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Frequency</strong></td><td>5–7 videos per week minimum — TikTok's algorithm requires volume for organic growth</td></tr>
+        <tr><td><strong>Length</strong></td><td>15–30 seconds for food content — shorter videos consistently outperform longer ones</td></tr>
+        <tr><td><strong>Language</strong></td><td>All content Arabic-first — text overlays, captions, and trending sounds must be in Arabic</td></tr>
+        <tr><td><strong>Hashtags</strong></td><td>5–8 per video: #مطاعم_الرياض #اكل_مصري #ملوخية #foodtiktok #riyadhfood</td></tr>
+        <tr><td><strong>Posting time</strong></td><td>12:00–14:00 and 20:00–22:00 KSA time — peak audience activity windows</td></tr>
+        <tr><td><strong>Bio link</strong></td><td>Linktree with delivery + menu — TikTok drives direct orders when the path is frictionless</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-family:var(--font-disp);font-size:1.3rem;color:var(--gold-lt);margin:2.5rem 0 1rem">Influencer Strategy</h3>
+    <table class="data-table reveal">
+      <thead><tr><th>Tier</th><th>Follower Range</th><th>Budget</th><th>Goal</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Nano (food blogger)</strong></td><td>1K–10K</td><td class="td-green">SAR 0 (gifted meal)</td><td>UGC, authentic local reviews, zero cash cost</td></tr>
+        <tr><td><strong>Micro (food influencer)</strong></td><td>10K–100K</td><td class="td-gold">SAR 500–1,500 / post</td><td>Niche KSA food audience, high engagement rate</td></tr>
+        <tr><td><strong>Mid-tier</strong></td><td>100K–500K</td><td class="td-amber">SAR 2,000–5,000 / post</td><td>Mass awareness, viral potential, trending</td></tr>
+      </tbody>
+    </table>
+    <div class="callout reveal"><p class="callout-label">Quick Win</p><p>Invite 5 Riyadh nano-influencers for a complimentary meal in exchange for a TikTok video. <strong>Zero cash cost.</strong> Each video can generate 5,000–15,000 organic views plus authentic UGC and new followers.</p></div>
+  </div>
+</section>
+
+<!-- ══ 06 SNAPCHAT ════════════════════════════════════════════════════════════ -->
+<section class="section section-accent" id="snapchat">
+  <div class="container">
+    <p class="section-number reveal">06 — Snapchat</p>
+    <h2 class="section-title reveal">18 Million KSA Users.<br><em>Zero Presence.</em></h2>
+    <div class="gold-rule reveal"></div>
+
+    <div class="callout red reveal">
+      <p class="callout-label">No Snapchat Presence Detected</p>
+      <p>Molokhia Restaurant has no confirmed Snapchat account. With <strong>18.21 million active Snapchat users in Saudi Arabia</strong> — the platform's highest-penetration demographic being 18–34 year-olds — this is a critical missed opportunity with low barrier to entry.</p>
+    </div>
+
+    <div class="two-col reveal" style="margin-top:2.5rem">
+      <div class="two-col-box">
+        <p class="tcb-title green">Why Snapchat is Non-Negotiable in KSA</p>
+        <ul class="check-list">
+          <li>Reaches <strong>90%+ of 18–24 year-olds</strong> in Saudi Arabia</li>
+          <li>Saudi users spend <strong>12h 31m/month</strong> — more than Instagram</li>
+          <li>Privacy-first architecture resonates with Saudi culture, especially women</li>
+          <li>Restaurant geofilters cost <strong>SAR 50–200</strong> and generate free branded UGC</li>
+          <li>Among the <strong>lowest CPMs</strong> in KSA due to lower advertiser competition</li>
+          <li>Disappearing content creates urgency — ideal for daily specials</li>
+        </ul>
+      </div>
+      <div class="two-col-box">
+        <p class="tcb-title" style="color:var(--gold)">Content Strategy</p>
+        <ul class="check-list">
+          <li><strong>Daily specials snap:</strong> dish, price, delivery link in 10 seconds</li>
+          <li><strong>Kitchen behind-the-scenes:</strong> 3× per week, authentic vertical format</li>
+          <li><strong>Countdown offers:</strong> "50 meals today only" — scarcity drives orders</li>
+          <li><strong>Geofilter UGC reposts:</strong> reshare customer snaps using your filter</li>
+          <li><strong>Staff spotlight:</strong> 15-second weekly snap introducing a team member</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--font-disp);font-size:1.3rem;color:var(--gold-lt);margin:2.5rem 0 1rem">4-Week Launch Plan</h3>
+    <div class="steps stagger">
+      <div class="step"><span class="step-num">01</span><p class="step-wk">Week 1</p><p class="step-task">Create Business Account</p><p class="step-detail">Sign up at ads.snapchat.com — public profile with logo, brand bio, and website link.</p></div>
+      <div class="step"><span class="step-num">02</span><p class="step-wk">Week 1</p><p class="step-task">Set up Public Profile</p><p class="step-detail">Enable Subscribe option so non-friends can follow Stories — essential for brand discoverability.</p></div>
+      <div class="step"><span class="step-num">03</span><p class="step-wk">Week 2</p><p class="step-task">Design branded geofilter</p><p class="step-detail">Custom filter applied at restaurant location. Cost: ~SAR 50–200. Creates free branded UGC.</p></div>
+      <div class="step"><span class="step-num">04</span><p class="step-wk">Week 2</p><p class="step-task">Begin daily Stories</p><p class="step-detail">3–5 snaps/day: food prep, daily specials, behind-the-scenes. 24h disappearing creates urgency.</p></div>
+      <div class="step"><span class="step-num">05</span><p class="step-wk">Week 3</p><p class="step-task">Launch Snapchat Ads</p><p class="step-detail">Target: 18–35, Riyadh, food interest. SAR 500/week reaches 30,000–50,000 targeted users.</p></div>
+      <div class="step"><span class="step-num">06</span><p class="step-wk">Week 4</p><p class="step-task">Cross-platform sync</p><p class="step-detail">Add Snapchat handle to Facebook bio, Instagram bio, TikTok profile, and GBP description.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 07 X TWITTER ═══════════════════════════════════════════════════════════ -->
+<section class="section section-dark" id="x">
+  <div class="container">
+    <p class="section-number reveal">07 — X (Twitter)</p>
+    <h2 class="section-title reveal">Real-Time Discovery<br><em>& Customer Service</em></h2>
+    <div class="gold-rule reveal"></div>
+    <p class="section-lead reveal">X has 17.12M users in KSA and functions as a real-time discovery and customer service layer. No confirmed account found. Score: 12/100.</p>
+
+    <div class="callout amber reveal"><p class="callout-label">Priority: Medium</p><p>Activate X after GBP, Facebook engagement, and TikTok are stabilised in Phase 1. Once live, it requires only <strong>20–30 minutes/day</strong> to maintain effectively.</p></div>
+
+    <table class="data-table reveal">
+      <thead><tr><th>Action</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Create @MolokhiaKSA</strong></td><td>Short, memorable, bilingual-friendly handle — easier for Riyadh customers to find and tag</td></tr>
+        <tr><td><strong>Post 2–3× daily</strong></td><td>Lunch specials, trending food hashtags (#اكل_رياض), customer interactions</td></tr>
+        <tr><td><strong>Monitor mentions</strong></td><td>X is where Saudi customers publicly praise or complain about restaurants — respond within 2 hours</td></tr>
+        <tr><td><strong>Trend participation</strong></td><td>Food hashtags, Eid, National Day, Ramadan — embeds brand in KSA cultural conversations</td></tr>
+        <tr><td><strong>Pinned post</strong></td><td>GBP link, Jahez/Talabat order link, and reservation contact as permanent reference</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══ 08 CONTENT STRATEGY ════════════════════════════════════════════════════ -->
+<section class="section section-accent" id="content">
+  <div class="container">
+    <p class="section-number reveal">08 — Content Strategy</p>
+    <h2 class="section-title reveal">Five Pillars.<br><em>One Consistent Voice.</em></h2>
+    <div class="gold-rule reveal"></div>
+    <p class="section-lead reveal">Every piece of content must map to one of five brand pillars. This ensures strategic consistency, audience variety, and measurable performance across all platforms.</p>
+
+    <div class="pillar-grid stagger">
+      <div class="pillar-card"><p class="pc-icon">🏛</p><p class="pc-name">Heritage</p><p class="pc-theme">Egyptian culture & food history</p><p class="pc-example">"Why molokhia is Egypt's soul food" — storytelling reel with 3,000-year context</p></div>
+      <div class="pillar-card"><p class="pc-icon">👨‍🍳</p><p class="pc-name">Craft</p><p class="pc-theme">Behind the cooking process</p><p class="pc-example">ASMR molokhia prep, chef profiles, ingredient sourcing — demonstrates deep expertise</p></div>
+      <div class="pillar-card"><p class="pc-icon">🤝</p><p class="pc-name">Community</p><p class="pc-theme">Customers, reviews & UGC</p><p class="pc-example">Customer photo reposts, reaction videos, review highlights, fan shoutouts</p></div>
+      <div class="pillar-card"><p class="pc-icon">🎯</p><p class="pc-name">Offer</p><p class="pc-theme">Promotions & delivery CTAs</p><p class="pc-example">Daily specials, Ramadan deals, free delivery campaigns with direct order link</p></div>
+      <div class="pillar-card"><p class="pc-icon">🌙</p><p class="pc-name">Lifestyle</p><p class="pc-theme">Riyadh food culture fit</p><p class="pc-example">Molokhia at Eid, family gatherings, National Day — embeds brand in KSA occasions</p></div>
+    </div>
+
+    <h3 style="font-family:var(--font-disp);font-size:1.3rem;color:var(--gold-lt);margin:2.5rem 0 1rem">Arabic-First Rules</h3>
+    <div class="two-col reveal">
+      <div class="two-col-box">
+        <ul class="check-list">
+          <li>All primary captions in <strong>Arabic first</strong>, English optional subtitle only</li>
+          <li>Text overlays on video: Arabic bold text, right-to-left alignment</li>
+          <li>Use Arabic or Saudi trending audio on TikTok and Reels</li>
+          <li>Hashtag structure: 3–4 primary Arabic tags + 3–4 secondary English tags</li>
+        </ul>
+      </div>
+      <div class="two-col-box">
+        <ul class="check-list">
+          <li>Avoid posting during prayer times — significantly lower engagement windows</li>
+          <li>Adjust content tone and schedule during <strong>Ramadan, Eid,</strong> and <strong>National Day</strong></li>
+          <li>Plan Ramadan content calendar minimum 3 weeks in advance</li>
+          <li>Content should feel local — not exported international content</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 09 RECOMMENDATIONS ═════════════════════════════════════════════════════ -->
+<section class="section section-dark" id="recommendations">
+  <div class="container">
+    <p class="section-number reveal">09 — Priority Recommendations</p>
+    <h2 class="section-title reveal">What to Do<br><em>& When</em></h2>
+    <div class="gold-rule reveal"></div>
+    <p class="section-lead reveal">Critical actions must be activated within 2 weeks of kickoff. High-tier within 30 days. Medium within 60 days.</p>
+
+    <div class="reveal">
+    <table class="data-table">
+      <thead><tr><th>Priority</th><th>Platform</th><th>Action</th><th>Expected Impact</th></tr></thead>
+      <tbody>
+        <tr><td><span class="pill pill-critical">Critical</span></td><td class="td-gold"><strong>GBP</strong></td><td>Claim, verify, complete profile within 7 days. Upload 20+ photos. Deploy review QR cards.</td><td>7× more Google clicks; 'near me' search visibility</td></tr>
+        <tr><td><span class="pill pill-critical">Critical</span></td><td class="td-gold"><strong>Facebook</strong></td><td>Shift to video + community content. Target 3% engagement rate within 60 days.</td><td>Estimated reach: 300 → 3,000+ per post</td></tr>
+        <tr><td><span class="pill pill-critical">Critical</span></td><td class="td-gold"><strong>Snapchat</strong></td><td>Create public profile, deploy geofilter, post 3–5 daily Stories from Week 1.</td><td>Access to 18.2M KSA users, lowest ad CPMs</td></tr>
+        <tr><td><span class="pill pill-high">High</span></td><td class="td-gold"><strong>Instagram</strong></td><td>Cross-promote 28K FB audience to Instagram weekly. Link-in-bio, follow 200+ accounts, daily Reels.</td><td>Bridge 1,151 → 5,000 followers within 60 days</td></tr>
+        <tr><td><span class="pill pill-high">High</span></td><td class="td-gold"><strong>TikTok</strong></td><td>Post 5+ videos/week: ASMR, chef POV, customer reactions. Arabic audio throughout.</td><td>Highest organic reach platform in KSA</td></tr>
+        <tr><td><span class="pill pill-high">High</span></td><td class="td-gold"><strong>META Ads</strong></td><td>Launch SAR 2,300/month campaign: awareness + Instagram growth + delivery conversions.</td><td>80,000–130,000 estimated monthly reach</td></tr>
+        <tr><td><span class="pill pill-high">High</span></td><td class="td-gold"><strong>Reviews</strong></td><td>QR cards at table + delivery packaging. Target 50+ Google reviews at 4.3 stars in 90 days.</td><td>43% of diners skip restaurants with no rating</td></tr>
+        <tr><td><span class="pill pill-medium">Medium</span></td><td class="td-gold"><strong>TikTok Influencers</strong></td><td>5 nano-influencer gifted visits (Riyadh food bloggers) for TikTok + Instagram posts.</td><td>5–15K views per video — zero cash cost</td></tr>
+        <tr><td><span class="pill pill-medium">Medium</span></td><td class="td-gold"><strong>X (Twitter)</strong></td><td>Create @MolokhiaKSA. 2–3 posts daily, respond to all mentions, use KSA food hashtags.</td><td>Real-time discovery + customer service</td></tr>
+        <tr><td><span class="pill pill-medium">Medium</span></td><td class="td-gold"><strong>WhatsApp Business</strong></td><td>Set up WhatsApp Business linked from all profiles for direct orders and enquiries.</td><td>Saudi customers prefer WhatsApp for brand contact</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 10 KPIS ═════════════════════════════════════════════════════════════════ -->
+<section class="section section-accent" id="kpis">
+  <div class="container">
+    <p class="section-number reveal">10 — KPIs & Measurement</p>
+    <h2 class="section-title reveal">Targets That<br><em>Mean Something</em></h2>
+    <div class="gold-rule reveal"></div>
+    <p class="section-lead reveal">Benchmarked against KSA restaurant industry standards. All metrics reviewed monthly by the Elite Consultant team.</p>
+
+    <div class="kpi-grid stagger">
+      <div class="kpi-card"><p class="kpi-platform">Google Business Profile</p><p class="kpi-metric">Star Rating</p><div class="kpi-row"><span>Now: Unrated</span><span>M6: 4.3+ stars</span></div><div class="kpi-row"><span>Now: &lt; 5 reviews</span><span>M6: 60+ reviews</span></div></div>
+      <div class="kpi-card"><p class="kpi-platform">Facebook</p><p class="kpi-metric">Engagement Rate</p><div class="kpi-row"><span>Now: 0.04%</span><span>M3: 0.70%</span></div><div class="kpi-row"><span>Now: ~300/post reach</span><span>M6: 6,000+/post</span></div></div>
+      <div class="kpi-card"><p class="kpi-platform">Instagram</p><p class="kpi-metric">Followers</p><div class="kpi-row"><span>Now: 1,151</span><span>M3: 5,000</span></div><div class="kpi-row"><span>Engagement: &lt;1%</span><span>M6: 7%+</span></div></div>
+      <div class="kpi-card"><p class="kpi-platform">TikTok</p><p class="kpi-metric">Followers & Views</p><div class="kpi-row"><span>Now: &lt; 500 est.</span><span>M3: 5,000</span></div><div class="kpi-row"><span>Avg views: &lt; 500</span><span>M6: 20,000+</span></div></div>
+      <div class="kpi-card"><p class="kpi-platform">Snapchat</p><p class="kpi-metric">Subscribers</p><div class="kpi-row"><span>Now: 0</span><span>M3: 1,500</span></div><div class="kpi-row"><span>Stories views: 0</span><span>M6: 5,000+</span></div></div>
+      <div class="kpi-card"><p class="kpi-platform">All Platforms</p><p class="kpi-metric">Influencer Collabs</p><div class="kpi-row"><span>Now: 0</span><span>M3: 8</span></div><div class="kpi-row"><span>Delivery clicks: 0</span><span>M6: 3,000+/mo</span></div></div>
+    </div>
+
+    <table class="data-table reveal" style="margin-top:2.5rem">
+      <thead><tr><th>Report Type</th><th>Frequency</th><th>Contents</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Social Performance Report</strong></td><td class="td-gold">Monthly</td><td>Follower growth, engagement rate, top posts, reach and impressions per platform</td></tr>
+        <tr><td><strong>GBP Report</strong></td><td class="td-gold">Monthly</td><td>Review count, star rating, search impressions, direction requests, click-through rate</td></tr>
+        <tr><td><strong>Content Audit</strong></td><td class="td-gold">Quarterly</td><td>Pillar distribution, top/bottom performers, A/B test results, competitor snapshot</td></tr>
+        <tr><td><strong>Strategy Review</strong></td><td class="td-gold">Quarterly</td><td>KPI progress vs targets, budget review, next-quarter roadmap and priorities</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══ 11 ROADMAP ═════════════════════════════════════════════════════════════ -->
+<section class="section section-dark" id="roadmap">
+  <div class="container">
+    <p class="section-number reveal">11 — 90-Day Roadmap</p>
+    <h2 class="section-title reveal">The Path to<br><em>Real Growth</em></h2>
+    <div class="gold-rule reveal"></div>
+    <p class="section-lead reveal">Three phases. Every item has a named platform and designated owner. Phase 1 is foundations and quick wins. Phases 2–3 scale growth.</p>
+
+    <div class="timeline reveal">
+      <div class="timeline-phase">
+        <p class="timeline-phase-title">Phase 1 — Foundation (Weeks 1–4)</p>
+        <div class="timeline-item"><p class="tl-week">Wk 1</p><div class="tl-content"><p class="tl-task">Claim and verify Google Business Profile</p><p class="tl-meta"><span class="tl-plat">GBP</span> · Client + EC Agency</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 1</p><div class="tl-content"><p class="tl-task">Upload 20+ photos: food, interior, exterior, staff</p><p class="tl-meta"><span class="tl-plat">GBP</span> · Photographer</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 1</p><div class="tl-content"><p class="tl-task">Create Snapchat Business Account + Public Profile</p><p class="tl-meta"><span class="tl-plat">Snapchat</span> · EC Agency</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 1</p><div class="tl-content"><p class="tl-task">Full Facebook content audit — archive underperforming posts</p><p class="tl-meta"><span class="tl-plat">Facebook</span> · EC Agency</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 2</p><div class="tl-content"><p class="tl-task">Complete GBP: add menu, hours, delivery link</p><p class="tl-meta"><span class="tl-plat">GBP</span> · Client</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 2</p><div class="tl-content"><p class="tl-task">Print and deploy review QR cards — tables + delivery bags</p><p class="tl-meta"><span class="tl-plat">GBP + Facebook</span> · Client</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 2</p><div class="tl-content"><p class="tl-task">Launch new Facebook strategy: first video + poll</p><p class="tl-meta"><span class="tl-plat">Facebook</span> · Content Team</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 2</p><div class="tl-content"><p class="tl-task">Branded Snapchat geofilter live + first 5 daily Stories</p><p class="tl-meta"><span class="tl-plat">Snapchat</span> · Designer + EC</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 3</p><div class="tl-content"><p class="tl-task">Optimise Instagram: bio, link-in-bio, 5 Story Highlights</p><p class="tl-meta"><span class="tl-plat">Instagram</span> · EC Agency</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 3</p><div class="tl-content"><p class="tl-task">Begin following 200+ Riyadh food accounts</p><p class="tl-meta"><span class="tl-plat">Instagram</span> · Social Manager</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 3</p><div class="tl-content"><p class="tl-task">Post first 5 TikTok videos: ASMR, chef POV, daily special</p><p class="tl-meta"><span class="tl-plat">TikTok</span> · Videographer</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 4</p><div class="tl-content"><p class="tl-task">Launch first META Ads awareness campaign (SAR 500)</p><p class="tl-meta"><span class="tl-plat">META Ads</span> · EC Agency</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 4</p><div class="tl-content"><p class="tl-task">Reach out to 5 nano food influencers for gifted meal</p><p class="tl-meta"><span class="tl-plat">TikTok</span> · EC Agency</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 4</p><div class="tl-content"><p class="tl-task">Create @MolokhiaKSA on X — publish intro thread</p><p class="tl-meta"><span class="tl-plat">X / Twitter</span> · Social Manager</p></div></div>
+      </div>
+
+      <div class="timeline-phase">
+        <p class="timeline-phase-title">Phase 2 — Growth (Weeks 5–8)</p>
+        <div class="timeline-item"><p class="tl-week">Wk 5</p><div class="tl-content"><p class="tl-task">Publish first nano-influencer TikTok collaboration video</p><p class="tl-meta"><span class="tl-plat">TikTok</span> · EC Agency</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 5</p><div class="tl-content"><p class="tl-task">A/B test: video vs photo vs poll — track for 7 days</p><p class="tl-meta"><span class="tl-plat">Facebook</span> · EC Agency</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 6</p><div class="tl-content"><p class="tl-task">First Instagram Collab post with local Riyadh food account</p><p class="tl-meta"><span class="tl-plat">Instagram</span> · EC Agency</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 6</p><div class="tl-content"><p class="tl-task">Scale META Ads to SAR 1,500/month + add delivery campaign</p><p class="tl-meta"><span class="tl-plat">META Ads</span> · EC Agency</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 6</p><div class="tl-content"><p class="tl-task">Run first Snapchat Ads campaign (SAR 500 budget)</p><p class="tl-meta"><span class="tl-plat">Snapchat Ads</span> · EC Agency</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 7</p><div class="tl-content"><p class="tl-task">Launch Heritage content series across all platforms</p><p class="tl-meta"><span class="tl-plat">All Platforms</span> · Content Team</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 8</p><div class="tl-content"><p class="tl-task">Month 2 performance review — adjust underperforming content</p><p class="tl-meta"><span class="tl-plat">All Platforms</span> · EC + Client</p></div></div>
+      </div>
+
+      <div class="timeline-phase">
+        <p class="timeline-phase-title">Phase 3 — Scale (Weeks 9–12)</p>
+        <div class="timeline-item"><p class="tl-week">Wk 9</p><div class="tl-content"><p class="tl-task">Scale to full SAR 2,300/month across all paid campaigns</p><p class="tl-meta"><span class="tl-plat">META + TikTok</span> · EC Agency</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 9</p><div class="tl-content"><p class="tl-task">Boost best-performing organic video as TikTok Spark Ad</p><p class="tl-meta"><span class="tl-plat">TikTok Ads</span> · EC Agency</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 10</p><div class="tl-content"><p class="tl-task">GBP milestone check: target 35+ reviews at 4.0+ stars</p><p class="tl-meta"><span class="tl-plat">GBP</span> · Client</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 11</p><div class="tl-content"><p class="tl-task">Plan full Ramadan content calendar (3 weeks ahead)</p><p class="tl-meta"><span class="tl-plat">All Platforms</span> · Content Team</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 12</p><div class="tl-content"><p class="tl-task">90-day full audit review — compare against KPI baseline</p><p class="tl-meta"><span class="tl-plat">All Platforms</span> · EC + Client</p></div></div>
+        <div class="timeline-item"><p class="tl-week">Wk 12</p><div class="tl-content"><p class="tl-task">Deliver updated Q2 strategy deck based on 90-day performance data</p><p class="tl-meta"><span class="tl-plat">All Platforms</span> · EC Agency</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 12 BUDGET ══════════════════════════════════════════════════════════════ -->
+<section class="section section-accent" id="budget">
+  <div class="container">
+    <p class="section-number reveal">12 — Recommended Investment</p>
+    <h2 class="section-title reveal">A Budget Built<br><em>for Real Growth</em></h2>
+    <div class="gold-rule reveal"></div>
+    <p class="section-lead reveal">All figures in Saudi Riyals (SAR). Paid media scales in Month 2 once baseline creative assets and tracking infrastructure are in place.</p>
+
+    <div class="budget-grid stagger">
+      <div class="budget-col">
+        <p class="bc-month">Month 1</p>
+        <p class="bc-total">SAR 8,400</p>
+        <div class="bc-lines">
+          <div class="bc-line"><span>Agency Management</span><span>3,000</span></div>
+          <div class="bc-line"><span>Content Production</span><span>2,500</span></div>
+          <div class="bc-line"><span>META Ads</span><span>1,500</span></div>
+          <div class="bc-line"><span>Snapchat Ads</span><span>700</span></div>
+          <div class="bc-line"><span>Influencers</span><span>500</span></div>
+          <div class="bc-line"><span>Tools</span><span>200</span></div>
+        </div>
+      </div>
+      <div class="budget-col" style="background:var(--bg3);border:1px solid var(--gold-dim)">
+        <p class="bc-month">Month 2</p>
+        <p class="bc-total">SAR 10,400</p>
+        <div class="bc-lines">
+          <div class="bc-line"><span>Agency Management</span><span>3,000</span></div>
+          <div class="bc-line"><span>Content Production</span><span>2,000</span></div>
+          <div class="bc-line"><span>META Ads</span><span>2,000</span></div>
+          <div class="bc-line"><span>Snapchat Ads</span><span>700</span></div>
+          <div class="bc-line"><span>TikTok Spark Ads</span><span>500</span></div>
+          <div class="bc-line"><span>Google Ads</span><span>500</span></div>
+          <div class="bc-line"><span>Influencers</span><span>1,500</span></div>
+          <div class="bc-line"><span>Tools</span><span>200</span></div>
+        </div>
+      </div>
+      <div class="budget-col">
+        <p class="bc-month">Month 3</p>
+        <p class="bc-total">SAR 12,700</p>
+        <div class="bc-lines">
+          <div class="bc-line"><span>Agency Management</span><span>3,000</span></div>
+          <div class="bc-line"><span>Content Production</span><span>2,000</span></div>
+          <div class="bc-line"><span>META Ads</span><span>2,500</span></div>
+          <div class="bc-line"><span>Snapchat Ads</span><span>1,000</span></div>
+          <div class="bc-line"><span>TikTok Spark Ads</span><span>1,000</span></div>
+          <div class="bc-line"><span>Google Ads</span><span>1,000</span></div>
+          <div class="bc-line"><span>Influencers</span><span>2,000</span></div>
+          <div class="bc-line"><span>Tools</span><span>200</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="callout reveal"><p class="callout-label">Cost Reduction Note</p><p>Content production costs can be significantly reduced by building in-house video capability. A smartphone + ring light + basic editing app costs approximately <strong>SAR 1,500 one-time</strong> and produces high-performing TikTok and Reels content.</p></div>
+  </div>
+</section>
+
+<!-- ══ 13 MEETING AGENDA ══════════════════════════════════════════════════════ -->
+<section class="section section-dark" id="agenda">
+  <div class="container">
+    <p class="section-number reveal">13 — Client Meeting Agenda</p>
+    <h2 class="section-title reveal">90 Minutes.<br><em>Full Clarity.</em></h2>
+    <div class="gold-rule reveal"></div>
+    <p class="section-lead reveal">Recommended structure for presenting this audit to the client. Total duration: 90 minutes.</p>
+
+    <div class="agenda-list reveal">
+      <div class="agenda-item"><p class="ag-time">0:00</p><p class="ag-topic">Welcome & Intro</p><p class="ag-points">Agency intro, meeting objectives, confidentiality</p></div>
+      <div class="agenda-item"><p class="ag-time">0:05</p><p class="ag-topic">Executive Summary</p><p class="ag-points">Overall score 29/100 — top 3 priorities, biggest growth opportunity</p></div>
+      <div class="agenda-item"><p class="ag-time">0:15</p><p class="ag-topic">Platform Deep-Dives</p><p class="ag-points">GBP → META → TikTok → Snapchat findings, section by section</p></div>
+      <div class="agenda-item"><p class="ag-time">0:35</p><p class="ag-topic">Content Strategy</p><p class="ag-points">5 pillars, Arabic-first guidelines, weekly content calendar</p></div>
+      <div class="agenda-item"><p class="ag-time">0:45</p><p class="ag-topic">KPIs & Targets</p><p class="ag-points">6-month KPI table — align on realistic expectations per platform</p></div>
+      <div class="agenda-item"><p class="ag-time">0:55</p><p class="ag-topic">90-Day Roadmap</p><p class="ag-points">Walk through Phase 1 — confirm client-side vs agency-side tasks</p></div>
+      <div class="agenda-item"><p class="ag-time">1:05</p><p class="ag-topic">Budget Discussion</p><p class="ag-points">Tiered budget options — discuss content production capacity</p></div>
+      <div class="agenda-item"><p class="ag-time">1:15</p><p class="ag-topic">Q&A</p><p class="ag-points">Address questions — confirm kickoff date and credentials handover</p></div>
+      <div class="agenda-item"><p class="ag-time">1:25</p><p class="ag-topic">Next Steps</p><p class="ag-points">Kickoff date, access credentials, points of contact</p></div>
+    </div>
+
+    <div class="creds-box reveal">
+      <p class="creds-title">Credentials Required at Kickoff</p>
+      <div class="creds-list">
+        <div class="cred-item"><div class="cred-icon">GBP</div><div class="cred-text"><strong>Google Business Profile</strong>Owner-level Google account access to the business listing</div></div>
+        <div class="cred-item"><div class="cred-icon">FB</div><div class="cred-text"><strong>META Business Manager</strong>Admin access to Facebook Page and Instagram account</div></div>
+        <div class="cred-item"><div class="cred-icon">TT</div><div class="cred-text"><strong>TikTok</strong>Account login or TikTok Business Centre invitation</div></div>
+        <div class="cred-item"><div class="cred-icon">SC</div><div class="cred-text"><strong>Snapchat</strong>Agency will create from scratch — confirm brand email for new account</div></div>
+        <div class="cred-item"><div class="cred-icon">DEL</div><div class="cred-text"><strong>Delivery Platforms</strong>Jahez / Talabat account access for menu and promotion setup</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ═════════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-logo">
+    <svg viewBox="0 0 28 28" fill="none" width="24" height="24">
+      <circle cx="14" cy="14" r="13" stroke="#c9a86a" stroke-width="1"/>
+      <circle cx="14" cy="14" r="4" stroke="#c9a86a" stroke-width="1"/>
+      <line x1="14" y1="1" x2="14" y2="7" stroke="#c9a86a" stroke-width="1"/>
+      <line x1="14" y1="21" x2="14" y2="27" stroke="#c9a86a" stroke-width="1"/>
+      <line x1="1" y1="14" x2="7" y2="14" stroke="#c9a86a" stroke-width="1"/>
+      <line x1="21" y1="14" x2="27" y2="14" stroke="#c9a86a" stroke-width="1"/>
+    </svg>
+    Elite Consultant
+  </div>
+  <p class="footer-tagline">Your Compass To Real Growth</p>
+  <p class="footer-meta">
+    <span>Prepared for Molokhia Restaurant KSA</span> · March 2026 · Confidential<br>
+    All benchmark data sourced from DataReportal, GMI, Sprinklr, Toast & Meta Business Insights (2025–2026)<br>
+    <a href="https://www.eliteconsultantco.com" target="_blank" style="color:var(--gold-dim);text-decoration:underline;text-decoration-color:var(--gold-dim)">eliteconsultantco.com</a>
+  </p>
+</footer>
+
+<!-- ══ JAVASCRIPT ═════════════════════════════════════════════════════════════ -->
+<script>
+/* CURSOR */
+const dot  = document.getElementById('dot');
+const ring = document.getElementById('ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`; });
+(function animRing(){ rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`; requestAnimationFrame(animRing); })();
+
+/* PROGRESS BAR */
+const progressBar = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  progressBar.style.width = pct + '%';
+});
+
+/* NAV SCROLL */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* HERO SCORE COUNTER */
+let scored = false;
+function countUp(el, target, dur) {
+  let start = 0; const step = target / (dur / 16);
+  const t = setInterval(() => { start = Math.min(start + step, target); el.textContent = Math.round(start); if (start >= target) clearInterval(t); }, 16);
+}
+const heroObs = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting && !scored) {
+    scored = true;
+    countUp(document.getElementById('heroScore'), 29, 1800);
+  }
+}, { threshold: 0.3 });
+heroObs.observe(document.querySelector('.hero'));
+
+/* SCROLL REVEAL */
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .stagger').forEach(el => revealObs.observe(el));
+
+/* SCORE BAR ANIMATION */
+const barObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.sc-bar-fill[data-width]').forEach(bar => {
+        setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 200);
+      });
+      barObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.getElementById('scoreGrid') && barObs.observe(document.getElementById('scoreGrid'));
+
+/* TABS */
+function switchTab(btn, id) {
+  document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.ptab-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+}
+
+/* MOBILE NAV */
+document.querySelector('.nav-hamburger').addEventListener('click', () => {
+  const links = document.querySelector('.nav-links');
+  if (links.style.display === 'flex') {
+    links.style.display = 'none';
+  } else {
+    links.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:rgba(13,15,13,0.98);padding:2rem;gap:1.5rem;z-index:99;border-bottom:1px solid var(--gold-dim)';
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.style.display = 'none'));
+  }
+});
+
+/* SMOOTH ANCHOR SCROLL */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+</body>
+</html>
