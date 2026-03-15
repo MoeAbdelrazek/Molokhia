@@ -11,332 +11,450 @@
 
 /* ─── TOKENS ──────────────────────────────────────────────────── */
 :root {
-  --bg:      #0b0d0b;
-  --s1:      #101310;
-  --s2:      #161916;
-  --s3:      #1d211d;
-  --s4:      #242824;
-  --edge:    rgba(255,255,255,.06);
-  --edge2:   rgba(255,255,255,.1);
-  --gold:    #c49a4a;
-  --goldl:   #d4b06a;
-  --goldd:   rgba(196,154,74,.15);
-  --t1:      #f5f2e8;
-  --t2:      #dedad0;
-  --t3:      #a8a498;
-  --t4:      #707060;
-  --red:     #d45050;
-  --redbg:   rgba(212,80,80,.1);
-  --amb:     #d08b2a;
-  --ambbg:   rgba(208,139,42,.1);
-  --grn:     #3da06e;
-  --grnbg:   rgba(61,160,110,.1);
-  --fh:      'Bricolage Grotesque', sans-serif;
-  --fb:      'Hanken Grotesk', sans-serif;
-  --ease:    cubic-bezier(.25,1,.5,1);
+  --bg:    #09090a;
+  --s1:    #0f100f;
+  --s2:    #151615;
+  --s3:    #1c1e1c;
+  --s4:    #232523;
+  --edge:  rgba(255,255,255,.07);
+  --edge2: rgba(255,255,255,.13);
+  --gold:  #c8a052;
+  --goldl: #dbb96e;
+  --goldd: rgba(200,160,82,.14);
+  --golde: rgba(200,160,82,.06);
+  --t1:    #f4f0e0;
+  --t2:    #cdc8b2;
+  --t3:    #8a8774;
+  --t4:    #4a4a3c;
+  --red:   #c84040;
+  --redbg: rgba(200,64,64,.10);
+  --amb:   #c8862a;
+  --ambbg: rgba(200,134,42,.10);
+  --grn:   #3a9868;
+  --grnbg: rgba(58,152,104,.10);
+  --fh:    'Bricolage Grotesque', sans-serif;
+  --fb:    'Hanken Grotesk', sans-serif;
+  --ease:  cubic-bezier(.22,1,.36,1);
+  --ease2: cubic-bezier(.16,1,.3,1);
 }
 
 /* ─── BASE ────────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--t2); font-family: var(--fb); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-a { color: inherit; text-decoration: none; }
-::selection { background: rgba(196,154,74,.2); color: var(--goldl); }
-::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--t4); border-radius: 2px; }
-strong, b { color: var(--t1); font-weight: 600; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t2);font-family:var(--fb);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:rgba(200,160,82,.22);color:var(--goldl)}
+::-webkit-scrollbar{width:2px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--t4);border-radius:2px}
+strong,b{color:var(--t1);font-weight:600}
 
 /* ─── PROGRESS ────────────────────────────────────────────────── */
-#bar { position: fixed; top: 0; left: 0; height: 2px; z-index: 999; background: linear-gradient(90deg, var(--gold), var(--goldl)); width: 0; box-shadow: 0 0 12px rgba(196,154,74,.4); }
+#bar{
+  position:fixed;top:0;left:0;height:1px;z-index:999;width:0;
+  background:linear-gradient(90deg,transparent,var(--gold),var(--goldl),var(--gold),transparent);
+  box-shadow:0 0 20px var(--gold),0 0 40px rgba(200,160,82,.3);
+  transition:width .06s linear;
+}
 
 /* ─── NAV ─────────────────────────────────────────────────────── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1.5rem 3rem; transition: all .4s var(--ease);
+nav{
+  position:fixed;inset:0 0 auto;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.6rem 3.5rem;
+  transition:all .5s var(--ease);
 }
-nav.on {
-  background: rgba(11,13,11,.92); backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--edge); padding: 1rem 3rem;
+nav.on{
+  background:rgba(9,9,10,.88);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
+  border-bottom:1px solid var(--edge);padding:1rem 3.5rem;
 }
-.nav-id { font-family: var(--fh); font-size: .72rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
-.nav-links { display: flex; gap: 2rem; list-style: none; }
-.nav-links a { font-family: var(--fh); font-size: .65rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--t2); transition: color .2s; }
-.nav-links a:hover { color: var(--gold); }
-.nav-ham { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; }
-.nav-ham span { display: block; width: 20px; height: 1px; background: var(--t3); }
+.nav-id{
+  font-family:var(--fh);font-size:.72rem;font-weight:700;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
+}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{
+  font-family:var(--fh);font-size:.65rem;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--t3);
+  transition:color .25s;
+}
+.nav-links a:hover{color:var(--goldl)}
+.nav-ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer}
+.nav-ham span{display:block;width:22px;height:1px;background:var(--t3);transition:all .3s}
 
 /* ─── COVER ───────────────────────────────────────────────────── */
-.cover {
-  min-height: 100svh; display: flex; flex-direction: column;
-  justify-content: flex-end; padding: 0 3rem 5rem;
-  position: relative; overflow: hidden;
+.cover{
+  min-height:100svh;display:flex;flex-direction:column;
+  justify-content:flex-end;padding:0 3.5rem 5.5rem;
+  position:relative;overflow:hidden;
 }
-.cover-grid {
-  position: absolute; inset: 0; pointer-events: none; opacity: .35;
+.cover-lines{
+  position:absolute;inset:0;pointer-events:none;
   background-image:
-    linear-gradient(var(--edge) 1px, transparent 1px),
-    linear-gradient(90deg, var(--edge) 1px, transparent 1px);
-  background-size: 80px 80px;
-  mask-image: radial-gradient(ellipse 100% 80% at 20% 80%, black 30%, transparent 75%);
+    linear-gradient(rgba(200,160,82,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(200,160,82,.045) 1px,transparent 1px);
+  background-size:88px 88px;
+  mask-image:radial-gradient(ellipse 90% 70% at 10% 90%, black 20%, transparent 72%);
 }
-.cover-accent { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 0% 100%, rgba(196,154,74,.06) 0%, transparent 65%); pointer-events: none; }
-.cover-tag { font-family: var(--fh); font-size: .65rem; font-weight: 500; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; display: flex; align-items: center; gap: .75rem; animation: up .8s var(--ease) both; }
-.cover-tag::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
-.cover-h1 { font-family: var(--fh); font-size: clamp(3.2rem, 6.5vw, 6rem); font-weight: 800; line-height: .95; letter-spacing: -.02em; color: var(--t1); margin-bottom: .65rem; animation: up .8s .07s var(--ease) both; }
-.cover-h1 em { font-style: normal; color: var(--gold); display: block; font-weight: 300; }
-.cover-client { font-size: 1.05rem; font-weight: 300; color: var(--t3); margin-bottom: 3.5rem; animation: up .8s .14s var(--ease) both; }
-.cover-meta { display: flex; gap: 0; border-top: 1px solid var(--edge); padding-top: 2rem; animation: up .8s .21s var(--ease) both; flex-wrap: wrap; gap: 0; }
-.cm { padding-right: 2.5rem; margin-right: 2.5rem; border-right: 1px solid var(--edge); }
-.cm:last-child { border-right: none; }
-.cm-k { font-family: var(--fh); font-size: .55rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--t4); margin-bottom: .25rem; }
-.cm-v { font-size: .88rem; font-weight: 500; color: var(--t2); }
-@keyframes up { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+.cover-glow{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 55% 45% at 0% 100%, rgba(200,160,82,.07) 0%, transparent 60%),
+    radial-gradient(ellipse 35% 35% at 100% 0%, rgba(200,160,82,.03) 0%, transparent 55%);
+}
+.cover-tag{
+  font-family:var(--fh);font-size:.68rem;font-weight:600;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--gold);
+  margin-bottom:2.25rem;display:flex;align-items:center;gap:.85rem;
+  animation:coverUp .9s var(--ease) both;
+}
+.cover-tag::before{content:'';width:36px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.cover-h1{
+  font-family:var(--fh);font-size:clamp(3.4rem,7vw,6.5rem);font-weight:800;
+  line-height:.93;letter-spacing:-.025em;color:var(--t1);
+  margin-bottom:.7rem;animation:coverUp .9s .09s var(--ease) both;
+}
+.cover-h1 em{font-style:normal;color:var(--gold);display:block;font-weight:300;letter-spacing:-.01em}
+.cover-client{
+  font-size:1.1rem;font-weight:300;color:var(--t3);
+  margin-bottom:3.5rem;animation:coverUp .9s .17s var(--ease) both;
+  letter-spacing:.02em;
+}
+.cover-meta{
+  display:flex;gap:0;border-top:1px solid var(--edge);
+  padding-top:2rem;animation:coverUp .9s .25s var(--ease) both;flex-wrap:wrap;
+}
+.cm{padding-right:2.75rem;margin-right:2.75rem;border-right:1px solid var(--edge)}
+.cm:last-child{border-right:none;margin-right:0;padding-right:0}
+.cm-k{font-family:var(--fh);font-size:.56rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem;opacity:.75}
+.cm-v{font-size:.95rem;font-weight:500;color:var(--t2)}
+
+@keyframes coverUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 
 /* ─── LAYOUT ──────────────────────────────────────────────────── */
-.sec { padding: 6rem 3rem; border-top: 1px solid var(--edge); }
-.sec-dark { background: var(--s1); }
-.wrap { max-width: 1120px; margin: 0 auto; }
-.sec-tag { font-family: var(--fh); font-size: .6rem; font-weight: 700; letter-spacing: .26em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: .6rem; margin-bottom: .85rem; }
-.sec-tag::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
-.sec-h { font-family: var(--fh); font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; line-height: 1.05; letter-spacing: -.02em; color: var(--t1); margin-bottom: 2.5rem; }
-.sec-h em { font-style: normal; color: var(--gold); }
+.sec{padding:7rem 3.5rem;border-top:1px solid var(--edge)}
+.sec-dark{background:var(--s1)}
+.wrap{max-width:1160px;margin:0 auto}
+.sec-tag{
+  font-family:var(--fh);font-size:.6rem;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:.65rem;margin-bottom:.9rem;
+}
+.sec-tag::before{content:'';width:22px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.sec-h{
+  font-family:var(--fh);font-size:clamp(2rem,3.5vw,2.9rem);font-weight:700;
+  line-height:1.04;letter-spacing:-.025em;color:var(--t1);margin-bottom:2.5rem;
+}
+.sec-h em{font-style:normal;color:var(--gold)}
 
-/* ─── REVEAL ──────────────────────────────────────────────────── */
-.rv { opacity: 0; transform: translateY(24px); transition: opacity .65s var(--ease), transform .65s var(--ease); }
-.rv.in { opacity: 1; transform: none; }
-.sg > * { opacity: 0; transform: translateY(18px); transition: opacity .5s var(--ease), transform .5s var(--ease); }
-.sg.in > *:nth-child(1){opacity:1;transform:none;transition-delay:0s}
-.sg.in > *:nth-child(2){opacity:1;transform:none;transition-delay:.06s}
-.sg.in > *:nth-child(3){opacity:1;transform:none;transition-delay:.12s}
-.sg.in > *:nth-child(4){opacity:1;transform:none;transition-delay:.18s}
-.sg.in > *:nth-child(5){opacity:1;transform:none;transition-delay:.24s}
-.sg.in > *:nth-child(6){opacity:1;transform:none;transition-delay:.30s}
-.sg.in > *:nth-child(7){opacity:1;transform:none;transition-delay:.36s}
-.sg.in > *:nth-child(8){opacity:1;transform:none;transition-delay:.42s}
-.sg.in > *:nth-child(9){opacity:1;transform:none;transition-delay:.48s}
-.sg.in > *:nth-child(10){opacity:1;transform:none;transition-delay:.54s}
+/* ─── ANIMATIONS ──────────────────────────────────────────────── */
+/* Fade up */
+.rv{opacity:0;transform:translateY(32px);transition:opacity .8s var(--ease2),transform .8s var(--ease2)}
+.rv.in{opacity:1;transform:none}
+/* Fade up staggered */
+.sg>*{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease2),transform .6s var(--ease2)}
+.sg.in>*:nth-child(1){opacity:1;transform:none;transition-delay:.00s}
+.sg.in>*:nth-child(2){opacity:1;transform:none;transition-delay:.07s}
+.sg.in>*:nth-child(3){opacity:1;transform:none;transition-delay:.14s}
+.sg.in>*:nth-child(4){opacity:1;transform:none;transition-delay:.21s}
+.sg.in>*:nth-child(5){opacity:1;transform:none;transition-delay:.28s}
+.sg.in>*:nth-child(6){opacity:1;transform:none;transition-delay:.35s}
+.sg.in>*:nth-child(7){opacity:1;transform:none;transition-delay:.42s}
+.sg.in>*:nth-child(8){opacity:1;transform:none;transition-delay:.49s}
+.sg.in>*:nth-child(9){opacity:1;transform:none;transition-delay:.56s}
+.sg.in>*:nth-child(10){opacity:1;transform:none;transition-delay:.63s}
+/* Fade in only */
+.fi{opacity:0;transition:opacity .9s var(--ease2)}
+.fi.in{opacity:1}
+/* Slide from left */
+.sl{opacity:0;transform:translateX(-28px);transition:opacity .8s var(--ease2),transform .8s var(--ease2)}
+.sl.in{opacity:1;transform:none}
+/* Scale in */
+.sc-in{opacity:0;transform:scale(.96);transition:opacity .7s var(--ease2),transform .7s var(--ease2)}
+.sc-in.in{opacity:1;transform:none}
 
-/* ─── SHARED CARD ─────────────────────────────────────────────── */
-.card { background: var(--s1); border: 1px solid var(--edge); border-radius: 8px; overflow: hidden; transition: border-color .25s, background .25s; }
-.card:hover { border-color: var(--edge2); background: var(--s2); }
+/* ─── BADGE ───────────────────────────────────────────────────── */
+.badge{
+  display:inline-flex;align-items:center;
+  font-family:var(--fh);font-size:.56rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  padding:.24rem .72rem;border-radius:3px;
+}
+.b-red  {background:var(--redbg);color:var(--red);border:1px solid rgba(200,64,64,.22)}
+.b-amb  {background:var(--goldd);color:var(--goldl);border:1px solid rgba(200,160,82,.28)}
+.b-grn  {background:var(--grnbg);color:var(--grn);border:1px solid rgba(58,152,104,.22)}
+.b-gold {background:var(--goldd);color:var(--gold);border:1px solid rgba(200,160,82,.28)}
 
-/* ─── PILL / BADGE ────────────────────────────────────────────── */
-.badge { display: inline-flex; align-items: center; font-family: var(--fh); font-size: .55rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: .22rem .65rem; border-radius: 3px; }
-.b-red   { background: var(--redbg); color: var(--red); border: 1px solid rgba(212,80,80,.2); }
-.b-amb   { background: var(--ambbg); color: var(--amb); border: 1px solid rgba(208,139,42,.2); }
-.b-grn   { background: var(--grnbg); color: var(--grn); border: 1px solid rgba(61,160,110,.2); }
-.b-gold  { background: var(--goldd); color: var(--gold); border: 1px solid rgba(196,154,74,.25); }
+/* ═══ STAT GRID ══════════════════════════════════════════════════ */
+.stat-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
+  gap:1px;background:var(--edge);border:1px solid var(--edge);
+  border-radius:10px;overflow:hidden;
+}
+.stat{background:var(--s1);padding:1.75rem 1.5rem;transition:background .25s}
+.stat:hover{background:var(--s2)}
+.stat-k{font-family:var(--fh);font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.55rem;opacity:.9}
+.stat-v{font-family:var(--fh);font-size:2.2rem;font-weight:800;line-height:1;color:var(--t1);margin-bottom:.35rem}
+.stat-v.r{color:var(--red)}.stat-v.a{color:var(--amb)}.stat-v.g{color:var(--grn)}.stat-v.gd{color:var(--gold)}
+.stat-d{font-size:.88rem;color:var(--t2);line-height:1.45}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/* SECTION: SUMMARY METRICS ─────────────────────────────────────── */
-.stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1px; background: var(--edge); border: 1px solid var(--edge); border-radius: 8px; overflow: hidden; }
-.stat { background: var(--s1); padding: 1.5rem 1.4rem; transition: background .2s; }
-.stat:hover { background: var(--s2); }
-.stat-k { font-family: var(--fh); font-size: .57rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: .5rem; }
-.stat-v { font-family: var(--fh); font-size: 2rem; font-weight: 800; line-height: 1; color: var(--t1); margin-bottom: .3rem; }
-.stat-v.r { color: var(--red); } .stat-v.a { color: var(--amb); } .stat-v.g { color: var(--grn); } .stat-v.gd { color: var(--gold); }
-.stat-d { font-size: .78rem; color: var(--t2); line-height: 1.4; }
+/* ═══ CALLOUT NOTE ═══════════════════════════════════════════════ */
+.note{
+  border-left:2px solid var(--gold);background:var(--golde);
+  padding:1.3rem 1.6rem;border-radius:0 8px 8px 0;margin:1.75rem 0;
+}
+.note.r{border-color:var(--red);background:var(--redbg)}
+.note.a{border-color:var(--gold);background:var(--golde)}
+.note.g{border-color:var(--grn);background:var(--grnbg)}
+.note-tag{
+  font-family:var(--fh);font-size:.58rem;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.45rem;
+}
+.note.r .note-tag{color:var(--red)}.note.g .note-tag{color:var(--grn)}
+.note p{font-size:.95rem;color:var(--t2);line-height:1.7}
+.note p strong{color:var(--t1);font-weight:600}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/* SECTION: PLATFORM CARDS ──────────────────────────────────────── */
-.plat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
-.plat-card { background: var(--s1); border: 1px solid var(--edge); border-radius: 12px; overflow: hidden; transition: all .25s var(--ease); }
-.plat-card:hover { border-color: var(--edge2); transform: translateY(-2px); background: var(--s2); }
-.pc-head { padding: 1.5rem 1.5rem 1.25rem; border-bottom: 1px solid var(--edge); display: flex; align-items: center; justify-content: space-between; }
-.pc-name { font-family: var(--fh); font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-lt); }
-.pc-body { padding: 1.25rem 1.5rem; }
-.pc-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--edge); border: 1px solid var(--edge); border-radius: 6px; overflow: hidden; margin-bottom: 1.25rem; }
-.pcm { background: var(--s2); padding: .85rem .9rem; }
-.pcm-k { font-family: var(--fh); font-size: .55rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-bottom: .3rem; }
-.pcm-v { font-family: var(--fh); font-size: 1.2rem; font-weight: 700; color: var(--t1); line-height: 1; }
+/* ═══ KSA LANDSCAPE CARDS ════════════════════════════════════════ */
+.ksa-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:12px}
+.ksa-card{
+  background:var(--s1);border:1px solid var(--edge);border-radius:10px;
+  padding:1.4rem 1.25rem;transition:all .3s var(--ease);
+  position:relative;overflow:hidden;
+}
+.ksa-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(200,160,82,.0) 60%,rgba(200,160,82,.04));opacity:0;transition:opacity .3s}
+.ksa-card:hover{border-color:rgba(200,160,82,.3);background:var(--s2)}
+.ksa-card:hover::after{opacity:1}
+.ksa-card.priority{border-color:rgba(200,160,82,.22);background:var(--golde)}
+.ksa-platform{font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--goldl);margin-bottom:.65rem}
+.ksa-users{font-family:var(--fh);font-size:1.5rem;font-weight:800;color:var(--gold);line-height:1;margin-bottom:.2rem}
+.ksa-time{font-family:var(--fh);font-size:.95rem;font-weight:600;color:var(--t2);margin-bottom:.5rem}
+.ksa-note{font-size:.82rem;color:var(--t2);line-height:1.55;border-top:1px solid var(--edge);padding-top:.55rem;margin-top:.45rem}
+
+/* ═══ PLATFORM AUDIT CARDS ═══════════════════════════════════════ */
+.plat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.plat-card{
+  background:var(--s1);border:1px solid var(--edge);border-radius:14px;
+  overflow:hidden;transition:all .35s var(--ease);
+}
+.plat-card:hover{border-color:rgba(200,160,82,.25);transform:translateY(-3px);background:var(--s2);box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 0 1px rgba(200,160,82,.1)}
+.pc-head{
+  padding:1.6rem 1.6rem 1.3rem;border-bottom:1px solid var(--edge);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.pc-name{font-family:var(--fh);font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--goldl)}
+.pc-body{padding:1.4rem 1.6rem}
+.pc-metrics{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:var(--edge);border:1px solid var(--edge);
+  border-radius:7px;overflow:hidden;margin-bottom:1.35rem;
+}
+.pcm{background:var(--s2);padding:.95rem 1rem}
+.pcm-k{font-family:var(--fh);font-size:.56rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem;opacity:.9}
+.pcm-v{font-family:var(--fh);font-size:1.3rem;font-weight:700;color:var(--t1);line-height:1}
 .pcm-v.r{color:var(--red)}.pcm-v.a{color:var(--amb)}.pcm-v.g{color:var(--grn)}.pcm-v.gd{color:var(--gold)}
-.pc-finding { font-size: .83rem; color: var(--t2); line-height: 1.6; margin-bottom: .85rem; }
-.pc-tag { display: inline-block; font-family: var(--fh); font-size: .55rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: .18rem .55rem; border-radius: 3px; margin-bottom: .4rem; }
-.pc-tag.r{background:var(--redbg);color:var(--red)}.pc-tag.a{background:var(--ambbg);color:var(--amb)}.pc-tag.g{background:var(--grnbg);color:var(--grn)}
-.pc-actions { padding: 1.1rem 1.5rem; border-top: 1px solid var(--edge); display: flex; flex-direction: column; gap: .45rem; }
-.pca { font-size: .82rem; color: var(--t2); padding-left: 1.1rem; position: relative; }
-.pca::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-size: .7rem; top: .1rem; }
-.pca strong { color: var(--t2); font-weight: 500; }
+.pc-tag{
+  display:inline-block;font-family:var(--fh);font-size:.56rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;padding:.22rem .6rem;border-radius:3px;margin-bottom:.5rem;
+}
+.pc-tag.r{background:var(--redbg);color:var(--red)}
+.pc-tag.a{background:var(--goldd);color:var(--goldl)}
+.pc-tag.g{background:var(--grnbg);color:var(--grn)}
+.pc-finding{font-size:.9rem;color:var(--t2);line-height:1.65;margin-bottom:.9rem}
+.pc-actions{
+  padding:1.2rem 1.6rem;border-top:1px solid var(--edge);
+  display:flex;flex-direction:column;gap:.5rem;
+}
+.pca{font-size:.88rem;color:var(--t2);padding-left:1.25rem;position:relative;line-height:1.5}
+.pca::before{content:'→';position:absolute;left:0;color:var(--gold);font-size:.75rem;top:.1rem}
+.pca strong{color:var(--t1);font-weight:600}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/* SECTION: STRENGTHS vs GAPS ───────────────────────────────────── */
-.sg2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.sg2-card { background: var(--s1); border: 1px solid var(--edge); border-radius: 12px; overflow: hidden; }
-.sg2-head { padding: 1.1rem 1.5rem; border-bottom: 1px solid var(--edge); font-family: var(--fh); font-size: .62rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; display: flex; align-items: center; gap: .5rem; }
-.sg2-head.g { color: var(--grn); } .sg2-head.r { color: var(--red); } .sg2-head.a { color: var(--amb); }
-.sg2-head::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
-.sg2-body { padding: .5rem 0; }
-.sg2-item { padding: .85rem 1.5rem; border-bottom: 1px solid var(--edge); display: flex; align-items: flex-start; gap: .85rem; }
-.sg2-item:last-child { border-bottom: none; }
-.sg2-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: .7rem; font-weight: 700; flex-shrink: 0; margin-top: .05rem; font-family: var(--fh); }
-.sg2-icon.g { background: var(--grnbg); color: var(--grn); } .sg2-icon.r { background: var(--redbg); color: var(--red); }
-.sg2-text { font-size: .86rem; line-height: 1.55; color: var(--t2); }
-.sg2-text strong { color: var(--t1); font-weight: 600; display: block; margin-bottom: .15rem; font-size: .88rem; }
+/* ═══ STRENGTHS & GAPS ═══════════════════════════════════════════ */
+.sg2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.sg2-card{background:var(--s1);border:1px solid var(--edge);border-radius:14px;overflow:hidden}
+.sg2-head{
+  padding:1.25rem 1.6rem;border-bottom:1px solid var(--edge);
+  font-family:var(--fh);font-size:.64rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  display:flex;align-items:center;gap:.55rem;
+}
+.sg2-head.g{color:var(--grn)}.sg2-head.r{color:var(--gold)}
+.sg2-head::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}
+.sg2-body{padding:.4rem 0}
+.sg2-item{padding:.95rem 1.6rem;border-bottom:1px solid var(--edge);display:flex;align-items:flex-start;gap:.9rem}
+.sg2-item:last-child{border-bottom:none}
+.sg2-icon{
+  width:30px;height:30px;border-radius:7px;display:flex;align-items:center;
+  justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;
+  margin-top:.05rem;font-family:var(--fh);
+}
+.sg2-icon.g{background:var(--grnbg);color:var(--grn)}
+.sg2-icon.r{background:var(--goldd);color:var(--goldl)}
+.sg2-text{font-size:.9rem;line-height:1.6;color:var(--t2)}
+.sg2-text strong{color:var(--t1);font-weight:700;display:block;margin-bottom:.18rem;font-size:.92rem}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/* SECTION: COMPETITOR ANALYSIS ─────────────────────────────────── */
-.comp-table { background: var(--s1); border: 1px solid var(--edge); border-radius: 12px; overflow: hidden; }
-.comp-hrow { display: grid; grid-template-columns: 200px repeat(5, 1fr); background: var(--s2); border-bottom: 1px solid var(--edge); }
-.comp-row  { display: grid; grid-template-columns: 200px repeat(5, 1fr); border-bottom: 1px solid var(--edge); transition: background .15s; }
-.comp-row:last-child { border-bottom: none; }
-.comp-row:hover { background: var(--s2); }
-.comp-row.highlight { background: rgba(196,154,74,.04); }
-.comp-row.highlight:hover { background: rgba(196,154,74,.07); }
-.cc { padding: .95rem 1rem; font-size: .83rem; color: var(--t2); border-right: 1px solid var(--edge); line-height: 1.4; }
-.cc:last-child { border-right: none; }
-.cc.ch { font-family: var(--fh); font-size: .58rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--t3); }
-.cc.brand { font-weight: 600; color: var(--t1); font-size: .88rem; }
-.cc.brand.hl { color: var(--gold); }
-.cc .pos { color: var(--grn); font-size: .75rem; } .cc .neg { color: var(--red); font-size: .75rem; } .cc .neu { color: var(--t3); font-size: .75rem; }
+/* ═══ COMPETITOR TABLE ═══════════════════════════════════════════ */
+.comp-table{background:var(--s1);border:1px solid var(--edge);border-radius:14px;overflow:hidden}
+.comp-hrow{display:grid;grid-template-columns:210px repeat(5,1fr);background:var(--s2);border-bottom:1px solid var(--edge)}
+.comp-row{display:grid;grid-template-columns:210px repeat(5,1fr);border-bottom:1px solid var(--edge);transition:background .2s}
+.comp-row:last-child{border-bottom:none}
+.comp-row:hover{background:var(--s2)}
+.comp-row.hl{background:rgba(200,160,82,.04)}
+.comp-row.hl:hover{background:rgba(200,160,82,.07)}
+.cc{padding:1rem 1.1rem;font-size:.88rem;color:var(--t2);border-right:1px solid var(--edge);line-height:1.45}
+.cc:last-child{border-right:none}
+.cc.ch{font-family:var(--fh);font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);opacity:.8}
+.cc.brand{font-weight:600;color:var(--t1);font-size:.92rem}
+.cc.brand.gold-name{color:var(--gold)}
+.cc .pos{color:var(--grn);font-size:.8rem}
+.cc .neg{color:var(--red);font-size:.8rem}
+.cc .neu{color:var(--t3);font-size:.8rem}
 
-/* ─── Opportunity cards ─── */
-.opp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-top: 2rem; }
-.opp-card { background: var(--s1); border: 1px solid var(--edge); border-radius: 10px; padding: 1.5rem; transition: all .25s; }
-.opp-card:hover { border-color: var(--edge2); background: var(--s2); }
-.opp-num { font-family: var(--fh); font-size: 2.2rem; font-weight: 800; color: var(--gold-dim,#4a3a18); line-height: 1; margin-bottom: .75rem; }
-.opp-title { font-family: var(--fh); font-size: .9rem; font-weight: 700; color: var(--t1); margin-bottom: .4rem; line-height: 1.2; }
-.opp-body { font-size: .82rem; color: var(--t2); line-height: 1.6; }
+/* ═══ OPPORTUNITY CARDS ══════════════════════════════════════════ */
+.opp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:2.25rem}
+.opp-card{
+  background:var(--s1);border:1px solid var(--edge);border-radius:12px;
+  padding:1.75rem 1.5rem;transition:all .3s var(--ease);
+  position:relative;overflow:hidden;
+}
+.opp-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.opp-card:hover{border-color:rgba(200,160,82,.28);background:var(--s2)}
+.opp-card:hover::before{opacity:1}
+.opp-num{font-family:var(--fh);font-size:2.6rem;font-weight:800;color:rgba(200,160,82,.18);line-height:1;margin-bottom:.8rem}
+.opp-title{font-family:var(--fh);font-size:.98rem;font-weight:700;color:var(--t1);margin-bottom:.45rem;line-height:1.25}
+.opp-body{font-size:.88rem;color:var(--t2);line-height:1.65}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/* SECTION: CONTENT PILLARS ──────────────────────────────────────── */
-.pillar-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--edge); border: 1px solid var(--edge); border-radius: 10px; overflow: hidden; }
-.pillar { background: var(--s1); padding: 1.6rem 1.25rem; transition: background .2s; }
-.pillar:hover { background: var(--s2); }
-.pillar-n { font-family: var(--fh); font-size: 2.5rem; font-weight: 800; color: var(--t4); line-height: 1; margin-bottom: .9rem; }
-.pillar-name { font-family: var(--fh); font-size: .85rem; font-weight: 700; color: var(--t1); margin-bottom: .3rem; }
-.pillar-sub { font-size: .75rem; color: var(--gold); font-weight: 500; margin-bottom: .6rem; }
-.pillar-body { font-size: .78rem; color: var(--t2); line-height: 1.6; border-top: 1px solid var(--edge); padding-top: .65rem; margin-top: .5rem; }
-.pillar-status { display: inline-block; font-family: var(--fh); font-size: .5rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: .15rem .5rem; border-radius: 2px; margin-top: .6rem; }
-.ps-absent { background: var(--redbg); color: var(--red); } .ps-partial { background: var(--ambbg); color: var(--amb); } .ps-active { background: var(--grnbg); color: var(--grn); }
+/* ═══ CONTENT PILLARS ════════════════════════════════════════════ */
+.pillar-row{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--edge);border:1px solid var(--edge);border-radius:12px;overflow:hidden}
+.pillar{background:var(--s1);padding:1.75rem 1.4rem;transition:background .25s;position:relative}
+.pillar:hover{background:var(--s2)}
+.pillar-n{font-family:var(--fh);font-size:2.8rem;font-weight:800;color:var(--t4);line-height:1;margin-bottom:1rem}
+.pillar-name{font-family:var(--fh);font-size:.92rem;font-weight:700;color:var(--t1);margin-bottom:.35rem}
+.pillar-sub{font-size:.78rem;color:var(--gold);font-weight:600;margin-bottom:.65rem;letter-spacing:.02em}
+.pillar-body{font-size:.82rem;color:var(--t2);line-height:1.65;border-top:1px solid var(--edge);padding-top:.7rem;margin-top:.5rem}
+.ps{display:inline-block;font-family:var(--fh);font-size:.52rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.18rem .55rem;border-radius:3px;margin-top:.65rem}
+.ps-absent{background:var(--redbg);color:var(--red)}
+.ps-partial{background:var(--goldd);color:var(--goldl)}
+.ps-active{background:var(--grnbg);color:var(--grn)}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/* SECTION: PRIORITY RECOMMENDATIONS ─────────────────────────────── */
-.rec-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
-.rec-card { background: var(--s1); border: 1px solid var(--edge); border-radius: 12px; padding: 1.5rem; transition: all .25s; position: relative; overflow: hidden; }
-.rec-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
-.rec-card.crit::before { background: var(--red); }
-.rec-card.high::before { background: var(--amb); }
-.rec-card.med::before  { background: var(--grn); }
-.rec-card:hover { border-color: var(--edge2); transform: translateY(-2px); background: var(--s2); }
-.rec-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: .9rem; }
-.rec-plat { font-family: var(--fh); font-size: .6rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--t3); }
-.rec-action { font-family: var(--fh); font-size: .95rem; font-weight: 700; color: var(--t1); line-height: 1.25; margin-bottom: .6rem; }
-.rec-outcome { font-size: .82rem; color: var(--t2); line-height: 1.55; }
-.rec-outcome strong { color: var(--gold); font-weight: 500; }
+/* ═══ RECOMMENDATION CARDS ═══════════════════════════════════════ */
+.rec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.rec-card{
+  background:var(--s1);border:1px solid var(--edge);border-radius:14px;
+  padding:1.6rem;transition:all .35s var(--ease);position:relative;overflow:hidden;
+}
+.rec-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.rec-card.crit::before{background:var(--red)}
+.rec-card.high::before{background:linear-gradient(90deg,var(--gold),var(--goldl))}
+.rec-card.med::before{background:var(--grn)}
+.rec-card:hover{border-color:rgba(200,160,82,.22);transform:translateY(-3px);background:var(--s2);box-shadow:0 16px 50px rgba(0,0,0,.35)}
+.rec-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.rec-plat{font-family:var(--fh);font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);opacity:.75}
+.rec-action{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--t1);line-height:1.28;margin-bottom:.65rem}
+.rec-outcome{font-size:.88rem;color:var(--t2);line-height:1.6}
+.rec-outcome strong{color:var(--goldl);font-weight:600}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/* SECTION: KPI BEFORE/AFTER ──────────────────────────────────────── */
-.kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-.kpi { background: var(--s1); border: 1px solid var(--edge); border-radius: 10px; overflow: hidden; transition: all .2s; }
-.kpi:hover { border-color: var(--edge2); background: var(--s2); }
-.kpi-head { padding: 1.1rem 1.25rem; border-bottom: 1px solid var(--edge); display: flex; align-items: center; justify-content: space-between; }
-.kpi-plat { font-family: var(--fh); font-size: .58rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--t3); }
-.kpi-name { font-size: .88rem; font-weight: 600; color: var(--t1); padding: .85rem 1.25rem; border-bottom: 1px solid var(--edge); }
-.kpi-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; }
-.kpi-col { padding: .85rem 1rem; border-right: 1px solid var(--edge); }
-.kpi-col:last-child { border-right: none; }
-.kpi-ckey { font-family: var(--fh); font-size: .52rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: .35rem; }
-.kpi-cval { font-family: var(--fh); font-size: 1.05rem; font-weight: 700; line-height: 1; }
-.kpi-cval.now { color: var(--red); } .kpi-cval.m3 { color: var(--t2); } .kpi-cval.m6 { color: var(--grn); }
+/* ═══ KPI CARDS ══════════════════════════════════════════════════ */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+.kpi{background:var(--s1);border:1px solid var(--edge);border-radius:12px;overflow:hidden;transition:all .25s}
+.kpi:hover{border-color:rgba(200,160,82,.22);background:var(--s2)}
+.kpi-head{padding:1.15rem 1.35rem;border-bottom:1px solid var(--edge);display:flex;align-items:center;justify-content:space-between}
+.kpi-plat{font-family:var(--fh);font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);opacity:.75}
+.kpi-name{font-size:.95rem;font-weight:600;color:var(--t1);padding:.95rem 1.35rem;border-bottom:1px solid var(--edge)}
+.kpi-cols{display:grid;grid-template-columns:1fr 1fr 1fr}
+.kpi-col{padding:.95rem 1.1rem;border-right:1px solid var(--edge)}
+.kpi-col:last-child{border-right:none}
+.kpi-ckey{font-family:var(--fh);font-size:.54rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;opacity:.8}
+.kpi-cval{font-family:var(--fh);font-size:1.1rem;font-weight:700;line-height:1}
+.kpi-cval.now{color:var(--red)}.kpi-cval.m3{color:var(--t2)}.kpi-cval.m6{color:var(--grn)}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/* SECTION: ROADMAP ──────────────────────────────────────────────── */
-.phase { margin-bottom: 3rem; }
-.phase-label { font-family: var(--fh); font-size: .65rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: .65rem; margin-bottom: 1.25rem; }
-.phase-label::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 10px rgba(196,154,74,.5); }
-.task-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
-.task { background: var(--s1); border: 1px solid var(--edge); border-radius: 8px; padding: 1.1rem 1.25rem; display: flex; gap: .85rem; align-items: flex-start; transition: all .2s; }
-.task:hover { border-color: var(--edge2); background: var(--s2); }
-.task-wk { font-family: var(--fh); font-size: .58rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); white-space: nowrap; padding-top: .1rem; min-width: 28px; }
-.task-text { flex: 1; }
-.task-title { font-size: .88rem; font-weight: 600; color: var(--t1); margin-bottom: .2rem; line-height: 1.3; }
-.task-meta { font-size: .75rem; color: var(--t2); }
-.task-plat { color: var(--gold); font-family: var(--fh); font-size: .6rem; }
+/* ═══ ROADMAP ════════════════════════════════════════════════════ */
+.phase{margin-bottom:3.5rem}
+.phase-label{
+  font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.75rem;margin-bottom:1.4rem;
+}
+.phase-label::before{
+  content:'';width:10px;height:10px;border-radius:50%;background:var(--gold);
+  box-shadow:0 0 0 3px rgba(200,160,82,.2),0 0 16px rgba(200,160,82,.5);flex-shrink:0;
+}
+.task-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px}
+.task{
+  background:var(--s1);border:1px solid var(--edge);border-radius:9px;
+  padding:1.15rem 1.3rem;display:flex;gap:.9rem;align-items:flex-start;transition:all .25s;
+}
+.task:hover{border-color:rgba(200,160,82,.2);background:var(--s2)}
+.task-wk{font-family:var(--fh);font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);white-space:nowrap;padding-top:.12rem;min-width:30px}
+.task-title{font-size:.9rem;font-weight:600;color:var(--t1);margin-bottom:.22rem;line-height:1.35}
+.task-meta{font-size:.78rem;color:var(--t2)}
+.task-plat{color:var(--gold);font-family:var(--fh);font-size:.62rem;opacity:.85}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/* SECTION: BUDGET ───────────────────────────────────────────────── */
-.budget { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.bud { background: var(--s1); border: 1px solid var(--edge); border-radius: 12px; overflow: hidden; transition: all .2s; }
-.bud:hover { border-color: var(--edge2); }
-.bud.feat { border-color: rgba(196,154,74,.3); background: rgba(196,154,74,.03); }
-.bud-head { padding: 1.5rem; border-bottom: 1px solid var(--edge); }
-.bud-phase { font-family: var(--fh); font-size: .58rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--t3); margin-bottom: .4rem; }
-.bud-total { font-family: var(--fh); font-size: 2rem; font-weight: 800; color: var(--gold); line-height: 1; }
-.bud-body { padding: .5rem 0; }
-.bud-line { display: flex; justify-content: space-between; padding: .7rem 1.5rem; border-bottom: 1px solid var(--edge); font-size: .84rem; }
-.bud-line:last-child { border-bottom: none; }
-.bud-line span:first-child { color: var(--t2); }
-.bud-line span:last-child { color: var(--t1); font-weight: 500; font-family: var(--fh); }
+/* ═══ BUDGET ══════════════════════════════════════════════════════ */
+.budget{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.bud{background:var(--s1);border:1px solid var(--edge);border-radius:14px;overflow:hidden;transition:all .25s}
+.bud:hover{border-color:rgba(200,160,82,.2)}
+.bud.feat{border-color:rgba(200,160,82,.32);background:var(--golde)}
+.bud-head{padding:1.6rem;border-bottom:1px solid var(--edge)}
+.bud-phase{font-family:var(--fh);font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.45rem;opacity:.8}
+.bud-total{font-family:var(--fh);font-size:2.2rem;font-weight:800;color:var(--gold);line-height:1}
+.bud-body{padding:.4rem 0}
+.bud-line{display:flex;justify-content:space-between;padding:.75rem 1.6rem;border-bottom:1px solid var(--edge);font-size:.88rem}
+.bud-line:last-child{border-bottom:none}
+.bud-line span:first-child{color:var(--t2)}
+.bud-line span:last-child{color:var(--t1);font-weight:600;font-family:var(--fh)}
 
-/* ═══════════════════════════════════════════════════════════════ */
-/* SECTION: MEETING AGENDA ───────────────────────────────────────── */
-.agenda { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
-.ag { background: var(--s1); border: 1px solid var(--edge); border-radius: 8px; padding: 1.25rem; transition: all .2s; }
-.ag:hover { border-color: var(--edge2); background: var(--s2); }
-.ag-time { font-family: var(--fh); font-size: .7rem; font-weight: 700; color: var(--gold); margin-bottom: .5rem; }
-.ag-topic { font-family: var(--fh); font-size: .92rem; font-weight: 700; color: var(--t1); margin-bottom: .3rem; line-height: 1.2; }
-.ag-pts { font-size: .78rem; color: var(--t2); line-height: 1.55; }
+/* ═══ AGENDA ═════════════════════════════════════════════════════ */
+.agenda{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.ag{background:var(--s1);border:1px solid var(--edge);border-radius:10px;padding:1.35rem;transition:all .25s}
+.ag:hover{border-color:rgba(200,160,82,.22);background:var(--s2)}
+.ag-time{font-family:var(--fh);font-size:.75rem;font-weight:700;color:var(--gold);margin-bottom:.5rem}
+.ag-topic{font-family:var(--fh);font-size:.98rem;font-weight:700;color:var(--t1);margin-bottom:.35rem;line-height:1.25}
+.ag-pts{font-size:.84rem;color:var(--t2);line-height:1.55}
 
-/* ─── CREDENTIALS ─────────────────────────────────────────────── */
-.creds { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 1.5rem; }
-.cred { background: var(--s1); border: 1px solid var(--edge); border-radius: 8px; padding: 1.1rem 1.25rem; display: flex; gap: .85rem; align-items: flex-start; transition: background .2s; }
-.cred:hover { background: var(--s2); }
-.cred-ico { width: 32px; height: 32px; border: 1px solid var(--edge); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: var(--fh); font-size: .58rem; font-weight: 700; color: var(--gold); background: var(--goldd); flex-shrink: 0; }
-.cred-title { font-size: .85rem; font-weight: 600; color: var(--t1); margin-bottom: .2rem; }
-.cred-sub { font-size: .76rem; color: var(--t3); line-height: 1.5; }
+/* ═══ CREDENTIALS ════════════════════════════════════════════════ */
+.creds{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-top:1.5rem}
+.cred{background:var(--s1);border:1px solid var(--edge);border-radius:10px;padding:1.2rem 1.35rem;display:flex;gap:.9rem;align-items:flex-start;transition:background .25s}
+.cred:hover{background:var(--s2)}
+.cred-ico{
+  width:34px;height:34px;border:1px solid rgba(200,160,82,.25);border-radius:7px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fh);font-size:.6rem;font-weight:700;color:var(--gold);
+  background:var(--goldd);flex-shrink:0;
+}
+.cred-title{font-size:.9rem;font-weight:600;color:var(--t1);margin-bottom:.22rem}
+.cred-sub{font-size:.82rem;color:var(--t2);line-height:1.5}
 
 /* ─── FOOTER ──────────────────────────────────────────────────── */
-footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: var(--s1); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
-.ft-info { font-size: .8rem; color: var(--t3); line-height: 1.8; }
-.ft-info strong { color: var(--t2); font-weight: 500; }
-.ft-agency { text-align: right; }
-.ft-name { font-family: var(--fh); font-size: .68rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: .25rem; }
-.ft-url { font-size: .78rem; color: var(--t3); }
-.ft-url a { border-bottom: 1px solid var(--t4); color: var(--t3); transition: color .2s; }
-.ft-url a:hover { color: var(--gold); border-color: var(--gold); }
+footer{
+  border-top:1px solid var(--edge);padding:4rem 3.5rem;
+  background:var(--s1);display:flex;align-items:flex-end;
+  justify-content:space-between;flex-wrap:wrap;gap:1.5rem;
+}
+.ft-info p{font-size:.86rem;color:var(--t3);line-height:1.9}
+.ft-info strong{color:var(--t2);font-weight:500}
+.ft-agency{text-align:right}
+.ft-name{font-family:var(--fh);font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.ft-url{font-size:.84rem;color:var(--t3)}
+.ft-url a{border-bottom:1px solid var(--t4);color:var(--t3);transition:all .2s}
+.ft-url a:hover{color:var(--gold);border-color:var(--gold)}
 
-/* ─── TABS ────────────────────────────────────────────────────── */
-.tabs { display: flex; gap: 0; border-bottom: 1px solid var(--edge); margin-bottom: 2rem; overflow-x: auto; }
-.tb { font-family: var(--fh); font-size: .62rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: .8rem 1.35rem; color: var(--t3); background: none; border: none; cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; white-space: nowrap; }
-.tb.on { color: var(--gold); border-bottom-color: var(--gold); }
-.tb:hover:not(.on) { color: var(--t1); }
-.tp { display: none; } .tp.on { display: block; }
-
-/* ─── KSA PLATFORM TABLE ──────────────────────────────────────── */
-.ksa-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
-.ksa-card { background: var(--s1); border: 1px solid var(--edge); border-radius: 8px; padding: 1.25rem; transition: all .2s; }
-.ksa-card:hover { border-color: var(--edge2); background: var(--s2); }
-.ksa-platform { font-family: var(--fh); font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--t1); margin-bottom: .6rem; }
-.ksa-users { font-family: var(--fh); font-size: 1.2rem; font-weight: 800; color: var(--gold); line-height: 1; margin-bottom: .15rem; }
-.ksa-time { font-family: var(--fh); font-size: .9rem; font-weight: 600; color: var(--t2); margin-bottom: .4rem; }
-.ksa-note { font-size: .75rem; color: var(--t2); line-height: 1.5; border-top: 1px solid var(--edge); padding-top: .5rem; margin-top: .5rem; }
-.ksa-card.priority { border-color: rgba(196,154,74,.25); background: rgba(196,154,74,.03); }
-
-/* ─── CALLOUT NOTE ────────────────────────────────────────────── */
-.note { border-left: 2px solid var(--gold); background: var(--goldd); padding: 1.1rem 1.4rem; border-radius: 0 6px 6px 0; margin: 1.5rem 0; }
-.note.r { border-color: var(--red); background: var(--redbg); }
-.note.a { border-color: var(--amb); background: var(--ambbg); }
-.note.g { border-color: var(--grn); background: var(--grnbg); }
-.note-tag { font-family: var(--fh); font-size: .57rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: .35rem; }
-.note.r .note-tag { color: var(--red); } .note.a .note-tag { color: var(--amb); } .note.g .note-tag { color: var(--grn); }
-.note p { font-size: .88rem; color: var(--t2); line-height: 1.65; }
-.note p strong { color: var(--t1); font-weight: 600; }
+/* ─── STRATEGY STAT GRID ──────────────────────────────────────── */
+.strat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1px;background:var(--edge);border:1px solid var(--edge);border-radius:10px;overflow:hidden}
 
 /* ─── RESPONSIVE ──────────────────────────────────────────────── */
-@media(max-width:860px){
-  nav,.nav.on{padding:1rem 1.5rem}
+@media(max-width:900px){
+  nav,nav.on{padding:1rem 1.5rem}
   .nav-links{display:none}.nav-ham{display:flex}
-  .cover{padding:0 1.5rem 4rem}
+  .cover{padding:0 1.5rem 4.5rem}
   .cover-meta{flex-wrap:wrap;gap:1.5rem}.cm{border-right:none;margin-right:0;padding-right:0}
-  .sec{padding:4.5rem 1.5rem}
-  footer{padding:2.5rem 1.5rem}
+  .sec{padding:5rem 1.5rem}
+  footer{padding:3rem 1.5rem;flex-direction:column}.ft-agency{text-align:left}
   .sg2,.budget{grid-template-columns:1fr}
   .pillar-row{grid-template-columns:repeat(2,1fr)}
-  .comp-hrow,.comp-row{grid-template-columns:120px repeat(5,1fr)}
-  .cc{padding:.7rem .65rem;font-size:.75rem}
-  .ag-row{grid-template-columns:60px 1fr}.ag-pts{display:none}
+  .comp-hrow,.comp-row{grid-template-columns:130px repeat(5,1fr)}
+  .cc{padding:.75rem .65rem;font-size:.8rem}
 }
 </style>
 </head>
@@ -359,10 +477,10 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
   <button class="nav-ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- ══ COVER ═══════════════════════════════════════════════════════════ -->
+<!-- COVER -->
 <section class="cover">
-  <div class="cover-grid"></div>
-  <div class="cover-accent"></div>
+  <div class="cover-lines"></div>
+  <div class="cover-glow"></div>
   <p class="cover-tag">Social Media Audit Report</p>
   <h1 class="cover-h1">Molokhia Restaurant<em>Digital Presence Review</em></h1>
   <p class="cover-client">مطعم ملوخية &nbsp;·&nbsp; Riyadh, Al Yarmouk &nbsp;·&nbsp; Saudi Arabia</p>
@@ -374,7 +492,7 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
   </div>
 </section>
 
-<!-- ══ 01 SUMMARY ════════════════════════════════════════════════════════ -->
+<!-- 01 SUMMARY -->
 <section class="sec" id="summary">
   <div class="wrap">
     <p class="sec-tag rv">01 — At a Glance</p>
@@ -389,15 +507,14 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
       <div class="stat"><p class="stat-k">Paid Advertising</p><p class="stat-v r">None</p><p class="stat-d">Fully dependent on organic reach</p></div>
       <div class="stat"><p class="stat-k">Influencer Collabs</p><p class="stat-v r">0</p><p class="stat-d">No confirmed collaborations</p></div>
     </div>
-
-    <div class="note r rv" style="margin-top:1.5rem">
+    <div class="note r rv" style="margin-top:2rem">
       <p class="note-tag">Core Finding</p>
-      <p>Molokhia has a meaningful Facebook foundation that most competitors cannot match — but the engagement rate of 0.04% means this audience is not generating business outcomes. The most urgent gaps are the <strong>missing Google Business Profile</strong> (invisible in all local searches) and the <strong>complete absence of Snapchat</strong> (Saudi Arabia's second-largest platform by time spent).</p>
+      <p>Molokhia has a meaningful Facebook foundation most competitors cannot match — but the 0.04% engagement rate means this audience is not generating business outcomes. The most urgent gaps are the <strong>missing Google Business Profile</strong> (invisible in all local searches) and the <strong>complete absence of Snapchat</strong> — Saudi Arabia's second-largest platform by time spent.</p>
     </div>
   </div>
 </section>
 
-<!-- ══ 02 KSA LANDSCAPE ══════════════════════════════════════════════════ -->
+<!-- 02 KSA LANDSCAPE -->
 <section class="sec sec-dark" id="landscape">
   <div class="wrap">
     <p class="sec-tag rv">02 — Market Context</p>
@@ -406,56 +523,52 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
       <div class="ksa-card priority">
         <p class="ksa-platform">TikTok</p>
         <p class="ksa-users">18.6M</p>
-        <p class="ksa-time">34h 48m/month</p>
+        <p class="ksa-time">34h 48m / month</p>
         <p class="ksa-note">Highest time-on-app in KSA. Food content dominates. Primary organic growth channel for restaurants.</p>
       </div>
       <div class="ksa-card priority">
         <p class="ksa-platform">Instagram</p>
         <p class="ksa-users">20.5M</p>
-        <p class="ksa-time">11h 17m/month</p>
+        <p class="ksa-time">11h 17m / month</p>
         <p class="ksa-note">Primary visual food discovery platform. Highest restaurant conversion ROI in KSA.</p>
       </div>
       <div class="ksa-card priority">
         <p class="ksa-platform">Snapchat</p>
         <p class="ksa-users">18.2M</p>
-        <p class="ksa-time">12h 31m/month</p>
+        <p class="ksa-time">12h 31m / month</p>
         <p class="ksa-note">Reaches 90%+ of 18–24 year-olds. More time spent than Instagram. Currently zero presence.</p>
       </div>
       <div class="ksa-card">
         <p class="ksa-platform">Facebook</p>
         <p class="ksa-users">15.2M</p>
-        <p class="ksa-time">20h 31m/month</p>
-        <p class="ksa-note">Strong 25–45 demographic. Reviews, events, paid ads. 28K followers here already.</p>
+        <p class="ksa-time">20h 31m / month</p>
+        <p class="ksa-note">Strong 25–45 demographic. Reviews, events, paid ads. 28K followers already established.</p>
       </div>
       <div class="ksa-card">
         <p class="ksa-platform">X / Twitter</p>
         <p class="ksa-users">17.1M</p>
-        <p class="ksa-time">8h 1m/month</p>
-        <p class="ksa-note">Real-time discovery. Customer service channel. Brand name not yet secured.</p>
+        <p class="ksa-time">8h 1m / month</p>
+        <p class="ksa-note">Real-time discovery. Customer service channel. Brand handle not yet secured.</p>
       </div>
       <div class="ksa-card">
         <p class="ksa-platform">Google (GBP)</p>
         <p class="ksa-users">—</p>
         <p class="ksa-time">—</p>
-        <p class="ksa-note">46% of diners use Google first. Primary 'near me' search discovery layer. Currently unclaimed.</p>
+        <p class="ksa-note">46% of diners use Google first. Primary 'near me' discovery layer. Currently unclaimed.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ 03 PLATFORM AUDIT ═════════════════════════════════════════════════ -->
+<!-- 03 PLATFORM AUDIT -->
 <section class="sec" id="platforms">
   <div class="wrap">
     <p class="sec-tag rv">03 — Platform Audit</p>
     <h2 class="sec-h rv">Platform-by-Platform Assessment</h2>
     <div class="plat-grid sg">
 
-      <!-- GBP -->
       <div class="plat-card">
-        <div class="pc-head">
-          <p class="pc-name">Google Business Profile</p>
-          <span class="badge b-red">Critical</span>
-        </div>
+        <div class="pc-head"><p class="pc-name">Google Business Profile</p><span class="badge b-red">Critical</span></div>
         <div class="pc-body">
           <div class="pc-metrics">
             <div class="pcm"><p class="pcm-k">Listing Status</p><p class="pcm-v r">Unclaimed</p></div>
@@ -464,22 +577,18 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
             <div class="pcm"><p class="pcm-k">Menu Link</p><p class="pcm-v r">Missing</p></div>
           </div>
           <p class="pc-tag r">Not visible in any Google Maps search</p>
-          <p class="pc-finding">Molokhia does not appear when potential customers search "Egyptian restaurant Riyadh" or "مطعم مصري الرياض." Profiles with 100+ photos receive 2,065% more direction requests. 43% of diners skip restaurants with no rating.</p>
+          <p class="pc-finding">Molokhia does not appear when customers search "Egyptian restaurant Riyadh." Profiles with 100+ photos receive 2,065% more direction requests. 43% of diners skip restaurants with no rating.</p>
         </div>
         <div class="pc-actions">
-          <p class="pca"><strong>Claim &amp; verify</strong> the listing within 7 days</p>
+          <p class="pca"><strong>Claim & verify</strong> the listing within 7 days</p>
           <p class="pca"><strong>Upload 20+ photos</strong> — food, interior, exterior</p>
           <p class="pca"><strong>Deploy QR review cards</strong> at every table + delivery bag</p>
           <p class="pca"><strong>Target: 4.3★ with 50+ reviews</strong> in 90 days</p>
         </div>
       </div>
 
-      <!-- FACEBOOK -->
       <div class="plat-card">
-        <div class="pc-head">
-          <p class="pc-name">Facebook</p>
-          <span class="badge b-amb">Underperforming</span>
-        </div>
+        <div class="pc-head"><p class="pc-name">Facebook</p><span class="badge b-amb">Underperforming</span></div>
         <div class="pc-body">
           <div class="pc-metrics">
             <div class="pcm"><p class="pcm-k">Followers</p><p class="pcm-v gd">28,000+</p></div>
@@ -487,8 +596,8 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
             <div class="pcm"><p class="pcm-k">Avg. Post Reach</p><p class="pcm-v r">~300</p></div>
             <div class="pcm"><p class="pcm-k">Video Content</p><p class="pcm-v r">Minimal</p></div>
           </div>
-          <p class="pc-tag r">Algorithm has throttled the page</p>
-          <p class="pc-finding">28,000 followers should generate 2,000–5,000 organic impressions per post. Chronic low engagement has caused the algorithm to cap organic reach at ~300. No video content — the format that earns 135% more reach than photos.</p>
+          <p class="pc-tag a">Algorithm has throttled organic reach</p>
+          <p class="pc-finding">28,000 followers should generate 2,000–5,000 organic impressions per post. Chronic low engagement has capped reach at ~300. Video — which earns 135% more reach than photos — is almost entirely absent.</p>
         </div>
         <div class="pc-actions">
           <p class="pca"><strong>Shift to video-first</strong> — 3 short videos/week minimum</p>
@@ -498,12 +607,8 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
         </div>
       </div>
 
-      <!-- INSTAGRAM -->
       <div class="plat-card">
-        <div class="pc-head">
-          <p class="pc-name">Instagram</p>
-          <span class="badge b-red">Critical Gap</span>
-        </div>
+        <div class="pc-head"><p class="pc-name">Instagram</p><span class="badge b-amb">Critical Gap</span></div>
         <div class="pc-body">
           <div class="pc-metrics">
             <div class="pcm"><p class="pcm-k">Followers</p><p class="pcm-v r">1,151</p></div>
@@ -511,32 +616,28 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
             <div class="pcm"><p class="pcm-k">Bio Link</p><p class="pcm-v r">None</p></div>
             <div class="pcm"><p class="pcm-k">Reels Usage</p><p class="pcm-v r">Minimal</p></div>
           </div>
-          <p class="pc-tag r">No cross-platform strategy ever deployed</p>
-          <p class="pc-finding">1,151 followers vs. 20.5M KSA Instagram users. The platform has 96 posts but zero community-building activity — follows no one, has no Story Highlights, no delivery link in bio, and near-zero Reels output (the primary growth lever on the platform).</p>
+          <p class="pc-tag a">No cross-platform strategy deployed</p>
+          <p class="pc-finding">1,151 followers on a platform with 20.5M KSA users. 96 posts published but zero community-building — follows no one, no Story Highlights, no delivery link in bio, near-zero Reels output.</p>
         </div>
         <div class="pc-actions">
           <p class="pca"><strong>Add Linktree bio link</strong> — menu + delivery app</p>
           <p class="pca"><strong>3 Reels/week minimum</strong> — 22% more reach than static</p>
           <p class="pca"><strong>Follow 200+ Riyadh food accounts</strong> immediately</p>
-          <p class="pca"><strong>Cross-promote weekly</strong> from Facebook audience</p>
+          <p class="pca"><strong>Cross-promote weekly</strong> from existing Facebook audience</p>
         </div>
       </div>
 
-      <!-- TIKTOK -->
       <div class="plat-card">
-        <div class="pc-head">
-          <p class="pc-name">TikTok</p>
-          <span class="badge b-amb">Underutilised</span>
-        </div>
+        <div class="pc-head"><p class="pc-name">TikTok</p><span class="badge b-amb">Underutilised</span></div>
         <div class="pc-body">
           <div class="pc-metrics">
-            <div class="pcm"><p class="pcm-k">Account</p><p class="pcm-v a">Exists</p></div>
-            <div class="pcm"><p class="pcm-k">Followers</p><p class="pcm-v a">2058</p></div>
+            <div class="pcm"><p class="pcm-k">Account</p><p class="pcm-v gd">Exists</p></div>
+            <div class="pcm"><p class="pcm-k">Followers</p><p class="pcm-v a">2,058</p></div>
             <div class="pcm"><p class="pcm-k">KSA Time/Month</p><p class="pcm-v gd">34h 48m</p></div>
-            <div class="pcm"><p class="pcm-k">Content Language</p><p class="pcm-v r">Unclear</p></div>
+            <div class="pcm"><p class="pcm-k">Content Language</p><p class="pcm-v a">Mixed</p></div>
           </div>
           <p class="pc-tag a">Largest untapped channel in KSA</p>
-          <p class="pc-finding">@molokhia.restaurant.ksa exists but posts infrequently. No Arabic-first strategy, no bio delivery link, no influencer activity. Egyptian food (molokhia ASMR, heritage content, chef POV) is uniquely suited to TikTok's most viral formats — this niche is unclaimed.</p>
+          <p class="pc-finding">@molokhia.restaurant.ksa exists but posts infrequently. No Arabic-first strategy, no bio delivery link, no influencer collaborations. Egyptian food is uniquely suited to TikTok's most viral formats — this niche is entirely unclaimed.</p>
         </div>
         <div class="pc-actions">
           <p class="pca"><strong>5–7 videos/week</strong> — ASMR, chef POV, customer reactions</p>
@@ -546,12 +647,8 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
         </div>
       </div>
 
-      <!-- SNAPCHAT -->
       <div class="plat-card">
-        <div class="pc-head">
-          <p class="pc-name">Snapchat</p>
-          <span class="badge b-red">No Presence</span>
-        </div>
+        <div class="pc-head"><p class="pc-name">Snapchat</p><span class="badge b-red">No Presence</span></div>
         <div class="pc-body">
           <div class="pc-metrics">
             <div class="pcm"><p class="pcm-k">Account</p><p class="pcm-v r">None</p></div>
@@ -559,8 +656,8 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
             <div class="pcm"><p class="pcm-k">18–24 Penetration</p><p class="pcm-v gd">90%+</p></div>
             <div class="pcm"><p class="pcm-k">Geofilter Cost</p><p class="pcm-v g">SAR 50–200</p></div>
           </div>
-          <p class="pc-tag r">18.2M KSA users with zero brand presence</p>
-          <p class="pc-finding">The most overlooked channel in this audit. Saudi users spend more time on Snapchat than Instagram. 90%+ of 18–24 year-olds in KSA are reachable here at the lowest CPMs of any KSA digital platform. The geofilter product turns every customer visit into free branded UGC.</p>
+          <p class="pc-tag r">18.2M KSA users — zero brand presence</p>
+          <p class="pc-finding">The most overlooked channel in this audit. Saudi users spend more time on Snapchat than Instagram. 90%+ of 18–24 year-olds are reachable here at the lowest CPMs of any KSA digital platform.</p>
         </div>
         <div class="pc-actions">
           <p class="pca"><strong>Create Business Account</strong> in Week 1</p>
@@ -570,26 +667,22 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
         </div>
       </div>
 
-      <!-- X -->
       <div class="plat-card">
-        <div class="pc-head">
-          <p class="pc-name">X / Twitter</p>
-          <span class="badge b-amb">Medium Priority</span>
-        </div>
+        <div class="pc-head"><p class="pc-name">X / Twitter</p><span class="badge b-gold">Medium Priority</span></div>
         <div class="pc-body">
           <div class="pc-metrics">
             <div class="pcm"><p class="pcm-k">Account</p><p class="pcm-v r">None</p></div>
-            <div class="pcm"><p class="pcm-k">KSA Users</p><p class="pcm-v">17.1M</p></div>
+            <div class="pcm"><p class="pcm-k">KSA Users</p><p class="pcm-v gd">17.1M</p></div>
             <div class="pcm"><p class="pcm-k">Effort Required</p><p class="pcm-v g">Low</p></div>
             <div class="pcm"><p class="pcm-k">Best For</p><p class="pcm-v">Discovery</p></div>
           </div>
-          <p class="pc-tag a">Brand name not secured — register immediately</p>
-          <p class="pc-finding">Real-time discovery and customer service channel. Activate after Phase 1 platforms are stable. Requires only 20–30 minutes per day. Saudi customers frequently discuss restaurant experiences publicly on X — brand mentions need monitoring.</p>
+          <p class="pc-tag a">Brand handle not secured — register now</p>
+          <p class="pc-finding">Real-time discovery and customer service layer. Requires only 20–30 minutes per day. Saudi customers frequently discuss restaurant experiences publicly on X — brand mentions need active monitoring.</p>
         </div>
         <div class="pc-actions">
           <p class="pca"><strong>Secure @MolokhiaKSA</strong> today — prevent competitor registration</p>
-          <p class="pca"><strong>Pin post</strong> with GBP link + delivery link + contact</p>
-          <p class="pca"><strong>2–3 posts/day</strong> once Phase 1 stable</p>
+          <p class="pca"><strong>Pin post</strong> with GBP + delivery + contact links</p>
+          <p class="pca"><strong>2–3 posts/day</strong> once Phase 1 is stable</p>
           <p class="pca"><strong>Respond to all mentions</strong> within 2 hours</p>
         </div>
       </div>
@@ -598,7 +691,7 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
   </div>
 </section>
 
-<!-- ══ 04 STRENGTHS & GAPS ════════════════════════════════════════════════ -->
+<!-- 04 STRENGTHS & GAPS -->
 <section class="sec sec-dark" id="strengths">
   <div class="wrap">
     <p class="sec-tag rv">04 — Strategic Analysis</p>
@@ -610,42 +703,40 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
           <div class="sg2-item"><div class="sg2-icon g">↑</div><div class="sg2-text"><strong>28,000 Facebook followers</strong>A hard-to-build asset. This audience chose the brand — conversion costs are far lower than starting from zero.</div></div>
           <div class="sg2-item"><div class="sg2-icon g">↑</div><div class="sg2-text"><strong>Unique cuisine niche in Riyadh</strong>Egyptian molokhia is underrepresented in KSA's F&B market. Fewer than 5 dedicated Egyptian specialists in Riyadh.</div></div>
           <div class="sg2-item"><div class="sg2-icon g">↑</div><div class="sg2-text"><strong>Visually rich product</strong>Molokhia is naturally suited to ASMR, preparation, and heritage content — the formats that perform best on TikTok and Reels.</div></div>
-          <div class="sg2-item"><div class="sg2-icon g">↑</div><div class="sg2-text"><strong>TikTok account exists</strong>@molokhia.restaurant.ksa is established — the foundation is in place and ready to scale immediately.</div></div>
-          <div class="sg2-item"><div class="sg2-icon g">↑</div><div class="sg2-text"><strong>Large Egyptian expat community</strong>Saudi Arabia hosts one of the world's largest Egyptian diaspora communities — a pre-qualified and culturally aligned target audience.</div></div>
-          <div class="sg2-item"><div class="sg2-icon g">↑</div><div class="sg2-text"><strong>96 Instagram posts</strong>Content history and a consistent creative effort — a base to build and repurpose from.</div></div>
+          <div class="sg2-item"><div class="sg2-icon g">↑</div><div class="sg2-text"><strong>TikTok account established</strong>@molokhia.restaurant.ksa is live with 2,058 followers — the foundation is in place and ready to scale.</div></div>
+          <div class="sg2-item"><div class="sg2-icon g">↑</div><div class="sg2-text"><strong>Large Egyptian expat community</strong>Saudi Arabia hosts one of the world's largest Egyptian diaspora communities — a pre-qualified, culturally aligned audience.</div></div>
+          <div class="sg2-item"><div class="sg2-icon g">↑</div><div class="sg2-text"><strong>96 Instagram posts</strong>Consistent content history — a base to build, refine, and repurpose across platforms.</div></div>
         </div>
       </div>
       <div class="sg2-card">
         <div class="sg2-head r">Where to Improve</div>
         <div class="sg2-body">
-          <div class="sg2-item"><div class="sg2-icon r">↓</div><div class="sg2-text"><strong>No Google Business Profile</strong>Invisible in every Google Maps 'near me' restaurant search — the highest-intent discovery channel available.</div></div>
-          <div class="sg2-item"><div class="sg2-icon r">↓</div><div class="sg2-text"><strong>Facebook engagement at 0.04%</strong>The algorithm has throttled organic reach. A 28,000-follower page reaching only ~300 people per post is a critical signal failure.</div></div>
-          <div class="sg2-item"><div class="sg2-icon r">↓</div><div class="sg2-text"><strong>Zero Snapchat presence</strong>18.2M KSA users with dominant 18–34 penetration. The most overlooked channel in this audit.</div></div>
+          <div class="sg2-item"><div class="sg2-icon r">↓</div><div class="sg2-text"><strong>No Google Business Profile</strong>Invisible in every Google Maps 'near me' search — the highest-intent customer discovery channel available.</div></div>
+          <div class="sg2-item"><div class="sg2-icon r">↓</div><div class="sg2-text"><strong>Facebook engagement at 0.04%</strong>A 28,000-follower page reaching only ~300 people per post is a critical algorithmic failure with direct impact on orders.</div></div>
+          <div class="sg2-item"><div class="sg2-icon r">↓</div><div class="sg2-text"><strong>Zero Snapchat presence</strong>18.2M KSA users, 90%+ of 18–24 year-olds reachable. The most overlooked channel in this entire audit.</div></div>
           <div class="sg2-item"><div class="sg2-icon r">↓</div><div class="sg2-text"><strong>Instagram severely underdeveloped</strong>1,151 followers on a platform with 20.5M KSA users — no Reels strategy, no bio link, no community engagement.</div></div>
-          <div class="sg2-item"><div class="sg2-icon r">↓</div><div class="sg2-text"><strong>Product-only content strategy</strong>Almost all content is food photography with no call to action, no storytelling, and no interactive elements.</div></div>
-          <div class="sg2-item"><div class="sg2-icon r">↓</div><div class="sg2-text"><strong>No paid media or influencer programme</strong>100% dependence on capped organic reach. A SAR 2,300/month paid media investment could reach 80,000–130,000 people per month.</div></div>
+          <div class="sg2-item"><div class="sg2-icon r">↓</div><div class="sg2-text"><strong>Product-only content</strong>Almost all posts are food photos with no CTA, no storytelling, and no interactive elements that drive engagement.</div></div>
+          <div class="sg2-item"><div class="sg2-icon r">↓</div><div class="sg2-text"><strong>No paid media or influencer programme</strong>100% dependence on capped organic reach. SAR 2,300/month in paid media could reach 80,000–130,000 per month.</div></div>
         </div>
       </div>
     </div>
 
-    <!-- Missing content pillars -->
-    <p class="sec-tag rv" style="margin-top:3rem">Missing Content Pillars</p>
+    <p class="sec-tag rv" style="margin-top:3.5rem">Missing Content Pillars</p>
     <div class="pillar-row sg">
-      <div class="pillar"><p class="pillar-n">01</p><p class="pillar-name">Heritage</p><p class="pillar-sub">Culture & food history</p><p class="pillar-body">3,000-year molokhia story, Egyptian traditions, cultural context Reels</p><span class="pillar-status ps-absent">Absent</span></div>
-      <div class="pillar"><p class="pillar-n">02</p><p class="pillar-name">Craft</p><p class="pillar-sub">Cooking process & expertise</p><p class="pillar-body">ASMR prep, chef profiles, ingredient sourcing, kitchen behind-the-scenes</p><span class="pillar-status ps-absent">Absent</span></div>
-      <div class="pillar"><p class="pillar-n">03</p><p class="pillar-name">Community</p><p class="pillar-sub">Customers, UGC & social proof</p><p class="pillar-body">Customer reposts, reaction videos, review highlights, fan responses</p><span class="pillar-status ps-absent">Absent</span></div>
-      <div class="pillar"><p class="pillar-n">04</p><p class="pillar-name">Offer</p><p class="pillar-sub">Promotions & CTAs</p><p class="pillar-body">Daily specials, Ramadan deals, free delivery campaigns with direct order links</p><span class="pillar-status ps-partial">Occasional</span></div>
-      <div class="pillar"><p class="pillar-n">05</p><p class="pillar-name">Lifestyle</p><p class="pillar-sub">KSA culture & occasions</p><p class="pillar-body">Eid, National Day, family gatherings — positions brand within Saudi occasions</p><span class="pillar-status ps-absent">Absent</span></div>
+      <div class="pillar"><p class="pillar-n">01</p><p class="pillar-name">Heritage</p><p class="pillar-sub">Culture & food history</p><p class="pillar-body">3,000-year molokhia story, Egyptian traditions, cultural context Reels</p><span class="ps ps-absent">Absent</span></div>
+      <div class="pillar"><p class="pillar-n">02</p><p class="pillar-name">Craft</p><p class="pillar-sub">Cooking process & expertise</p><p class="pillar-body">ASMR prep, chef profiles, ingredient sourcing, kitchen behind-the-scenes</p><span class="ps ps-absent">Absent</span></div>
+      <div class="pillar"><p class="pillar-n">03</p><p class="pillar-name">Community</p><p class="pillar-sub">Customers, UGC & social proof</p><p class="pillar-body">Customer reposts, reaction videos, review highlights, fan responses</p><span class="ps ps-absent">Absent</span></div>
+      <div class="pillar"><p class="pillar-n">04</p><p class="pillar-name">Offer</p><p class="pillar-sub">Promotions & CTAs</p><p class="pillar-body">Daily specials, Ramadan deals, free delivery campaigns with direct links</p><span class="ps ps-partial">Occasional</span></div>
+      <div class="pillar"><p class="pillar-n">05</p><p class="pillar-name">Lifestyle</p><p class="pillar-sub">KSA culture & occasions</p><p class="pillar-body">Eid, National Day, family gatherings — embeds brand in Saudi occasions</p><span class="ps ps-absent">Absent</span></div>
     </div>
   </div>
 </section>
 
-<!-- ══ 05 COMPETITOR ANALYSIS ════════════════════════════════════════════ -->
+<!-- 05 COMPETITORS -->
 <section class="sec" id="competitors">
   <div class="wrap">
     <p class="sec-tag rv">05 — Competitive Landscape</p>
     <h2 class="sec-h rv">How Molokhia Compares to the Market</h2>
-
     <div class="comp-table rv">
       <div class="comp-hrow">
         <div class="cc ch">Brand</div>
@@ -655,16 +746,16 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
         <div class="cc ch">Snapchat</div>
         <div class="cc ch">GBP Rating</div>
       </div>
-      <div class="comp-row highlight">
-        <div class="cc brand hl">Molokhia KSA<br><span style="color:var(--t3);font-size:.75rem;font-weight:400">This brand</span></div>
+      <div class="comp-row hl">
+        <div class="cc brand gold-name">Molokhia KSA<br><span style="color:var(--t3);font-size:.78rem;font-weight:400">This brand</span></div>
         <div class="cc"><strong style="color:var(--red)">1,151</strong><br><span class="neg">No Reels strategy</span></div>
         <div class="cc"><strong style="color:var(--gold)">28,000+</strong><br><span class="neg">0.04% engagement</span></div>
-        <div class="cc"><strong style="color:var(--amb)">Active</strong><br><span class="neg">&lt; 1K followers</span></div>
+        <div class="cc"><strong style="color:var(--amb)">2,058</strong><br><span class="neg">Infrequent posts</span></div>
         <div class="cc"><strong style="color:var(--red)">None</strong><br><span class="neg">Completely absent</span></div>
         <div class="cc"><strong style="color:var(--red)">Not verified</strong><br><span class="neg">No reviews</span></div>
       </div>
       <div class="comp-row">
-        <div class="cc brand">Koshary El Tahrir<br><span style="color:var(--t3);font-size:.75rem;font-weight:400">Egyptian · Riyadh</span></div>
+        <div class="cc brand">Koshary El Tahrir<br><span style="color:var(--t3);font-size:.78rem;font-weight:400">Egyptian · Riyadh</span></div>
         <div class="cc"><strong>14,200</strong><br><span class="pos">Reels active</span></div>
         <div class="cc"><strong>9,400</strong><br><span class="neu">Moderate eng.</span></div>
         <div class="cc"><strong>8,800</strong><br><span class="pos">Weekly content</span></div>
@@ -672,7 +763,7 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
         <div class="cc"><strong style="color:var(--grn)">4.2 ★</strong><br><span class="pos">87 reviews</span></div>
       </div>
       <div class="comp-row">
-        <div class="cc brand">Shawarma Al Tazaj<br><span style="color:var(--t3);font-size:.75rem;font-weight:400">KSA Chain</span></div>
+        <div class="cc brand">Shawarma Al Tazaj<br><span style="color:var(--t3);font-size:.78rem;font-weight:400">KSA Chain</span></div>
         <div class="cc"><strong>88,000</strong><br><span class="pos">Reels strategy</span></div>
         <div class="cc"><strong>55,000</strong><br><span class="pos">0.8% eng.</span></div>
         <div class="cc"><strong>41,000</strong><br><span class="pos">5–7 vids/week</span></div>
@@ -680,7 +771,7 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
         <div class="cc"><strong style="color:var(--grn)">4.1 ★</strong><br><span class="pos">300+ reviews</span></div>
       </div>
       <div class="comp-row">
-        <div class="cc brand">KSA F&B Average<br><span style="color:var(--t3);font-size:.75rem;font-weight:400">Mid-tier brands</span></div>
+        <div class="cc brand">KSA F&B Average<br><span style="color:var(--t3);font-size:.78rem;font-weight:400">Mid-tier brands</span></div>
         <div class="cc"><strong>12–25K</strong><br><span class="neu">3 posts/week</span></div>
         <div class="cc"><strong>15–40K</strong><br><span class="neu">0.5–1.0%</span></div>
         <div class="cc"><strong>5–20K</strong><br><span class="neu">Active strategy</span></div>
@@ -688,57 +779,62 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
         <div class="cc"><strong>4.0–4.5 ★</strong><br><span class="neu">50–200 reviews</span></div>
       </div>
     </div>
+    <div class="note rv" style="margin-top:1.75rem">
+      <p class="note-tag">Key Takeaway</p>
+      <p>Molokhia's 28,000 Facebook followers exceed all Egyptian food competitors in Riyadh. However, the absence of a GBP and Snapchat presence, combined with a near-zero Facebook engagement rate, means competitors with smaller followings are generating significantly more orders per month through better platform distribution.</p>
+    </div>
 
-    <div class="note a rv"><p class="note-tag">Key Takeaway</p><p>Molokhia's 28,000 Facebook followers exceed all Egyptian food competitors in Riyadh — a genuine advantage. However, the absence of a GBP and Snapchat presence, combined with a near-zero Facebook engagement rate, means competitors with smaller audiences are generating more orders per month through better platform distribution.</p></div>
-
-    <p class="sec-tag rv" style="margin-top:3rem">Competitive Gaps to Exploit First</p>
+    <p class="sec-tag rv" style="margin-top:3.5rem">Competitive Gaps to Exploit First</p>
     <div class="opp-grid sg">
       <div class="opp-card"><p class="opp-num">01</p><p class="opp-title">Egyptian food on KSA TikTok is unclaimed</p><p class="opp-body">No Egyptian restaurant in Riyadh has a strong TikTok presence. 3 months of consistent posting can establish category ownership before any competitor moves.</p></div>
-      <div class="opp-card"><p class="opp-num">02</p><p class="opp-title">Heritage storytelling is a content gap</p><p class="opp-body">Every competitor posts product photos. No brand is telling the cultural story of their food. A Heritage content series creates emotional differentiation competitors cannot copy quickly.</p></div>
-      <div class="opp-card"><p class="opp-num">03</p><p class="opp-title">Snapchat advertising is underpriced</p><p class="opp-body">Independent restaurants do not run Snapchat ads — leaving an underpriced channel to a young Riyadh food audience open for first-mover advantage.</p></div>
-      <div class="opp-card"><p class="opp-num">04</p><p class="opp-title">Google Review floor is low</p><p class="opp-body">Most direct competitors have under 150 Google reviews. A 90-day review campaign targeting 60+ at 4.3+ stars would rank Molokhia first among Egyptian restaurants on Google Maps.</p></div>
+      <div class="opp-card"><p class="opp-num">02</p><p class="opp-title">Heritage storytelling is a content gap</p><p class="opp-body">Every competitor posts product photos. No brand is telling the cultural story of their food. A Heritage content series creates differentiation competitors cannot copy quickly.</p></div>
+      <div class="opp-card"><p class="opp-num">03</p><p class="opp-title">Snapchat advertising is underpriced in KSA</p><p class="opp-body">Independent restaurants do not run Snapchat ads — leaving an underpriced channel to a young Riyadh food audience open for first-mover advantage.</p></div>
+      <div class="opp-card"><p class="opp-num">04</p><p class="opp-title">Google Review floor is low</p><p class="opp-body">Most direct competitors have under 150 reviews. A 90-day review campaign targeting 60+ at 4.3+ stars would rank Molokhia first among Egyptian restaurants on Google Maps.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ══ 06 STRATEGY ════════════════════════════════════════════════════════ -->
+<!-- 06 STRATEGY -->
 <section class="sec sec-dark" id="strategy">
   <div class="wrap">
     <p class="sec-tag rv">06 — Content Strategy</p>
     <h2 class="sec-h rv">TikTok Content That Performs</h2>
-    <div class="stat-grid sg" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">
-      <div class="stat"><p class="stat-k">Cooking ASMR</p><p class="stat-v g" style="font-size:1.3rem">10K–100K+</p><p class="stat-d">Molokhia stirred, tasha poured — pure sound</p></div>
-      <div class="stat"><p class="stat-k">Chef Point-of-View</p><p class="stat-v g" style="font-size:1.3rem">5K–50K</p><p class="stat-d">Morning prep to plated dish in first-person</p></div>
-      <div class="stat"><p class="stat-k">Customer Reaction</p><p class="stat-v g" style="font-size:1.3rem">10K–200K</p><p class="stat-d">Authentic first-taste — outperforms scripted</p></div>
-      <div class="stat"><p class="stat-k">Trending Sound + Food</p><p class="stat-v g" style="font-size:1.3rem">20K–500K</p><p class="stat-d">Arabic trending audio over food B-roll</p></div>
-      <div class="stat"><p class="stat-k">Before / After</p><p class="stat-v g" style="font-size:1.3rem">10K–50K</p><p class="stat-d">Raw ingredients → finished dish in 15 sec</p></div>
-      <div class="stat"><p class="stat-k">Order Fulfilment</p><p class="stat-v a" style="font-size:1.3rem">3K–20K</p><p class="stat-d">Packing delivery — satisfying, high completion</p></div>
+    <div class="strat-grid sg" style="gap:1px;background:var(--edge);border:1px solid var(--edge);border-radius:10px;overflow:hidden">
+      <div class="stat"><p class="stat-k">Cooking ASMR</p><p class="stat-v g" style="font-size:1.5rem">10K–100K+</p><p class="stat-d">Molokhia stirred, tasha poured — pure sound</p></div>
+      <div class="stat"><p class="stat-k">Chef Point-of-View</p><p class="stat-v g" style="font-size:1.5rem">5K–50K</p><p class="stat-d">Morning prep to plated dish, first-person</p></div>
+      <div class="stat"><p class="stat-k">Customer Reaction</p><p class="stat-v g" style="font-size:1.5rem">10K–200K</p><p class="stat-d">Authentic first-taste — outperforms scripted</p></div>
+      <div class="stat"><p class="stat-k">Trending Sound + Food</p><p class="stat-v g" style="font-size:1.5rem">20K–500K</p><p class="stat-d">Arabic trending audio over food B-roll</p></div>
+      <div class="stat"><p class="stat-k">Before / After</p><p class="stat-v g" style="font-size:1.5rem">10K–50K</p><p class="stat-d">Raw ingredients → finished dish in 15 sec</p></div>
+      <div class="stat"><p class="stat-k">Order Fulfilment</p><p class="stat-v a" style="font-size:1.5rem">3K–20K</p><p class="stat-d">Packing delivery — satisfying, high completion</p></div>
     </div>
-    <div class="note rv" style="margin-top:1.5rem"><p class="note-tag">Posting Rules</p><p>Minimum <strong>5–7 videos/week.</strong> All content <strong>Arabic-first</strong> with Arabic text overlays. Post at <strong>12:00–14:00 and 20:00–22:00 KSA time.</strong> Avoid posting during prayer times. 5–8 hashtags per video: <strong>#مطاعم_الرياض #اكل_مصري #ملوخية #foodtiktok #riyadhfood</strong></p></div>
+    <div class="note rv" style="margin-top:1.75rem">
+      <p class="note-tag">Posting Rules</p>
+      <p>Minimum <strong>5–7 videos/week.</strong> All content <strong>Arabic-first</strong> with Arabic text overlays. Post at <strong>12:00–14:00 and 20:00–22:00 KSA time.</strong> Avoid posting during prayer times. Use 5–8 hashtags: <strong>#مطاعم_الرياض #اكل_مصري #ملوخية #foodtiktok #riyadhfood</strong></p>
+    </div>
   </div>
 </section>
 
-<!-- ══ 07 RECOMMENDATIONS ════════════════════════════════════════════════ -->
+<!-- 07 RECOMMENDATIONS -->
 <section class="sec" id="recommendations">
   <div class="wrap">
     <p class="sec-tag rv">07 — Priority Recommendations</p>
     <h2 class="sec-h rv">The 10 Actions That Will Move the Needle</h2>
     <div class="rec-grid sg">
-      <div class="rec-card crit"><div class="rec-top"><p class="rec-plat">Google Business Profile</p><span class="badge b-red">Critical</span></div><p class="rec-action">Claim, verify &amp; fully complete GBP within 7 days</p><p class="rec-outcome">Visible in all 'near me' searches. 7× more direction requests. Path to <strong>50+ reviews in 90 days.</strong></p></div>
-      <div class="rec-card crit"><div class="rec-top"><p class="rec-plat">Facebook</p><span class="badge b-red">Critical</span></div><p class="rec-action">Shift to video-first content — 3 videos + daily Story polls/week</p><p class="rec-outcome">Organic reach: <strong>~300 → 2,000–4,000 per post.</strong> Algorithm begins recommending content to non-followers.</p></div>
-      <div class="rec-card crit"><div class="rec-top"><p class="rec-plat">Snapchat</p><span class="badge b-red">Critical</span></div><p class="rec-action">Create Business Account, geofilter, and begin daily Stories in Week 1</p><p class="rec-outcome">Access to <strong>18.2M KSA users.</strong> Geofilter turns every dine-in customer into a branded content creator.</p></div>
+      <div class="rec-card crit"><div class="rec-top"><p class="rec-plat">Google Business Profile</p><span class="badge b-red">Critical</span></div><p class="rec-action">Claim, verify & fully complete GBP within 7 days</p><p class="rec-outcome">Visible in all 'near me' searches. 7× more direction requests. Path to <strong>50+ reviews in 90 days.</strong></p></div>
+      <div class="rec-card crit"><div class="rec-top"><p class="rec-plat">Facebook</p><span class="badge b-red">Critical</span></div><p class="rec-action">Shift to video-first — 3 videos + daily Story polls per week</p><p class="rec-outcome">Organic reach: <strong>~300 → 2,000–4,000 per post.</strong> Algorithm begins recommending to non-followers.</p></div>
+      <div class="rec-card crit"><div class="rec-top"><p class="rec-plat">Snapchat</p><span class="badge b-red">Critical</span></div><p class="rec-action">Create Business Account, geofilter, and daily Stories in Week 1</p><p class="rec-outcome">Access to <strong>18.2M KSA users.</strong> Geofilter turns every dine-in customer into a branded content creator.</p></div>
       <div class="rec-card high"><div class="rec-top"><p class="rec-plat">Instagram</p><span class="badge b-amb">High</span></div><p class="rec-action">Linktree bio link, 3 Reels/week, follow 200+ accounts, weekly FB cross-post</p><p class="rec-outcome">Estimated growth: <strong>1,151 → 5,000 followers in 60 days</strong> with consistent Reels output.</p></div>
       <div class="rec-card high"><div class="rec-top"><p class="rec-plat">TikTok</p><span class="badge b-amb">High</span></div><p class="rec-action">5+ videos/week — ASMR, chef POV, reactions. Arabic audio. 5 nano-influencer gifted visits.</p><p class="rec-outcome">Category ownership of Egyptian food on KSA TikTok. <strong>5–15K views/video at zero cash cost</strong> for nano collabs.</p></div>
       <div class="rec-card high"><div class="rec-top"><p class="rec-plat">META Ads</p><span class="badge b-amb">High</span></div><p class="rec-action">SAR 2,300/month — awareness (500) + IG growth (500) + delivery (1,000) + reviews (300)</p><p class="rec-outcome"><strong>80,000–130,000 estimated monthly reach.</strong> Direct contribution to delivery platform orders.</p></div>
       <div class="rec-card high"><div class="rec-top"><p class="rec-plat">Reviews Campaign</p><span class="badge b-amb">High</span></div><p class="rec-action">QR cards at every table and in every delivery bag. Respond to all reviews within 24h.</p><p class="rec-outcome"><strong>4.3★ / 50+ reviews in 90 days.</strong> 43% of diners skip restaurants with no visible rating.</p></div>
       <div class="rec-card med"><div class="rec-top"><p class="rec-plat">Influencer Programme</p><span class="badge b-grn">Medium</span></div><p class="rec-action">5 gifted nano-influencer visits/month. 3 micro-influencer paid collabs/quarter.</p><p class="rec-outcome">5,000–15,000 views per nano video. <strong>Lower CPL than paid ads</strong> for new audience acquisition.</p></div>
       <div class="rec-card med"><div class="rec-top"><p class="rec-plat">X / Twitter</p><span class="badge b-grn">Medium</span></div><p class="rec-action">Secure @MolokhiaKSA immediately. 2–3 posts/day once Phase 1 stable.</p><p class="rec-outcome">Real-time discovery channel. <strong>Protects brand name</strong> from competitor registration.</p></div>
-      <div class="rec-card med"><div class="rec-top"><p class="rec-plat">WhatsApp Business</p><span class="badge b-grn">Medium</span></div><p class="rec-action">Set up WhatsApp Business linked from all profiles. Auto-responses for menu + hours.</p><p class="rec-outcome">Saudi customers prefer WhatsApp for direct brand contact. <strong>Reduces friction</strong> between social discovery and orders.</p></div>
+      <div class="rec-card med"><div class="rec-top"><p class="rec-plat">WhatsApp Business</p><span class="badge b-grn">Medium</span></div><p class="rec-action">Set up WhatsApp Business linked from all profiles. Auto-responses for menu + hours.</p><p class="rec-outcome">Saudi customers prefer WhatsApp for direct brand contact. <strong>Reduces friction</strong> between discovery and orders.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ══ 08 KPIS ════════════════════════════════════════════════════════════ -->
+<!-- 08 KPIS -->
 <section class="sec sec-dark" id="kpis">
   <div class="wrap">
     <p class="sec-tag rv">08 — KPI Framework</p>
@@ -746,15 +842,15 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
     <div class="kpi-grid sg">
       <div class="kpi"><div class="kpi-head"><p class="kpi-plat">Google Business Profile</p><span class="badge b-red">Currently absent</span></div><p class="kpi-name">Star Rating & Reviews</p><div class="kpi-cols"><div class="kpi-col"><p class="kpi-ckey">Now</p><p class="kpi-cval now">Unrated</p></div><div class="kpi-col"><p class="kpi-ckey">Month 3</p><p class="kpi-cval m3">4.0★ / 35</p></div><div class="kpi-col"><p class="kpi-ckey">Month 6</p><p class="kpi-cval m6">4.3★ / 60+</p></div></div></div>
       <div class="kpi"><div class="kpi-head"><p class="kpi-plat">Facebook</p><span class="badge b-red">0.04% engagement</span></div><p class="kpi-name">Engagement Rate</p><div class="kpi-cols"><div class="kpi-col"><p class="kpi-ckey">Now</p><p class="kpi-cval now">0.04%</p></div><div class="kpi-col"><p class="kpi-ckey">Month 3</p><p class="kpi-cval m3">0.70%</p></div><div class="kpi-col"><p class="kpi-ckey">Month 6</p><p class="kpi-cval m6">1.2%+</p></div></div></div>
-      <div class="kpi"><div class="kpi-head"><p class="kpi-plat">Facebook</p><span class="badge b-red">~300/post now</span></div><p class="kpi-name">Organic Post Reach</p><div class="kpi-cols"><div class="kpi-col"><p class="kpi-ckey">Now</p><p class="kpi-cval now">~300</p></div><div class="kpi-col"><p class="kpi-ckey">Month 3</p><p class="kpi-cval m3">3,500</p></div><div class="kpi-col"><p class="kpi-ckey">Month 6</p><p class="kpi-cval m6">6,000+</p></div></div></div>
+      <div class="kpi"><div class="kpi-head"><p class="kpi-plat">Facebook</p><span class="badge b-amb">~300 / post now</span></div><p class="kpi-name">Organic Post Reach</p><div class="kpi-cols"><div class="kpi-col"><p class="kpi-ckey">Now</p><p class="kpi-cval now">~300</p></div><div class="kpi-col"><p class="kpi-ckey">Month 3</p><p class="kpi-cval m3">3,500</p></div><div class="kpi-col"><p class="kpi-ckey">Month 6</p><p class="kpi-cval m6">6,000+</p></div></div></div>
       <div class="kpi"><div class="kpi-head"><p class="kpi-plat">Instagram</p><span class="badge b-red">1,151 followers</span></div><p class="kpi-name">Follower Count</p><div class="kpi-cols"><div class="kpi-col"><p class="kpi-ckey">Now</p><p class="kpi-cval now">1,151</p></div><div class="kpi-col"><p class="kpi-ckey">Month 3</p><p class="kpi-cval m3">5,000</p></div><div class="kpi-col"><p class="kpi-ckey">Month 6</p><p class="kpi-cval m6">10K+</p></div></div></div>
-      <div class="kpi"><div class="kpi-head"><p class="kpi-plat">TikTok</p><span class="badge b-amb">&lt; 1K followers</span></div><p class="kpi-name">Followers & Avg Views</p><div class="kpi-cols"><div class="kpi-col"><p class="kpi-ckey">Now</p><p class="kpi-cval now">&lt; 1K</p></div><div class="kpi-col"><p class="kpi-ckey">Month 3</p><p class="kpi-cval m3">5,000</p></div><div class="kpi-col"><p class="kpi-ckey">Month 6</p><p class="kpi-cval m6">15K+</p></div></div></div>
+      <div class="kpi"><div class="kpi-head"><p class="kpi-plat">TikTok</p><span class="badge b-amb">2,058 followers</span></div><p class="kpi-name">Followers & Avg Views</p><div class="kpi-cols"><div class="kpi-col"><p class="kpi-ckey">Now</p><p class="kpi-cval now">2,058</p></div><div class="kpi-col"><p class="kpi-ckey">Month 3</p><p class="kpi-cval m3">8,000</p></div><div class="kpi-col"><p class="kpi-ckey">Month 6</p><p class="kpi-cval m6">20K+</p></div></div></div>
       <div class="kpi"><div class="kpi-head"><p class="kpi-plat">Snapchat</p><span class="badge b-red">No account</span></div><p class="kpi-name">Subscribers</p><div class="kpi-cols"><div class="kpi-col"><p class="kpi-ckey">Now</p><p class="kpi-cval now">0</p></div><div class="kpi-col"><p class="kpi-ckey">Month 3</p><p class="kpi-cval m3">1,500</p></div><div class="kpi-col"><p class="kpi-ckey">Month 6</p><p class="kpi-cval m6">5,000+</p></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- ══ 09 ROADMAP ════════════════════════════════════════════════════════ -->
+<!-- 09 ROADMAP -->
 <section class="sec" id="roadmap">
   <div class="wrap">
     <p class="sec-tag rv">09 — 90-Day Roadmap</p>
@@ -807,7 +903,7 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
   </div>
 </section>
 
-<!-- ══ 10 BUDGET ══════════════════════════════════════════════════════════ -->
+<!-- 10 BUDGET -->
 <section class="sec sec-dark" id="investment">
   <div class="wrap">
     <p class="sec-tag rv">10 — Investment Summary</p>
@@ -855,7 +951,7 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
   </div>
 </section>
 
-<!-- ══ 11 MEETING AGENDA ═════════════════════════════════════════════════ -->
+<!-- 11 MEETING AGENDA -->
 <section class="sec" id="meeting">
   <div class="wrap">
     <p class="sec-tag rv">11 — Presentation Agenda</p>
@@ -873,7 +969,7 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
       <div class="ag"><p class="ag-time">1:25</p><p class="ag-topic">Next Steps</p><p class="ag-pts">Kickoff date, credentials, contacts</p></div>
     </div>
 
-    <p class="sec-tag rv" style="margin-top:3rem">Platform Access Required at Kickoff</p>
+    <p class="sec-tag rv" style="margin-top:3.5rem">Platform Access Required at Kickoff</p>
     <div class="creds sg">
       <div class="cred"><div class="cred-ico">GBP</div><div><p class="cred-title">Google Business Profile</p><p class="cred-sub">Owner-level Google account access to the business listing</p></div></div>
       <div class="cred"><div class="cred-ico">META</div><div><p class="cred-title">META Business Manager</p><p class="cred-sub">Admin access to Facebook Page and Instagram account</p></div></div>
@@ -887,7 +983,7 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
 <!-- FOOTER -->
 <footer>
   <div class="ft-info">
-    <p>Prepared exclusively for <strong>Molokhia Restaurant KSA</strong> by Elite Consultant · March 2026 · Confidential</p>
+    <p>Prepared exclusively for <strong>Molokhia Restaurant KSA</strong> by Elite Consultant &nbsp;·&nbsp; March 2026 &nbsp;·&nbsp; Confidential</p>
     <p>Data sourced from DataReportal, GMI, Sprinklr, Toast, and Meta Business Insights (2025–2026)</p>
   </div>
   <div class="ft-agency">
@@ -897,15 +993,83 @@ footer { border-top: 1px solid var(--edge); padding: 3.5rem 3rem; background: va
 </footer>
 
 <script>
+/* ── Progress bar ── */
 const bar=document.getElementById('bar');
-window.addEventListener('scroll',()=>{const h=document.documentElement;bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'});
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+});
+
+/* ── Nav ── */
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>nav.classList.toggle('on',scrollY>60));
-const io=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('in');io.unobserve(el.target)}})},{threshold:.05,rootMargin:'0px 0px -20px 0px'});
-document.querySelectorAll('.rv,.sg').forEach(el=>io.observe(el));
-function swTab(btn,id){document.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));document.querySelectorAll('.tp').forEach(p=>p.classList.remove('on'));btn.classList.add('on');document.getElementById('tab-'+id).classList.add('on')}
-document.getElementById('ham').addEventListener('click',()=>{const nl=document.getElementById('navLinks'),open=nl.style.display==='flex';nl.style.cssText=open?'':`display:flex;flex-direction:column;position:fixed;top:52px;inset:0 0 auto;background:rgba(11,13,11,.97);padding:2rem 1.5rem;gap:1.5rem;z-index:99;border-bottom:1px solid var(--edge)`;nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nl.style.cssText='',{once:true}))});
-document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}}));
+
+/* ── Scroll reveal with IntersectionObserver ── */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.06,rootMargin:'0px 0px -24px 0px'});
+document.querySelectorAll('.rv,.sg,.fi,.sl,.sc-in').forEach(el=>io.observe(el));
+
+/* ── Card shimmer on hover (gold pulse) ── */
+document.querySelectorAll('.plat-card,.rec-card,.opp-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=((e.clientX-r.left)/r.width*100).toFixed(1);
+    const y=((e.clientY-r.top)/r.height*100).toFixed(1);
+    card.style.setProperty('--mx',x+'%');
+    card.style.setProperty('--my',y+'%');
+  });
+});
+
+/* ── Mobile nav ── */
+const ham=document.getElementById('ham');
+ham.addEventListener('click',()=>{
+  const nl=document.getElementById('navLinks');
+  const open=nl.style.display==='flex';
+  nl.style.cssText=open?'':
+    'display:flex;flex-direction:column;position:fixed;top:52px;inset:0 0 auto;'+
+    'background:rgba(9,9,10,.97);padding:2.5rem 1.5rem;gap:2rem;z-index:99;'+
+    'border-bottom:1px solid var(--edge)';
+  nl.querySelectorAll('a').forEach(a=>
+    a.addEventListener('click',()=>nl.style.cssText='',{once:true})
+  );
+});
+
+/* ── Smooth anchors ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  })
+);
+
+/* ── Stagger number counter on stat cards ── */
+const counterObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.querySelectorAll('.stat-v,.kpi-cval').forEach(el=>{
+      const original=el.textContent;
+      const num=parseFloat(original.replace(/[^0-9.]/g,''));
+      if(!isNaN(num)&&num>0&&num<1000000){
+        let start=0;const dur=900;const step=16;
+        const inc=num/(dur/step);
+        const timer=setInterval(()=>{
+          start=Math.min(start+inc,num);
+          const formatted=num%1===0?Math.round(start).toLocaleString():start.toFixed(2);
+          el.textContent=original.replace(/[\d,\.]+/,formatted);
+          if(start>=num)clearInterval(timer);
+        },step);
+      }
+    });
+    counterObs.unobserve(e.target);
+  });
+},{threshold:.3});
+document.querySelectorAll('.stat-grid,.kpi-cols').forEach(el=>counterObs.observe(el));
 </script>
 </body>
 </html>
