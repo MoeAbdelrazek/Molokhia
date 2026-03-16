@@ -9,65 +9,50 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #070c14;
+      --bg: #060b14;
       --bg-2: #0a1020;
-      --surface: rgba(12, 18, 32, 0.88);
-      --surface-2: rgba(15, 22, 38, 0.96);
-      --stroke: rgba(214, 188, 126, 0.16);
-      --stroke-strong: rgba(214, 188, 126, 0.32);
+      --surface: rgba(11, 17, 31, 0.94);
+      --surface-2: rgba(13, 20, 36, 0.98);
       --gold: #d7c18d;
       --gold-2: #caa45f;
-      --text: #f4f0e7;
-      --muted: #9da7bb;
-      --success: #1e9b62;
+      --text: #f3efe7;
+      --muted: #a5aec1;
+      --line: rgba(214, 188, 126, 0.12);
+      --line-strong: rgba(214, 188, 126, 0.26);
+      --success: #1f9f67;
       --warning: #b98b3d;
-      --danger: #9c4f4f;
-      --shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+      --neutral: #7c879d;
+      --danger: #995151;
       --radius-xl: 28px;
       --radius-lg: 22px;
       --radius-md: 18px;
-      --radius-sm: 14px;
       --max: 1440px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 50% 14%, rgba(14, 32, 78, 0.42), transparent 0 34%),
-        radial-gradient(circle at 12% 30%, rgba(48, 28, 10, 0.18), transparent 0 24%),
-        linear-gradient(180deg, #05080f 0%, #09111f 46%, #060b14 100%);
+        radial-gradient(circle at 50% 12%, rgba(14, 33, 82, 0.40), transparent 0 34%),
+        radial-gradient(circle at 15% 28%, rgba(51, 29, 10, 0.16), transparent 0 22%),
+        linear-gradient(180deg, #04070f 0%, #08101d 48%, #050911 100%);
       min-height: 100vh;
       line-height: 1.65;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
+    a { color: inherit; text-decoration: none; }
 
     .shell {
-      width: min(calc(100% - 40px), 1680px);
+      width: min(calc(100% - 32px), 1680px);
       margin: 14px auto 28px;
-      border: 1px solid rgba(214, 188, 126, 0.18);
+      border: 1px solid rgba(214, 188, 126, 0.16);
       border-radius: 24px;
       overflow: hidden;
-      background: linear-gradient(180deg, rgba(4, 7, 13, 0.92), rgba(8, 13, 25, 0.94));
-      box-shadow: 0 20px 120px rgba(0, 0, 0, 0.55);
+      background: linear-gradient(180deg, rgba(4, 7, 13, 0.95), rgba(8, 13, 25, 0.96));
+      box-shadow: 0 20px 120px rgba(0, 0, 0, 0.56);
     }
 
     .topbar {
@@ -75,12 +60,16 @@
       top: 0;
       z-index: 50;
       backdrop-filter: blur(18px);
-      background: rgba(6, 9, 16, 0.88);
-      border-bottom: 1px solid rgba(214, 188, 126, 0.12);
+      background: rgba(6, 9, 16, 0.90);
+      border-bottom: 1px solid rgba(214, 188, 126, 0.10);
     }
 
     .topbar-inner,
-    .container {
+    .container,
+    .hero-inner,
+    .section-header,
+    .grid,
+    .footer {
       width: min(calc(100% - 72px), var(--max));
       margin: 0 auto;
     }
@@ -143,15 +132,13 @@
     .nav a {
       font-weight: 700;
       font-size: 15px;
-      color: rgba(244, 240, 231, 0.82);
+      color: rgba(243, 239, 231, 0.82);
       position: relative;
       transition: color 180ms ease;
     }
 
     .nav a.active,
-    .nav a:hover {
-      color: #fff;
-    }
+    .nav a:hover { color: #fff; }
 
     .nav a.active::after,
     .nav a:hover::after {
@@ -190,7 +177,7 @@
       border-radius: 999px;
       font-size: 14px;
       font-weight: 800;
-      color: rgba(244, 240, 231, 0.78);
+      color: rgba(243, 239, 231, 0.78);
     }
 
     .lang-toggle span.active {
@@ -201,7 +188,7 @@
     .cta-button {
       padding: 14px 24px;
       border-radius: 999px;
-      border: 1px solid rgba(214, 188, 126, 0.32);
+      border: 1px solid rgba(214, 188, 126, 0.28);
       background: linear-gradient(180deg, rgba(214, 188, 126, 0.08), rgba(214, 188, 126, 0.03));
       color: var(--gold);
       font-weight: 700;
@@ -212,13 +199,13 @@
 
     .cta-button:hover {
       transform: translateY(-2px);
-      border-color: rgba(214, 188, 126, 0.56);
+      border-color: rgba(214, 188, 126, 0.50);
       background: linear-gradient(180deg, rgba(214, 188, 126, 0.12), rgba(214, 188, 126, 0.06));
     }
 
     .hero {
       position: relative;
-      padding: 74px 0 28px;
+      padding: 74px 0 30px;
       overflow: hidden;
       border-bottom: 1px solid rgba(214, 188, 126, 0.08);
     }
@@ -229,14 +216,12 @@
       inset: 0;
       pointer-events: none;
       background:
-        radial-gradient(circle at 50% 8%, rgba(24, 52, 120, 0.36), transparent 0 38%),
-        linear-gradient(180deg, rgba(5, 8, 15, 0) 0%, rgba(5, 8, 15, 0.28) 100%);
+        radial-gradient(circle at 50% 8%, rgba(24, 52, 120, 0.35), transparent 0 38%),
+        linear-gradient(180deg, rgba(5, 8, 15, 0) 0%, rgba(5, 8, 15, 0.25) 100%);
     }
 
     .hero-inner {
       position: relative;
-      width: min(calc(100% - 72px), var(--max));
-      margin: 0 auto;
       text-align: center;
     }
 
@@ -256,20 +241,20 @@
       margin-bottom: 22px;
     }
 
-    .hero h1 {
+    h1 {
       margin: 0;
-      font-size: clamp(38px, 5.2vw, 72px);
-      line-height: 1.02;
+      font-size: clamp(40px, 5.4vw, 76px);
+      line-height: 1.03;
       letter-spacing: -0.05em;
       color: var(--gold);
       font-weight: 800;
     }
 
     .hero p {
-      width: min(940px, 100%);
+      width: min(920px, 100%);
       margin: 24px auto 0;
       font-size: clamp(18px, 2vw, 27px);
-      color: rgba(244, 240, 231, 0.78);
+      color: rgba(243, 239, 231, 0.80);
       line-height: 1.45;
     }
 
@@ -286,22 +271,21 @@
       border-radius: 999px;
       border: 1px solid rgba(214, 188, 126, 0.16);
       background: rgba(255, 255, 255, 0.02);
-      color: rgba(244, 240, 231, 0.8);
+      color: rgba(243, 239, 231, 0.82);
       font-size: 14px;
       font-weight: 600;
     }
 
     .section {
-      padding: 38px 0 18px;
+      padding: 40px 0 18px;
     }
 
     .section:last-of-type {
-      padding-bottom: 44px;
+      padding-bottom: 42px;
     }
 
     .section-header {
-      width: min(calc(100% - 72px), var(--max));
-      margin: 0 auto 22px;
+      margin-bottom: 22px;
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
@@ -314,7 +298,7 @@
       align-items: center;
       gap: 10px;
       margin-bottom: 12px;
-      color: rgba(244, 240, 231, 0.7);
+      color: rgba(243, 239, 231, 0.72);
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -334,35 +318,20 @@
 
     .section-title {
       margin: 0;
-      font-size: clamp(28px, 3.2vw, 44px);
+      font-size: clamp(28px, 3.2vw, 46px);
       line-height: 1.1;
       letter-spacing: -0.04em;
       color: var(--gold);
     }
 
     .section-description {
-      max-width: 780px;
+      max-width: 790px;
       margin-top: 10px;
       font-size: 17px;
-      color: rgba(244, 240, 231, 0.72);
-    }
-
-    .section-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(214, 188, 126, 0.14);
-      color: var(--gold);
-      font-weight: 700;
-      font-size: 14px;
-      background: rgba(255, 255, 255, 0.015);
+      color: rgba(243, 239, 231, 0.74);
     }
 
     .grid {
-      width: min(calc(100% - 72px), var(--max));
-      margin: 0 auto;
       display: grid;
       gap: 18px;
     }
@@ -374,20 +343,21 @@
     .card {
       position: relative;
       background:
-        radial-gradient(circle at 50% 22%, rgba(25, 42, 92, 0.2), rgba(11, 17, 31, 0.96) 60%),
+        radial-gradient(circle at 50% 22%, rgba(25, 42, 92, 0.20), rgba(11, 17, 31, 0.96) 60%),
         linear-gradient(180deg, rgba(12, 18, 32, 0.96), rgba(9, 14, 26, 0.98));
-      border: 1px solid rgba(214, 188, 126, 0.1);
+      border: 1px solid rgba(214, 188, 126, 0.10);
       border-radius: var(--radius-lg);
       padding: 26px 28px;
       overflow: hidden;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
       transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+      min-height: 100%;
     }
 
     .card:hover {
       transform: translateY(-4px);
       border-color: rgba(214, 188, 126, 0.22);
-      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.03);
     }
 
     .card::before {
@@ -402,8 +372,8 @@
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 18px;
+      gap: 16px;
+      margin-bottom: 16px;
     }
 
     .icon-box {
@@ -418,55 +388,95 @@
       flex: 0 0 auto;
     }
 
+    .inline-label {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(214, 188, 126, 0.16);
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      min-height: 36px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .status-confirmed {
+      color: #d7ffe8;
+      background: rgba(31, 159, 103, 0.14);
+      border-color: rgba(31, 159, 103, 0.28);
+    }
+
+    .status-partial {
+      color: #ffedc8;
+      background: rgba(185, 139, 61, 0.14);
+      border-color: rgba(185, 139, 61, 0.28);
+    }
+
+    .status-unverified {
+      color: #e7eaf1;
+      background: rgba(124, 135, 157, 0.16);
+      border-color: rgba(124, 135, 157, 0.26);
+    }
+
+    .status-critical {
+      color: #ffdede;
+      background: rgba(153, 81, 81, 0.14);
+      border-color: rgba(153, 81, 81, 0.28);
+    }
+
     .card h3,
     .card h4 {
       margin: 0;
-      color: #f7f3ea;
       letter-spacing: -0.03em;
+      color: #fff;
     }
 
     .card h3 { font-size: 32px; }
-    .card h4 { font-size: 22px; }
+    .card h4 { font-size: 24px; }
 
     .card-subtitle {
       margin-top: 8px;
       font-size: 15px;
-      color: rgba(244, 240, 231, 0.68);
+      color: rgba(243, 239, 231, 0.66);
     }
 
     .card p {
       margin: 0;
-      color: rgba(244, 240, 231, 0.76);
+      color: rgba(243, 239, 231, 0.78);
       font-size: 16px;
     }
 
-    .card p + p,
-    .card p + ul,
-    .card ul + p,
-    .card ul + ul,
-    .card .stack + .stack,
-    .card .tag-row + .stack,
-    .card .table-wrap + .stack {
-      margin-top: 18px;
+    .metric {
+      font-size: clamp(38px, 4vw, 54px);
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: -0.06em;
+      font-weight: 800;
+      margin: 6px 0 10px;
+    }
+
+    .muted {
+      color: rgba(243, 239, 231, 0.62);
+      font-size: 14px;
     }
 
     .stack {
       display: grid;
       gap: 14px;
-    }
-
-    .stat-card .metric {
-      font-size: clamp(36px, 4vw, 54px);
-      color: var(--gold);
-      line-height: 1;
-      letter-spacing: -0.06em;
-      font-weight: 800;
-      margin: 4px 0 8px;
-    }
-
-    .muted {
-      color: rgba(244, 240, 231, 0.64);
-      font-size: 15px;
     }
 
     ul.clean {
@@ -480,7 +490,7 @@
     ul.clean li {
       position: relative;
       padding-left: 20px;
-      color: rgba(244, 240, 231, 0.78);
+      color: rgba(243, 239, 231, 0.78);
       font-size: 15.5px;
     }
 
@@ -497,90 +507,20 @@
       transform: translateY(-50%);
     }
 
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 34px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      border: 1px solid transparent;
-    }
-
-    .tag.confirmed {
-      color: #d9ffe9;
-      background: rgba(30, 155, 98, 0.14);
-      border-color: rgba(30, 155, 98, 0.28);
-    }
-
-    .tag.likely {
-      color: #ffedc8;
-      background: rgba(185, 139, 61, 0.14);
-      border-color: rgba(185, 139, 61, 0.28);
-    }
-
-    .tag.needs {
-      color: #e5e7ef;
-      background: rgba(157, 167, 187, 0.12);
-      border-color: rgba(157, 167, 187, 0.18);
-    }
-
-    .tag.notfound,
-    .tag.high {
-      color: #ffd9d9;
-      background: rgba(156, 79, 79, 0.14);
-      border-color: rgba(156, 79, 79, 0.28);
-    }
-
-    .tag.medium {
-      color: #ffebc7;
-      background: rgba(185, 139, 61, 0.14);
-      border-color: rgba(185, 139, 61, 0.28);
-    }
-
-    .tag.low {
-      color: #daf7e7;
-      background: rgba(30, 155, 98, 0.14);
-      border-color: rgba(30, 155, 98, 0.28);
-    }
-
-    .inline-label {
-      display: inline-flex;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(214, 188, 126, 0.14);
-      background: rgba(255, 255, 255, 0.02);
-      color: var(--gold);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
     .table-wrap {
       overflow-x: auto;
-      border: 1px solid rgba(214, 188, 126, 0.1);
+      border: 1px solid rgba(214, 188, 126, 0.10);
       border-radius: 18px;
-      background: rgba(0, 0, 0, 0.1);
+      background: rgba(0, 0, 0, 0.10);
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 840px;
+      min-width: 900px;
     }
 
-    th,
-    td {
+    th, td {
       text-align: left;
       padding: 16px 18px;
       vertical-align: top;
@@ -596,94 +536,35 @@
     }
 
     td {
-      color: rgba(244, 240, 231, 0.78);
+      color: rgba(243, 239, 231, 0.78);
     }
 
-    tr:last-child td {
-      border-bottom: 0;
-    }
+    tr:last-child td { border-bottom: 0; }
 
-    .pill-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 13px;
+    .platform-name {
       font-weight: 700;
-      color: var(--gold);
-      border: 1px solid rgba(214, 188, 126, 0.16);
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .risk-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .mini-card {
-      padding: 16px 18px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(214, 188, 126, 0.08);
-    }
-
-    .mini-card h5 {
-      margin: 0 0 8px;
-      font-size: 17px;
       color: #fff;
-      letter-spacing: -0.02em;
     }
 
-    .mini-card p,
-    .mini-card li {
-      font-size: 15px;
-      color: rgba(244, 240, 231, 0.76);
-    }
-
-    .access-grid,
-    .confidence-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .access-item {
-      padding: 16px 18px;
+    .note-box {
+      padding: 18px 20px;
       border-radius: 18px;
+      border: 1px solid rgba(214, 188, 126, 0.10);
       background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(214, 188, 126, 0.1);
+      color: rgba(243, 239, 231, 0.74);
       font-size: 15px;
-      color: rgba(244, 240, 231, 0.8);
-      font-weight: 600;
     }
 
     .footer {
-      width: min(calc(100% - 72px), var(--max));
-      margin: 0 auto;
-      padding: 20px 0 48px;
-      color: rgba(244, 240, 231, 0.52);
+      padding: 18px 0 42px;
+      color: rgba(243, 239, 231, 0.52);
       font-size: 14px;
       border-top: 1px solid rgba(214, 188, 126, 0.08);
     }
 
     @media (max-width: 1180px) {
-      .grid.cols-4,
-      .grid.cols-3,
-      .access-grid,
-      .confidence-grid,
-      .grid.cols-2 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .nav {
-        display: none;
-      }
-
-      .topbar-inner {
-        min-height: 86px;
-      }
+      .nav { display: none; }
+      .grid.cols-4, .grid.cols-3, .grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 820px) {
@@ -705,41 +586,15 @@
       .topbar-inner {
         padding: 14px 0;
         flex-wrap: wrap;
+        min-height: 86px;
       }
 
-      .hero {
-        padding-top: 42px;
-      }
-
-      .hero p {
-        font-size: 17px;
-      }
-
-      .grid.cols-4,
-      .grid.cols-3,
-      .grid.cols-2,
-      .access-grid,
-      .confidence-grid,
-      .risk-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .card {
-        padding: 22px 20px;
-        border-radius: 18px;
-      }
-
-      .card h3 {
-        font-size: 28px;
-      }
-
-      .card h4 {
-        font-size: 20px;
-      }
-
-      table {
-        min-width: 760px;
-      }
+      .hero { padding-top: 42px; }
+      .hero p { font-size: 17px; }
+      .grid.cols-4, .grid.cols-3, .grid.cols-2 { grid-template-columns: 1fr; }
+      .card { padding: 22px 20px; border-radius: 18px; }
+      .card h4 { font-size: 21px; }
+      table { min-width: 760px; }
     }
   </style>
 </head>
@@ -754,8 +609,9 @@
 
         <nav class="nav">
           <a href="#overview" class="active">HOME</a>
-          <a href="#presence">SERVICES</a>
-          <a href="#recommendations">ABOUT</a>
+          <a href="#platforms">PLATFORMS</a>
+          <a href="#findings">FINDINGS</a>
+          <a href="#priorities">PRIORITIES</a>
         </nav>
 
         <div class="nav-actions">
@@ -763,7 +619,7 @@
             <span class="active">EN</span>
             <span>AR</span>
           </div>
-          <a class="cta-button" href="#meeting">CONSULT OUR EXPERTS</a>
+          <a class="cta-button" href="#matrix">VIEW AUDIT MATRIX</a>
         </div>
       </div>
     </header>
@@ -771,13 +627,13 @@
     <section class="hero" id="overview">
       <div class="hero-inner">
         <div class="eyebrow">Restaurant Digital Audit</div>
-        <h1>Molokhia Restaurant<br>Executive Presence Review</h1>
-        <p>Public-facing digital audit rebuilt in the Elite Consultant visual system, using the same premium card language, typography hierarchy, dark-gold palette, and structured executive presentation.</p>
+        <h1>Molokhia Restaurant<br>Digital Presence Review</h1>
+        <p>An executive assessment of Molokhia Restaurant’s public digital footprint across core discovery, trust, and conversion touchpoints in Riyadh.</p>
         <div class="hero-meta">
           <div class="meta-chip">Market: Riyadh, Saudi Arabia</div>
           <div class="meta-chip">Category: Egyptian Restaurant</div>
-          <div class="meta-chip">Audit Date: 16 March 2026</div>
-          <div class="meta-chip">Scope: Public Digital Presence</div>
+          <div class="meta-chip">Scope: Public-Facing Presence</div>
+          <div class="meta-chip">Review Date: 16 March 2026</div>
         </div>
       </div>
     </section>
@@ -785,112 +641,353 @@
     <section class="section">
       <div class="section-header">
         <div>
-          <div class="section-kicker"><span class="section-number">01</span> Executive Summary</div>
-          <h2 class="section-title">Top-level findings in card format</h2>
-          <div class="section-description">The original report has been preserved structurally, but recast into a cleaner modular system that matches the look and behavior of your website cards.</div>
+          <div class="section-kicker"><span class="section-number">01</span> Executive Snapshot</div>
+          <h2 class="section-title">Headline observations</h2>
+          <div class="section-description">Molokhia Restaurant shows clear local demand signals, but the digital ecosystem still has visible gaps in ownership, platform consistency, and conversion flow.</div>
         </div>
-        <div class="section-link">Audit Snapshot</div>
       </div>
 
       <div class="grid cols-4">
-        <article class="card stat-card">
+        <article class="card">
           <div class="card-header">
             <div>
-              <div class="inline-label">Google Profile</div>
+              <div class="inline-label">Google Presence</div>
               <div class="metric">4.5★</div>
-              <p>Strong review foundation with roughly 660 reviews and clear restaurant categorization.</p>
+              <p>Strong public trust signal driven by high review volume and clear local restaurant intent.</p>
             </div>
             <div class="icon-box">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
             </div>
           </div>
-          <div class="muted">Confirmed strength</div>
+          <div class="muted">High-value discovery asset</div>
         </article>
 
-        <article class="card stat-card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">Facebook Reach</div>
-              <div class="metric">~28k</div>
-              <p>Largest visible community, but conversion architecture and public verification remain weak.</p>
-            </div>
-            <div class="icon-box">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0v8a6 6 0 0 0 12 0"></path><path d="M8 15h8"></path><path d="M12 19v-8"></path></svg>
-            </div>
-          </div>
-          <div class="muted">Awareness asset</div>
-        </article>
-
-        <article class="card stat-card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">TikTok</div>
-              <div class="metric">2.1k</div>
-              <p>Promising audience base, but unclear content-to-order path and weak visible funnel design.</p>
-            </div>
-            <div class="icon-box">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17a4 4 0 1 0 4 4V7c1.4 1.5 3.4 2.5 5.6 2.7"></path></svg>
-            </div>
-          </div>
-          <div class="muted">Growth channel</div>
-        </article>
-
-        <article class="card stat-card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">Owned Presence</div>
-              <div class="metric">0</div>
-              <p>No official website was identified, which is the most commercially damaging structural gap.</p>
-            </div>
-            <div class="icon-box">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"></rect><path d="M8 20h8"></path><path d="M12 18v2"></path></svg>
-            </div>
-          </div>
-          <div class="muted">Critical gap</div>
-        </article>
-      </div>
-
-      <div class="grid cols-2" style="margin-top: 18px;">
         <article class="card">
           <div class="card-header">
             <div>
-              <div class="inline-label">Core Diagnosis</div>
-              <h4>Fragmented visibility, weak conversion architecture</h4>
-              <div class="card-subtitle">The restaurant has public awareness, but the digital footprint is not operating as a coherent acquisition system.</div>
+              <div class="inline-label">Social Reach</div>
+              <div class="metric">Multi-Channel</div>
+              <p>Facebook, TikTok, and Instagram establish public visibility across key audience touchpoints.</p>
+            </div>
+            <div class="icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H4z"></path><path d="M8 20h8"></path><path d="M12 16v4"></path></svg>
+            </div>
+          </div>
+          <div class="muted">Brand awareness is already present</div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="inline-label">Owned Presence</div>
+              <div class="metric">Not Found</div>
+              <p>No official website was identified during this public audit, limiting control over the customer journey.</p>
+            </div>
+            <div class="icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H4z"></path><path d="M2 20h20"></path></svg>
+            </div>
+          </div>
+          <div class="muted">Primary structural gap</div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="inline-label">Opportunity</div>
+              <div class="metric">High</div>
+              <p>Improving platform consistency, response management, and conversion routing should produce visible gains quickly.</p>
+            </div>
+            <div class="icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"></path><path d="M14 7h7v7"></path></svg>
+            </div>
+          </div>
+          <div class="muted">Near-term commercial upside</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="platforms">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker"><span class="section-number">02</span> Platform Presence</div>
+          <h2 class="section-title">Public platform review</h2>
+          <div class="section-description">Each platform below reflects what is publicly identifiable from open-facing brand assets during this audit.</div>
+        </div>
+      </div>
+
+      <div class="grid cols-4">
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="inline-label">Google Business Profile</div>
+              <h4>Local discovery and trust</h4>
+              <div class="card-subtitle">Publicly identified</div>
+            </div>
+            <span class="status-badge status-confirmed">Verified Publicly</span>
+          </div>
+          <p>Strong rating and substantial review depth make Google the most influential public proof channel in the current ecosystem.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="inline-label">Facebook</div>
+              <h4>Community visibility</h4>
+              <div class="card-subtitle">Public brand page identified</div>
+            </div>
+            <span class="status-badge status-confirmed">Verified Publicly</span>
+          </div>
+          <p>The restaurant has a visible Facebook presence that supports broad audience reach and local familiarity.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="inline-label">TikTok</div>
+              <h4>Short-form awareness</h4>
+              <div class="card-subtitle">Public brand profile identified</div>
+            </div>
+            <span class="status-badge status-confirmed">Verified Publicly</span>
+          </div>
+          <p>TikTok provides clear audience-facing visibility and remains a strong channel for food-led discovery.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="inline-label">Instagram</div>
+              <h4>Visual brand presence</h4>
+              <div class="card-subtitle">Public brand profile identified</div>
+            </div>
+            <span class="status-badge status-confirmed">Verified Publicly</span>
+          </div>
+          <p>Instagram is active publicly and should remain a priority platform for menu presentation, ambience, and proof-led content.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="inline-label">Snapchat</div>
+              <h4>Public brand account status</h4>
+              <div class="card-subtitle">No verified brand account identified in this pass</div>
+            </div>
+            <span class="status-badge status-unverified">Not Verified Publicly</span>
+          </div>
+          <p>No public Molokhia Restaurant Snapchat brand profile was confirmed during this audit. This should be reviewed directly with the business.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="inline-label">YouTube</div>
+              <h4>Public channel status</h4>
+              <div class="card-subtitle">No verified brand channel identified in this pass</div>
+            </div>
+            <span class="status-badge status-unverified">Not Verified Publicly</span>
+          </div>
+          <p>No official Molokhia Restaurant YouTube channel was confirmed during this audit. A branded presence may still be possible if held privately or under another naming structure.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="inline-label">Official Website</div>
+              <h4>Owned digital hub</h4>
+              <div class="card-subtitle">No official site identified publicly</div>
+            </div>
+            <span class="status-badge status-critical">Not Identified</span>
+          </div>
+          <p>The absence of an owned site limits direct conversion, search authority, analytics visibility, and brand control.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="inline-label">Directory Coverage</div>
+              <h4>External listings</h4>
+              <div class="card-subtitle">Additional citation work recommended</div>
+            </div>
+            <span class="status-badge status-partial">Review Needed</span>
+          </div>
+          <p>Directory consistency should be reviewed to ensure contact details, operating hours, and location signals are aligned across all public touchpoints.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="findings">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker"><span class="section-number">03</span> Key Findings</div>
+          <h2 class="section-title">Priority opportunity areas</h2>
+          <div class="section-description">The most material opportunities are centered around owned presence, consistency, and the path from discovery to action.</div>
+        </div>
+      </div>
+
+      <div class="grid cols-4">
+        <article class="card">
+          <div class="inline-label">Priority Area</div>
+          <h4 style="margin-top: 14px;">Owned website presence</h4>
+          <p style="margin-top: 12px;">An official website would strengthen trust, support search visibility, centralize brand information, and provide a controlled action path for customers.</p>
+        </article>
+
+        <article class="card">
+          <div class="inline-label">Priority Area</div>
+          <h4 style="margin-top: 14px;">Contact detail consistency</h4>
+          <p style="margin-top: 12px;">Phone numbers, operating details, and listing information should remain fully aligned across all public channels.</p>
+        </article>
+
+        <article class="card">
+          <div class="inline-label">Priority Area</div>
+          <h4 style="margin-top: 14px;">Review response visibility</h4>
+          <p style="margin-top: 12px;">Active review management can strengthen customer trust while improving the professionalism of the overall brand presentation.</p>
+        </article>
+
+        <article class="card">
+          <div class="inline-label">Priority Area</div>
+          <h4 style="margin-top: 14px;">Clear conversion routing</h4>
+          <p style="margin-top: 12px;">Social traffic should route cleanly toward one reliable action path for ordering, inquiries, or visit planning.</p>
+        </article>
+
+        <article class="card">
+          <div class="inline-label">Growth Area</div>
+          <h4 style="margin-top: 14px;">Instagram depth</h4>
+          <p style="margin-top: 12px;">Instagram has strong relevance for food presentation and should be developed as a richer visual storefront for the brand.</p>
+        </article>
+
+        <article class="card">
+          <div class="inline-label">Growth Area</div>
+          <h4 style="margin-top: 14px;">TikTok conversion support</h4>
+          <p style="margin-top: 12px;">Short-form content is already suitable for awareness. The next improvement is linking that visibility to a clearer customer action flow.</p>
+        </article>
+
+        <article class="card">
+          <div class="inline-label">Growth Area</div>
+          <h4 style="margin-top: 14px;">Listing quality control</h4>
+          <p style="margin-top: 12px;">Directory and map listings should be reviewed as one system to reduce inconsistency and reinforce brand reliability.</p>
+        </article>
+
+        <article class="card">
+          <div class="inline-label">Growth Area</div>
+          <h4 style="margin-top: 14px;">Content breadth</h4>
+          <p style="margin-top: 12px;">Menu items, ambience, preparation moments, customer proof, and brand personality should work together more cohesively across channels.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker"><span class="section-number">04</span> Strategic Assessment</div>
+          <h2 class="section-title">What is working now</h2>
+          <div class="section-description">The brand already has a useful public foundation. The next stage is refinement, alignment, and stronger commercial structure.</div>
+        </div>
+      </div>
+
+      <div class="grid cols-3">
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="inline-label">Current Strength</div>
+              <h4>Local search credibility</h4>
             </div>
           </div>
           <ul class="clean">
-            <li>Google carries the strongest proof layer, supported by review volume and a solid rating.</li>
-            <li>Facebook appears to hold the largest audience concentration, but with limited public conversion visibility.</li>
-            <li>TikTok has early traction yet lacks a visible link path, community engagement signals, and clear funnel intent.</li>
-            <li>Instagram remains underleveraged relative to its importance for food discovery and remarketing.</li>
+            <li>Google presence is the strongest public proof asset.</li>
+            <li>Review depth supports discovery-stage trust.</li>
+            <li>Clear restaurant intent exists in public local listings.</li>
           </ul>
         </article>
 
         <article class="card">
           <div class="card-header">
             <div>
-              <div class="inline-label">Commercial Risk</div>
-              <h4>Trust leakage and local SEO inefficiency</h4>
-              <div class="card-subtitle">The biggest weakness is not reach. It is the absence of consistency and ownership.</div>
+              <div class="inline-label">Current Strength</div>
+              <h4>Multi-platform visibility</h4>
             </div>
           </div>
           <ul class="clean">
-            <li>Phone numbers and operational details are inconsistent across major assets.</li>
-            <li>No official website means no direct analytics, no retargeting, and no owned conversion flow.</li>
-            <li>Review response activity is not visible, which weakens trust reinforcement.</li>
-            <li>Cross-platform calls to action are not unified around one action path.</li>
+            <li>Facebook contributes broad reach and familiarity.</li>
+            <li>TikTok supports food-led awareness potential.</li>
+            <li>Instagram adds visual presentation value.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="inline-label">Current Need</div>
+              <h4>Stronger ecosystem control</h4>
+            </div>
+          </div>
+          <ul class="clean">
+            <li>One owned destination should anchor all public channels.</li>
+            <li>Public information should be uniform everywhere.</li>
+            <li>Customer action paths should be more direct.</li>
           </ul>
         </article>
       </div>
     </section>
 
-    <section class="section" id="presence">
+    <section class="section" id="priorities">
       <div class="section-header">
         <div>
-          <div class="section-kicker"><span class="section-number">02</span> Confirmed Public Presence</div>
-          <h2 class="section-title">Presence table redesigned to match the site system</h2>
-          <div class="section-description">Same information hierarchy, rebuilt into a cleaner executive-grade surface.</div>
+          <div class="section-kicker"><span class="section-number">05</span> Recommended Priorities</div>
+          <h2 class="section-title">Suggested next actions</h2>
+          <div class="section-description">The recommendations below focus on initiatives with practical value for visibility, trust, and conversion.</div>
+        </div>
+      </div>
+
+      <div class="grid cols-3">
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="inline-label">Immediate Priority</div>
+              <h4>Establish consistency</h4>
+            </div>
+          </div>
+          <ul class="clean">
+            <li>Standardize phone numbers and key listing details across all public profiles.</li>
+            <li>Confirm operating information and location signals across directories.</li>
+            <li>Audit every visible public touchpoint for alignment.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="inline-label">Growth Priority</div>
+              <h4>Launch an owned destination</h4>
+            </div>
+          </div>
+          <ul class="clean">
+            <li>Create an official website or conversion-led landing page.</li>
+            <li>Include menu access, contact clarity, map details, and primary call to action.</li>
+            <li>Use the owned destination as the central reference point for all platforms.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <div class="inline-label">Brand Priority</div>
+              <h4>Deepen public presentation</h4>
+            </div>
+          </div>
+          <ul class="clean">
+            <li>Increase visible review engagement and profile upkeep.</li>
+            <li>Expand content variety across social channels.</li>
+            <li>Strengthen the path from discovery to customer action.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="matrix">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker"><span class="section-number">06</span> Audit Matrix</div>
+          <h2 class="section-title">Public verification summary</h2>
+          <div class="section-description">This matrix summarizes what was identifiable during the public review and where direct business confirmation is still recommended.</div>
         </div>
       </div>
 
@@ -900,54 +997,54 @@
             <table>
               <thead>
                 <tr>
-                  <th>Platform / Listing</th>
-                  <th>URL</th>
+                  <th>Asset</th>
                   <th>Status</th>
-                  <th>Notes</th>
+                  <th>Assessment</th>
+                  <th>Recommended Follow-Up</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>TikTok</td>
-                  <td><a class="pill-link" href="https://www.tiktok.com/@Molokhia.Restaurant.KSA" target="_blank">@Molokhia.Restaurant.KSA</a></td>
-                  <td><span class="tag confirmed">Confirmed</span></td>
-                  <td>Public profile shows 2.1k followers and 10.7k likes with Arabic positioning around authentic Egyptian cuisine in Riyadh.</td>
+                  <td><span class="platform-name">Google Business Profile</span></td>
+                  <td><span class="status-badge status-confirmed">Verified Publicly</span></td>
+                  <td>Strong local credibility and review foundation.</td>
+                  <td>Maintain review activity, asset freshness, and profile completeness.</td>
                 </tr>
                 <tr>
-                  <td>Instagram</td>
-                  <td><a class="pill-link" href="https://www.instagram.com/molokhia.restaurant.ksa" target="_blank">@molokhia.restaurant.ksa</a></td>
-                  <td><span class="tag likely">Likely</span></td>
-                  <td>Search snippets indicate roughly 1.1k followers and 96 posts. Full profile verification requires account access.</td>
+                  <td><span class="platform-name">Facebook</span></td>
+                  <td><span class="status-badge status-confirmed">Verified Publicly</span></td>
+                  <td>Visible community-facing presence.</td>
+                  <td>Ensure content, contact details, and action path remain aligned.</td>
                 </tr>
                 <tr>
-                  <td>Facebook</td>
-                  <td><a class="pill-link" href="https://www.facebook.com/Molokhia.Restaurant.KSA" target="_blank">Molokhia.Restaurant.KSA</a></td>
-                  <td><span class="tag likely">Likely</span></td>
-                  <td>Public glimpses suggest about 28k followers. Page details and full content review require login.</td>
+                  <td><span class="platform-name">TikTok</span></td>
+                  <td><span class="status-badge status-confirmed">Verified Publicly</span></td>
+                  <td>Useful short-form awareness channel.</td>
+                  <td>Support visibility with stronger conversion routing.</td>
                 </tr>
                 <tr>
-                  <td>Google Business Profile</td>
-                  <td><span class="pill-link">Google Maps listing</span></td>
-                  <td><span class="tag confirmed">Confirmed</span></td>
-                  <td>Strong local proof layer with a 4.5★ rating, around 660 reviews, dine-in and delivery service options, and no official website link.</td>
+                  <td><span class="platform-name">Instagram</span></td>
+                  <td><span class="status-badge status-confirmed">Verified Publicly</span></td>
+                  <td>Relevant visual platform for menu and brand presentation.</td>
+                  <td>Build depth through consistent proof-led content and stronger profile utilization.</td>
                 </tr>
                 <tr>
-                  <td>Yango Maps</td>
-                  <td><a class="pill-link" href="https://maps.yango.com/ar-ae/org/182140541895/" target="_blank">Yango listing</a></td>
-                  <td><span class="tag confirmed">Confirmed</span></td>
-                  <td>Separate listing with a 4.8★ rating and a different phone number than the Google profile.</td>
+                  <td><span class="platform-name">Snapchat</span></td>
+                  <td><span class="status-badge status-unverified">Not Verified Publicly</span></td>
+                  <td>No public brand account was confirmed in this audit pass.</td>
+                  <td>Confirm directly with the business and standardize naming if active.</td>
                 </tr>
                 <tr>
-                  <td>Official Website</td>
-                  <td>—</td>
-                  <td><span class="tag notfound">Not Found</span></td>
-                  <td>No official website or owned ordering domain surfaced during the audit.</td>
+                  <td><span class="platform-name">YouTube</span></td>
+                  <td><span class="status-badge status-unverified">Not Verified Publicly</span></td>
+                  <td>No official brand channel was confirmed in this audit pass.</td>
+                  <td>Confirm whether a channel exists under another naming structure.</td>
                 </tr>
                 <tr>
-                  <td>Other Directories</td>
-                  <td>TripAdvisor, Foursquare, others</td>
-                  <td><span class="tag needs">Needs Access</span></td>
-                  <td>No major verified directory layer was confirmed from the available public scan.</td>
+                  <td><span class="platform-name">Official Website</span></td>
+                  <td><span class="status-badge status-critical">Not Identified</span></td>
+                  <td>No official owned site was identified publicly.</td>
+                  <td>Create an owned destination to centralize trust and conversion.</td>
                 </tr>
               </tbody>
             </table>
@@ -959,509 +1056,20 @@
     <section class="section">
       <div class="section-header">
         <div>
-          <div class="section-kicker"><span class="section-number">03</span> Platform-by-Platform Social Audit</div>
-          <h2 class="section-title">Each platform reframed as a premium module card</h2>
-          <div class="section-description">The core content remains intact, but the structure now reads like a proper executive UX system instead of a generic report.</div>
-        </div>
-      </div>
-
-      <div class="grid cols-3">
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">TikTok</div>
-              <h4>@Molokhia.Restaurant.KSA</h4>
-              <div class="card-subtitle">2.1k followers • 10.7k likes • Arabic positioning around authentic Egyptian cuisine</div>
-            </div>
-            <div class="icon-box">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17a4 4 0 1 0 4 4V7c1.4 1.5 3.4 2.5 5.6 2.7"></path></svg>
-            </div>
-          </div>
-          <div class="stack">
-            <div>
-              <div class="tag-row"><span class="tag low">Strengths</span></div>
-              <ul class="clean" style="margin-top: 12px;">
-                <li>Brand-consistent handle and cuisine-location clarity in the bio.</li>
-                <li>Early audience traction proves there is content-market interest.</li>
-                <li>Short-form video is a strong fit for appetite-based restaurant discovery.</li>
-              </ul>
-            </div>
-            <div>
-              <div class="tag-row"><span class="tag medium">Weaknesses</span></div>
-              <ul class="clean" style="margin-top: 12px;">
-                <li>Public content depth could not be verified without login.</li>
-                <li>No visible order link or owned funnel connection in the profile path.</li>
-                <li>Zero following suggests low visible community participation.</li>
-              </ul>
-            </div>
-            <div>
-              <div class="tag-row"><span class="tag high">Severity 6 / 10</span></div>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">Instagram</div>
-              <h4>@molokhia.restaurant.ksa</h4>
-              <div class="card-subtitle">Likely around 1.1k followers • 96 posts • visual channel with underrealized value</div>
-            </div>
-            <div class="icon-box">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5"></rect><circle cx="12" cy="12" r="4.5"></circle><path d="M17.5 6.5h.01"></path></svg>
-            </div>
-          </div>
-          <div class="stack">
-            <div>
-              <div class="tag-row"><span class="tag low">Strengths</span></div>
-              <ul class="clean" style="margin-top: 12px;">
-                <li>Username aligns cleanly with the broader brand system.</li>
-                <li>The platform is naturally suitable for food, ambience, and social proof.</li>
-              </ul>
-            </div>
-            <div>
-              <div class="tag-row"><span class="tag medium">Weaknesses</span></div>
-              <ul class="clean" style="margin-top: 12px;">
-                <li>Follower base appears small relative to Facebook awareness.</li>
-                <li>Bio quality, highlights, reels usage, and conversion flow were not publicly verifiable.</li>
-                <li>Discovery among younger visual-first audiences is likely underdeveloped.</li>
-              </ul>
-            </div>
-            <div>
-              <div class="tag-row"><span class="tag high">Severity 7 / 10</span></div>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">Facebook</div>
-              <h4>Molokhia.Restaurant.KSA</h4>
-              <div class="card-subtitle">Largest community asset at roughly 28k followers, but weak visible funnel structure</div>
-            </div>
-            <div class="icon-box">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 8h3V4h-3a5 5 0 0 0-5 5v3H7v4h3v4h4v-4h3l1-4h-4V9a1 1 0 0 1 1-1Z"></path></svg>
-            </div>
-          </div>
-          <div class="stack">
-            <div>
-              <div class="tag-row"><span class="tag low">Strengths</span></div>
-              <ul class="clean" style="margin-top: 12px;">
-                <li>Strong community size indicates existing brand familiarity and local traction.</li>
-                <li>Arabic and English naming supports search discoverability.</li>
-                <li>Contact and location cues are publicly visible.</li>
-              </ul>
-            </div>
-            <div>
-              <div class="tag-row"><span class="tag medium">Weaknesses</span></div>
-              <ul class="clean" style="margin-top: 12px;">
-                <li>Full content review needs login, so consistency and responsiveness remain unverified.</li>
-                <li>Public contact details appear inconsistent with the Google profile.</li>
-                <li>No strong visible CTA architecture surfaced in public snippets.</li>
-              </ul>
-            </div>
-            <div>
-              <div class="tag-row"><span class="tag high">Severity 5 / 10</span></div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-header">
-        <div>
-          <div class="section-kicker"><span class="section-number">04</span> Google & Local Presence Audit</div>
-          <h2 class="section-title">The strongest trust asset still has avoidable structural gaps</h2>
-          <div class="section-description">This is the highest-value local-search surface, so the design now highlights it like a flagship module.</div>
-        </div>
-      </div>
-
-      <div class="grid cols-3">
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">Strengths</div>
-              <h4>Google is the main proof engine</h4>
-            </div>
-          </div>
-          <ul class="clean">
-            <li>Claimed Google Business Profile with a strong rating and heavy review volume.</li>
-            <li>Relevant categorization as an Egyptian food restaurant.</li>
-            <li>Service options are visible, supporting intent-heavy search traffic.</li>
-            <li>Address data and location signals are established.</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">Weaknesses</div>
-              <h4>Operational inconsistency is leaking trust</h4>
-            </div>
-          </div>
-          <ul class="clean">
-            <li>No official website link attached to the profile.</li>
-            <li>Phone number inconsistency across Google, Yango, and Facebook.</li>
-            <li>Owner review-response activity is not visibly established.</li>
-            <li>Menu, photo depth, posts, and Q&amp;A utility appear underleveraged.</li>
-            <li>Yango indicates potential duplicate or unmanaged citation issues.</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">Commercial Impact</div>
-              <h4>Discovery exists, but the conversion layer is thin</h4>
-            </div>
-          </div>
-          <ul class="clean">
-            <li>Users can find the restaurant, but the owned action path is incomplete.</li>
-            <li>Conflicting hours and contact details create friction at the moment of intent.</li>
-            <li>Missed review engagement weakens ranking support and trust reinforcement.</li>
-            <li>The restaurant is visible, but not yet digitally disciplined.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-header">
-        <div>
-          <div class="section-kicker"><span class="section-number">05</span> Website / Owned Presence Audit</div>
-          <h2 class="section-title">No owned website means no owned funnel</h2>
-          <div class="section-description">This section deserved a single high-emphasis card because it is the most important business conversation in the whole report.</div>
+          <div class="section-kicker"><span class="section-number">07</span> Review Note</div>
+          <h2 class="section-title">Method note</h2>
         </div>
       </div>
 
       <div class="grid cols-1">
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">Critical Structural Gap</div>
-              <h4>The restaurant is borrowing reach from platforms instead of owning the customer path</h4>
-              <div class="card-subtitle">No official website was found. That means no direct measurement, no retargeting infrastructure, no branded menu experience, and no controlled conversion sequence.</div>
-            </div>
-            <div class="icon-box">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H4z"></path><path d="M2 20h20"></path><path d="M8 16l-2 4"></path><path d="M16 16l2 4"></path></svg>
-            </div>
-          </div>
-          <div class="risk-grid">
-            <div class="mini-card">
-              <h5>What is being lost</h5>
-              <ul class="clean">
-                <li>Direct order control</li>
-                <li>Menu SEO visibility</li>
-                <li>Analytics and attribution</li>
-                <li>Audience retargeting</li>
-              </ul>
-            </div>
-            <div class="mini-card">
-              <h5>What should exist</h5>
-              <ul class="clean">
-                <li>Responsive landing page or site</li>
-                <li>Menu and order links</li>
-                <li>Map, hours, and contact clarity</li>
-                <li>Tracking via GA4 and pixel infrastructure</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-header">
-        <div>
-          <div class="section-kicker"><span class="section-number">06</span> Top Weak Points</div>
-          <h2 class="section-title">Meeting-ready weaknesses in executive card format</h2>
-          <div class="section-description">This is the section you would actually present live in a client conversation.</div>
+        <div class="note-box">
+          This review is based on publicly visible digital assets available during the audit window. Any private analytics, hidden profiles, unpublished channels, or internally managed accounts would require direct access for confirmation.
         </div>
-      </div>
-
-      <div class="grid cols-4">
-        <article class="card">
-          <div class="tag-row"><span class="tag high">High Impact</span></div>
-          <h4 style="margin-top: 14px;">Missing website</h4>
-          <p style="margin-top: 10px;">No official site means lost direct orders, weak brand authority, no analytics, and no retargeting layer.</p>
-        </article>
-        <article class="card">
-          <div class="tag-row"><span class="tag high">High Impact</span></div>
-          <h4 style="margin-top: 14px;">NAP inconsistency</h4>
-          <p style="margin-top: 10px;">Different phone numbers and operational details across platforms hurt both user trust and local SEO performance.</p>
-        </article>
-        <article class="card">
-          <div class="tag-row"><span class="tag medium">Medium Impact</span></div>
-          <h4 style="margin-top: 14px;">Instagram underweight</h4>
-          <p style="margin-top: 10px;">The visual discovery channel appears weaker than it should be for a food-led business in this market.</p>
-        </article>
-        <article class="card">
-          <div class="tag-row"><span class="tag medium">Medium Impact</span></div>
-          <h4 style="margin-top: 14px;">TikTok not monetized</h4>
-          <p style="margin-top: 10px;">Audience traction exists, but there is no strong visible path turning attention into action.</p>
-        </article>
-        <article class="card">
-          <div class="tag-row"><span class="tag medium">Medium Impact</span></div>
-          <h4 style="margin-top: 14px;">Review management gap</h4>
-          <p style="margin-top: 10px;">Lack of visible owner responses reduces trust reinforcement and wastes a free ranking lever.</p>
-        </article>
-        <article class="card">
-          <div class="tag-row"><span class="tag medium">Medium Impact</span></div>
-          <h4 style="margin-top: 14px;">Duplicate listing risk</h4>
-          <p style="margin-top: 10px;">Yango inconsistency suggests broader citation management issues may exist.</p>
-        </article>
-        <article class="card">
-          <div class="tag-row"><span class="tag low">Strategic Gap</span></div>
-          <h4 style="margin-top: 14px;">Content variety is weak</h4>
-          <p style="margin-top: 10px;">Offer-led posting without deeper brand storytelling makes the restaurant easier to commoditize.</p>
-        </article>
-        <article class="card">
-          <div class="tag-row"><span class="tag low">Strategic Gap</span></div>
-          <h4 style="margin-top: 14px;">CTA architecture is thin</h4>
-          <p style="margin-top: 10px;">A customer ready to order should never have to guess which button, number, or platform to use.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="recommendations">
-      <div class="section-header">
-        <div>
-          <div class="section-kicker"><span class="section-number">07</span> Highest-Impact Recommendations</div>
-          <h2 class="section-title">Recommendation roadmap in the same modular design language</h2>
-          <div class="section-description">The recommendations are now easier to scan, sell, and implement.</div>
-        </div>
-      </div>
-
-      <div class="grid cols-3">
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">Quick Wins</div>
-              <h4>First 7 days</h4>
-            </div>
-          </div>
-          <ul class="clean">
-            <li>Correct phone, hours, and contact consistency across Google, Facebook, and Yango.</li>
-            <li>Add one clean link path in TikTok and Instagram for ordering or WhatsApp action.</li>
-            <li>Update Facebook visual assets to reflect one unified CTA and one unified contact system.</li>
-            <li>Start gathering fresh Google reviews from happy customers immediately.</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">Medium Fixes</div>
-              <h4>First 30 days</h4>
-            </div>
-          </div>
-          <ul class="clean">
-            <li>Launch a minimal responsive website or high-conversion landing page.</li>
-            <li>Standardize NAP across all relevant local directories and restaurant platforms.</li>
-            <li>Build a content calendar around food, kitchen, people, testimonials, and culture.</li>
-            <li>Respond to existing reviews with clear tone and operational discipline.</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">Strategic Layer</div>
-              <h4>Next 90 days</h4>
-            </div>
-          </div>
-          <ul class="clean">
-            <li>Design a full-funnel local marketing system from awareness to repeat order.</li>
-            <li>Run geo-targeted Meta and TikTok campaigns built around local appetite triggers.</li>
-            <li>Collect first-party customer data through site and ordering touchpoints.</li>
-            <li>Build partnerships, seasonal campaigns, and stronger proof-driven content systems.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-header">
-        <div>
-          <div class="section-kicker"><span class="section-number">08</span> Content Strategy Diagnosis</div>
-          <h2 class="section-title">The brand likely sells food offers, not a stronger story</h2>
-          <div class="section-description">This section was restructured to feel more like a strategy module than a plain text block.</div>
-        </div>
-      </div>
-
-      <div class="grid cols-3">
-        <article class="card">
-          <div class="inline-label">What feels weak</div>
-          <h4 style="margin-top: 14px;">Offer-centric content profile</h4>
-          <p style="margin-top: 12px;">The visible signals suggest a feed that leans too hard on deals, platters, and transactional posts, without enough sensory storytelling or identity building.</p>
-        </article>
-        <article class="card">
-          <div class="inline-label">Missing pillars</div>
-          <h4 style="margin-top: 14px;">Human, process, culture, proof</h4>
-          <p style="margin-top: 12px;">Chef stories, kitchen craft, customer reactions, ambience, ingredient quality, and Egyptian cultural framing should all be stronger recurring pillars.</p>
-        </article>
-        <article class="card">
-          <div class="inline-label">Recommended style</div>
-          <h4 style="margin-top: 14px;">Warm, cinematic, appetite-led</h4>
-          <p style="margin-top: 12px;">Use close-ups, texture, steam, voice, Arabic cultural cues, Riyadh relevance, and stronger emotional framing to make the brand more memorable.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-header">
-        <div>
-          <div class="section-kicker"><span class="section-number">09</span> Sales / Conversion Diagnosis</div>
-          <h2 class="section-title">The friction is not attention. The friction is action.</h2>
-          <div class="section-description">This section is now organized around commercial logic instead of generic narrative flow.</div>
-        </div>
-      </div>
-
-      <div class="grid cols-3">
-        <article class="card">
-          <div class="inline-label">Friction</div>
-          <h4 style="margin-top: 14px;">Too many unclear action paths</h4>
-          <ul class="clean" style="margin-top: 14px;">
-            <li>No unified order or reservation destination.</li>
-            <li>Multiple phone numbers create last-mile confusion.</li>
-            <li>No owned funnel creates dependence on platform behavior.</li>
-          </ul>
-        </article>
-        <article class="card">
-          <div class="inline-label">Trust</div>
-          <h4 style="margin-top: 14px;">Proof is present, but not fully weaponized</h4>
-          <ul class="clean" style="margin-top: 14px;">
-            <li>Google review strength exists but is not actively amplified.</li>
-            <li>Menu, photography, and review-response depth appear limited.</li>
-            <li>Operational confidence signals could be presented better.</li>
-          </ul>
-        </article>
-        <article class="card">
-          <div class="inline-label">Fix</div>
-          <h4 style="margin-top: 14px;">One link, one number, one funnel</h4>
-          <ul class="clean" style="margin-top: 14px;">
-            <li>Make all bios point to a single action hub.</li>
-            <li>Use proof-led creative to reduce hesitation.</li>
-            <li>Support every profile with a direct menu and order path.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="meeting">
-      <div class="section-header">
-        <div>
-          <div class="section-kicker"><span class="section-number">10</span> Meeting Ammunition</div>
-          <h2 class="section-title">Questions, observations, and objection handling</h2>
-          <div class="section-description">This section is presentation-ready and clean enough to use in a live client meeting.</div>
-        </div>
-      </div>
-
-      <div class="grid cols-3">
-        <article class="card">
-          <div class="inline-label">Questions to Ask</div>
-          <ul class="clean" style="margin-top: 14px;">
-            <li>What percentage of orders comes from calls vs delivery apps?</li>
-            <li>Who currently manages Google updates and review responses?</li>
-            <li>Which social content actually drives walk-ins or orders?</li>
-            <li>Are there any paid campaigns currently running?</li>
-            <li>What differentiates Molokhia operationally from local competitors?</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <div class="inline-label">Observations to State</div>
-          <ul class="clean" style="margin-top: 14px;">
-            <li>Strong public proof exists, but the owned conversion system is absent.</li>
-            <li>Contact inconsistency is damaging trust and local-search efficiency.</li>
-            <li>TikTok has early traction but weak monetization architecture.</li>
-            <li>Instagram likely has far more headroom than its current public weight suggests.</li>
-            <li>Local citation hygiene needs tightening fast.</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <div class="inline-label">Objections & Response</div>
-          <ul class="clean" style="margin-top: 14px;">
-            <li><strong>"We already have customers."</strong> Existing demand is not the same as optimized demand capture.</li>
-            <li><strong>"Likes mean the content works."</strong> Attention without conversion infrastructure is weak commercial design.</li>
-            <li><strong>"A website is optional."</strong> Not if you want ownership, data, and scalable performance.</li>
-            <li><strong>"People can find us anyway."</strong> Friction at the final step still kills revenue.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-header">
-        <div>
-          <div class="section-kicker"><span class="section-number">11</span> Access Request Block</div>
-          <h2 class="section-title">What access is needed for a deeper working engagement</h2>
-        </div>
-      </div>
-
-      <div class="grid cols-1">
-        <article class="card">
-          <div class="access-grid">
-            <div class="access-item">Instagram professional account insights</div>
-            <div class="access-item">TikTok analytics</div>
-            <div class="access-item">Meta Business Suite access</div>
-            <div class="access-item">Google Business Profile management</div>
-            <div class="access-item">Website CMS access once launched</div>
-            <div class="access-item">GA4 and Search Console</div>
-            <div class="access-item">Meta Ads account</div>
-            <div class="access-item">TikTok Ads account</div>
-            <div class="access-item">WhatsApp Business or order dashboard</div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-header">
-        <div>
-          <div class="section-kicker"><span class="section-number">12</span> Final Confidence & Next Steps</div>
-          <h2 class="section-title">What is confirmed, what needs access, and what should be pitched</h2>
-        </div>
-      </div>
-
-      <div class="grid cols-3">
-        <article class="card">
-          <div class="inline-label">Confidently Confirmed</div>
-          <ul class="clean" style="margin-top: 14px;">
-            <li>There is public awareness and visible social traction.</li>
-            <li>Google is the strongest proof and trust surface.</li>
-            <li>No official owned website was found.</li>
-            <li>There are contact and listing consistency problems.</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <div class="inline-label">Needs Platform Access</div>
-          <ul class="clean" style="margin-top: 14px;">
-            <li>Real engagement rates and content performance.</li>
-            <li>Posting cadence, content mix, and audience behavior.</li>
-            <li>Review freshness, response history, and sentiment trend data.</li>
-            <li>Paid media activity and actual acquisition economics.</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <div class="inline-label">What to Pitch</div>
-          <ul class="clean" style="margin-top: 14px;">
-            <li>Listing cleanup and NAP standardization.</li>
-            <li>Launch of a clean site or landing page with tracking.</li>
-            <li>Content strategy redesign with local proof and stronger pillars.</li>
-            <li>Review management and paid growth system rollout.</li>
-          </ul>
-        </article>
       </div>
     </section>
 
     <footer class="footer">
-      Molokhia Restaurant digital audit transformed into the Elite Consultant visual system. Structure preserved, styling rebuilt for stronger alignment with your site cards, colors, typography, and professional presentation standard.
+      Molokhia Restaurant public digital presence review prepared in the Elite Consultant presentation system.
     </footer>
   </div>
 </body>
