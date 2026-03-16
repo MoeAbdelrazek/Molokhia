@@ -1,1077 +1,593 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Social Media Audit — Molokhia Restaurant KSA | Elite Consultant</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Molokhia Restaurant – Digital Audit</title>
+  <style>
+    :root {
+      --bg-color: #0b0e17;
+      --card-bg: #121621;
+      --primary-color: #c8a15b;
+      --secondary-color: #e5d5b4;
+      --text-color: #d0d4e1;
+      --muted-color: #8a91a2;
+      --danger-color: #a04d4d;
+      --success-color: #3a7f5a;
+      --warning-color: #b58c39;
+      --radius: 8px;
+      --padding: 1.5rem;
+      --font-family: 'Segoe UI', 'Poppins', sans-serif;
+    }
 
-/* ─── TOKENS ──────────────────────────────────────────────────── */
-:root {
-  --bg:    #09090a;
-  --s1:    #0f100f;
-  --s2:    #151615;
-  --s3:    #1c1e1c;
-  --s4:    #232523;
-  --edge:  rgba(255,255,255,.07);
-  --edge2: rgba(255,255,255,.13);
-  --gold:  #c8a052;
-  --goldl: #dbb96e;
-  --goldd: rgba(200,160,82,.14);
-  --golde: rgba(200,160,82,.06);
-  --t1:    #f4f0e0;
-  --t2:    #cdc8b2;
-  --t3:    #8a8774;
-  --t4:    #4a4a3c;
-  --red:   #c84040;
-  --redbg: rgba(200,64,64,.10);
-  --amb:   #c8862a;
-  --ambbg: rgba(200,134,42,.10);
-  --grn:   #3a9868;
-  --grnbg: rgba(58,152,104,.10);
-  --fh:    'Bricolage Grotesque', sans-serif;
-  --fb:    'Hanken Grotesk', sans-serif;
-  --ease:  cubic-bezier(.22,1,.36,1);
-  --ease2: cubic-bezier(.16,1,.3,1);
-}
+    * {
+      box-sizing: border-box;
+    }
 
-/* ─── BASE ────────────────────────────────────────────────────── */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--t2);font-family:var(--fb);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-::selection{background:rgba(200,160,82,.22);color:var(--goldl)}
-::-webkit-scrollbar{width:2px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--t4);border-radius:2px}
-strong,b{color:var(--t1);font-weight:600}
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(180deg, var(--bg-color) 0%, #101621 100%);
+      color: var(--text-color);
+      font-family: var(--font-family);
+      line-height: 1.6;
+      font-size: 16px;
+    }
 
-/* ─── PROGRESS ────────────────────────────────────────────────── */
-#bar{
-  position:fixed;top:0;left:0;height:1px;z-index:999;width:0;
-  background:linear-gradient(90deg,transparent,var(--gold),var(--goldl),var(--gold),transparent);
-  box-shadow:0 0 20px var(--gold),0 0 40px rgba(200,160,82,.3);
-  transition:width .06s linear;
-}
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 0;
+    }
 
-/* ─── NAV ─────────────────────────────────────────────────────── */
-nav{
-  position:fixed;inset:0 0 auto;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:1.6rem 3.5rem;
-  transition:all .5s var(--ease);
-}
-nav.on{
-  background:rgba(9,9,10,.88);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
-  border-bottom:1px solid var(--edge);padding:1rem 3.5rem;
-}
-.nav-id{
-  font-family:var(--fh);font-size:.72rem;font-weight:700;
-  letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
-}
-.nav-links{display:flex;gap:2.5rem;list-style:none}
-.nav-links a{
-  font-family:var(--fh);font-size:.65rem;font-weight:500;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--t3);
-  transition:color .25s;
-}
-.nav-links a:hover{color:var(--goldl)}
-.nav-ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer}
-.nav-ham span{display:block;width:22px;height:1px;background:var(--t3);transition:all .3s}
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
 
-/* ─── COVER ───────────────────────────────────────────────────── */
-.cover{
-  min-height:100svh;display:flex;flex-direction:column;
-  justify-content:flex-end;padding:0 3.5rem 5.5rem;
-  position:relative;overflow:hidden;
-}
-.cover-lines{
-  position:absolute;inset:0;pointer-events:none;
-  background-image:
-    linear-gradient(rgba(200,160,82,.045) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(200,160,82,.045) 1px,transparent 1px);
-  background-size:88px 88px;
-  mask-image:radial-gradient(ellipse 90% 70% at 10% 90%, black 20%, transparent 72%);
-}
-.cover-glow{
-  position:absolute;inset:0;pointer-events:none;
-  background:
-    radial-gradient(ellipse 55% 45% at 0% 100%, rgba(200,160,82,.07) 0%, transparent 60%),
-    radial-gradient(ellipse 35% 35% at 100% 0%, rgba(200,160,82,.03) 0%, transparent 55%);
-}
-.cover-tag{
-  font-family:var(--fh);font-size:.68rem;font-weight:600;letter-spacing:.3em;
-  text-transform:uppercase;color:var(--gold);
-  margin-bottom:2.25rem;display:flex;align-items:center;gap:.85rem;
-  animation:coverUp .9s var(--ease) both;
-}
-.cover-tag::before{content:'';width:36px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
-.cover-h1{
-  font-family:var(--fh);font-size:clamp(3.4rem,7vw,6.5rem);font-weight:800;
-  line-height:.93;letter-spacing:-.025em;color:var(--t1);
-  margin-bottom:.7rem;animation:coverUp .9s .09s var(--ease) both;
-}
-.cover-h1 em{font-style:normal;color:var(--gold);display:block;font-weight:300;letter-spacing:-.01em}
-.cover-client{
-  font-size:1.1rem;font-weight:300;color:var(--t3);
-  margin-bottom:3.5rem;animation:coverUp .9s .17s var(--ease) both;
-  letter-spacing:.02em;
-}
-.cover-meta{
-  display:flex;gap:0;border-top:1px solid var(--edge);
-  padding-top:2rem;animation:coverUp .9s .25s var(--ease) both;flex-wrap:wrap;
-}
-.cm{padding-right:2.75rem;margin-right:2.75rem;border-right:1px solid var(--edge)}
-.cm:last-child{border-right:none;margin-right:0;padding-right:0}
-.cm-k{font-family:var(--fh);font-size:.56rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem;opacity:.75}
-.cm-v{font-size:.95rem;font-weight:500;color:var(--t2)}
+    header h1 {
+      font-size: 2.8rem;
+      margin: 0.5rem 0;
+      color: var(--secondary-color);
+      font-weight: 600;
+    }
 
-@keyframes coverUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+    header .subheading {
+      color: var(--muted-color);
+      font-size: 1rem;
+      letter-spacing: 0.05rem;
+    }
 
-/* ─── LAYOUT ──────────────────────────────────────────────────── */
-.sec{padding:7rem 3.5rem;border-top:1px solid var(--edge)}
-.sec-dark{background:var(--s1)}
-.wrap{max-width:1160px;margin:0 auto}
-.sec-tag{
-  font-family:var(--fh);font-size:.6rem;font-weight:700;letter-spacing:.28em;
-  text-transform:uppercase;color:var(--gold);
-  display:flex;align-items:center;gap:.65rem;margin-bottom:.9rem;
-}
-.sec-tag::before{content:'';width:22px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
-.sec-h{
-  font-family:var(--fh);font-size:clamp(2rem,3.5vw,2.9rem);font-weight:700;
-  line-height:1.04;letter-spacing:-.025em;color:var(--t1);margin-bottom:2.5rem;
-}
-.sec-h em{font-style:normal;color:var(--gold)}
+    .section {
+      margin-bottom: 3rem;
+    }
 
-/* ─── ANIMATIONS ──────────────────────────────────────────────── */
-/* Fade up */
-.rv{opacity:0;transform:translateY(32px);transition:opacity .8s var(--ease2),transform .8s var(--ease2)}
-.rv.in{opacity:1;transform:none}
-/* Fade up staggered */
-.sg>*{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease2),transform .6s var(--ease2)}
-.sg.in>*:nth-child(1){opacity:1;transform:none;transition-delay:.00s}
-.sg.in>*:nth-child(2){opacity:1;transform:none;transition-delay:.07s}
-.sg.in>*:nth-child(3){opacity:1;transform:none;transition-delay:.14s}
-.sg.in>*:nth-child(4){opacity:1;transform:none;transition-delay:.21s}
-.sg.in>*:nth-child(5){opacity:1;transform:none;transition-delay:.28s}
-.sg.in>*:nth-child(6){opacity:1;transform:none;transition-delay:.35s}
-.sg.in>*:nth-child(7){opacity:1;transform:none;transition-delay:.42s}
-.sg.in>*:nth-child(8){opacity:1;transform:none;transition-delay:.49s}
-.sg.in>*:nth-child(9){opacity:1;transform:none;transition-delay:.56s}
-.sg.in>*:nth-child(10){opacity:1;transform:none;transition-delay:.63s}
-/* Fade in only */
-.fi{opacity:0;transition:opacity .9s var(--ease2)}
-.fi.in{opacity:1}
-/* Slide from left */
-.sl{opacity:0;transform:translateX(-28px);transition:opacity .8s var(--ease2),transform .8s var(--ease2)}
-.sl.in{opacity:1;transform:none}
-/* Scale in */
-.sc-in{opacity:0;transform:scale(.96);transition:opacity .7s var(--ease2),transform .7s var(--ease2)}
-.sc-in.in{opacity:1;transform:none}
+    .section-title {
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-weight: 600;
+      color: var(--secondary-color);
+      font-size: 1.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08rem;
+    }
 
-/* ─── BADGE ───────────────────────────────────────────────────── */
-.badge{
-  display:inline-flex;align-items:center;
-  font-family:var(--fh);font-size:.56rem;font-weight:700;
-  letter-spacing:.14em;text-transform:uppercase;
-  padding:.24rem .72rem;border-radius:3px;
-}
-.b-red  {background:var(--redbg);color:var(--red);border:1px solid rgba(200,64,64,.22)}
-.b-amb  {background:var(--goldd);color:var(--goldl);border:1px solid rgba(200,160,82,.28)}
-.b-grn  {background:var(--grnbg);color:var(--grn);border:1px solid rgba(58,152,104,.22)}
-.b-gold {background:var(--goldd);color:var(--gold);border:1px solid rgba(200,160,82,.28)}
+    .section-title span.number {
+      font-size: 2rem;
+      color: var(--primary-color);
+      font-weight: 700;
+    }
 
-/* ═══ STAT GRID ══════════════════════════════════════════════════ */
-.stat-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
-  gap:1px;background:var(--edge);border:1px solid var(--edge);
-  border-radius:10px;overflow:hidden;
-}
-.stat{background:var(--s1);padding:1.75rem 1.5rem;transition:background .25s}
-.stat:hover{background:var(--s2)}
-.stat-k{font-family:var(--fh);font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.55rem;opacity:.9}
-.stat-v{font-family:var(--fh);font-size:2.2rem;font-weight:800;line-height:1;color:var(--t1);margin-bottom:.35rem}
-.stat-v.r{color:var(--red)}.stat-v.a{color:var(--amb)}.stat-v.g{color:var(--grn)}.stat-v.gd{color:var(--gold)}
-.stat-d{font-size:.88rem;color:var(--t2);line-height:1.45}
+    .card {
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      padding: var(--padding);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    }
 
-/* ═══ CALLOUT NOTE ═══════════════════════════════════════════════ */
-.note{
-  border-left:2px solid var(--gold);background:var(--golde);
-  padding:1.3rem 1.6rem;border-radius:0 8px 8px 0;margin:1.75rem 0;
-}
-.note.r{border-color:var(--red);background:var(--redbg)}
-.note.a{border-color:var(--gold);background:var(--golde)}
-.note.g{border-color:var(--grn);background:var(--grnbg)}
-.note-tag{
-  font-family:var(--fh);font-size:.58rem;font-weight:700;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.45rem;
-}
-.note.r .note-tag{color:var(--red)}.note.g .note-tag{color:var(--grn)}
-.note p{font-size:.95rem;color:var(--t2);line-height:1.7}
-.note p strong{color:var(--t1);font-weight:600}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
 
-/* ═══ KSA LANDSCAPE CARDS ════════════════════════════════════════ */
-.ksa-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:12px}
-.ksa-card{
-  background:var(--s1);border:1px solid var(--edge);border-radius:10px;
-  padding:1.4rem 1.25rem;transition:all .3s var(--ease);
-  position:relative;overflow:hidden;
-}
-.ksa-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(200,160,82,.0) 60%,rgba(200,160,82,.04));opacity:0;transition:opacity .3s}
-.ksa-card:hover{border-color:rgba(200,160,82,.3);background:var(--s2)}
-.ksa-card:hover::after{opacity:1}
-.ksa-card.priority{border-color:rgba(200,160,82,.22);background:var(--golde)}
-.ksa-platform{font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--goldl);margin-bottom:.65rem}
-.ksa-users{font-family:var(--fh);font-size:1.5rem;font-weight:800;color:var(--gold);line-height:1;margin-bottom:.2rem}
-.ksa-time{font-family:var(--fh);font-size:.95rem;font-weight:600;color:var(--t2);margin-bottom:.5rem}
-.ksa-note{font-size:.82rem;color:var(--t2);line-height:1.55;border-top:1px solid var(--edge);padding-top:.55rem;margin-top:.45rem}
+    .stat-card {
+      background-color: var(--card-bg);
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius);
+      text-align: center;
+      position: relative;
+    }
 
-/* ═══ PLATFORM AUDIT CARDS ═══════════════════════════════════════ */
-.plat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
-.plat-card{
-  background:var(--s1);border:1px solid var(--edge);border-radius:14px;
-  overflow:hidden;transition:all .35s var(--ease);
-}
-.plat-card:hover{border-color:rgba(200,160,82,.25);transform:translateY(-3px);background:var(--s2);box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 0 1px rgba(200,160,82,.1)}
-.pc-head{
-  padding:1.6rem 1.6rem 1.3rem;border-bottom:1px solid var(--edge);
-  display:flex;align-items:center;justify-content:space-between;
-}
-.pc-name{font-family:var(--fh);font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--goldl)}
-.pc-body{padding:1.4rem 1.6rem}
-.pc-metrics{
-  display:grid;grid-template-columns:1fr 1fr;gap:1px;
-  background:var(--edge);border:1px solid var(--edge);
-  border-radius:7px;overflow:hidden;margin-bottom:1.35rem;
-}
-.pcm{background:var(--s2);padding:.95rem 1rem}
-.pcm-k{font-family:var(--fh);font-size:.56rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem;opacity:.9}
-.pcm-v{font-family:var(--fh);font-size:1.3rem;font-weight:700;color:var(--t1);line-height:1}
-.pcm-v.r{color:var(--red)}.pcm-v.a{color:var(--amb)}.pcm-v.g{color:var(--grn)}.pcm-v.gd{color:var(--gold)}
-.pc-tag{
-  display:inline-block;font-family:var(--fh);font-size:.56rem;font-weight:700;
-  letter-spacing:.12em;text-transform:uppercase;padding:.22rem .6rem;border-radius:3px;margin-bottom:.5rem;
-}
-.pc-tag.r{background:var(--redbg);color:var(--red)}
-.pc-tag.a{background:var(--goldd);color:var(--goldl)}
-.pc-tag.g{background:var(--grnbg);color:var(--grn)}
-.pc-finding{font-size:.9rem;color:var(--t2);line-height:1.65;margin-bottom:.9rem}
-.pc-actions{
-  padding:1.2rem 1.6rem;border-top:1px solid var(--edge);
-  display:flex;flex-direction:column;gap:.5rem;
-}
-.pca{font-size:.88rem;color:var(--t2);padding-left:1.25rem;position:relative;line-height:1.5}
-.pca::before{content:'→';position:absolute;left:0;color:var(--gold);font-size:.75rem;top:.1rem}
-.pca strong{color:var(--t1);font-weight:600}
+    .stat-card h3 {
+      margin-top: 0;
+      font-size: 1.8rem;
+      color: var(--secondary-color);
+    }
 
-/* ═══ STRENGTHS & GAPS ═══════════════════════════════════════════ */
-.sg2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.sg2-card{background:var(--s1);border:1px solid var(--edge);border-radius:14px;overflow:hidden}
-.sg2-head{
-  padding:1.25rem 1.6rem;border-bottom:1px solid var(--edge);
-  font-family:var(--fh);font-size:.64rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-  display:flex;align-items:center;gap:.55rem;
-}
-.sg2-head.g{color:var(--grn)}.sg2-head.r{color:var(--gold)}
-.sg2-head::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}
-.sg2-body{padding:.4rem 0}
-.sg2-item{padding:.95rem 1.6rem;border-bottom:1px solid var(--edge);display:flex;align-items:flex-start;gap:.9rem}
-.sg2-item:last-child{border-bottom:none}
-.sg2-icon{
-  width:30px;height:30px;border-radius:7px;display:flex;align-items:center;
-  justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;
-  margin-top:.05rem;font-family:var(--fh);
-}
-.sg2-icon.g{background:var(--grnbg);color:var(--grn)}
-.sg2-icon.r{background:var(--goldd);color:var(--goldl)}
-.sg2-text{font-size:.9rem;line-height:1.6;color:var(--t2)}
-.sg2-text strong{color:var(--t1);font-weight:700;display:block;margin-bottom:.18rem;font-size:.92rem}
+    .stat-card p {
+      margin: 0.4rem 0 0;
+      font-size: 0.95rem;
+      color: var(--muted-color);
+    }
 
-/* ═══ COMPETITOR TABLE ═══════════════════════════════════════════ */
-.comp-table{background:var(--s1);border:1px solid var(--edge);border-radius:14px;overflow:hidden}
-.comp-hrow{display:grid;grid-template-columns:210px repeat(5,1fr);background:var(--s2);border-bottom:1px solid var(--edge)}
-.comp-row{display:grid;grid-template-columns:210px repeat(5,1fr);border-bottom:1px solid var(--edge);transition:background .2s}
-.comp-row:last-child{border-bottom:none}
-.comp-row:hover{background:var(--s2)}
-.comp-row.hl{background:rgba(200,160,82,.04)}
-.comp-row.hl:hover{background:rgba(200,160,82,.07)}
-.cc{padding:1rem 1.1rem;font-size:.88rem;color:var(--t2);border-right:1px solid var(--edge);line-height:1.45}
-.cc:last-child{border-right:none}
-.cc.ch{font-family:var(--fh);font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);opacity:.8}
-.cc.brand{font-weight:600;color:var(--t1);font-size:.92rem}
-.cc.brand.gold-name{color:var(--gold)}
-.cc .pos{color:var(--grn);font-size:.8rem}
-.cc .neg{color:var(--red);font-size:.8rem}
-.cc .neu{color:var(--t3);font-size:.8rem}
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05rem;
+    }
 
-/* ═══ OPPORTUNITY CARDS ══════════════════════════════════════════ */
-.opp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:2.25rem}
-.opp-card{
-  background:var(--s1);border:1px solid var(--edge);border-radius:12px;
-  padding:1.75rem 1.5rem;transition:all .3s var(--ease);
-  position:relative;overflow:hidden;
-}
-.opp-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-  opacity:0;transition:opacity .3s;
-}
-.opp-card:hover{border-color:rgba(200,160,82,.28);background:var(--s2)}
-.opp-card:hover::before{opacity:1}
-.opp-num{font-family:var(--fh);font-size:2.6rem;font-weight:800;color:rgba(200,160,82,.18);line-height:1;margin-bottom:.8rem}
-.opp-title{font-family:var(--fh);font-size:.98rem;font-weight:700;color:var(--t1);margin-bottom:.45rem;line-height:1.25}
-.opp-body{font-size:.88rem;color:var(--t2);line-height:1.65}
+    .badge.confirmed {
+      background-color: var(--success-color);
+      color: #ffffff;
+    }
 
-/* ═══ CONTENT PILLARS ════════════════════════════════════════════ */
-.pillar-row{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--edge);border:1px solid var(--edge);border-radius:12px;overflow:hidden}
-.pillar{background:var(--s1);padding:1.75rem 1.4rem;transition:background .25s;position:relative}
-.pillar:hover{background:var(--s2)}
-.pillar-n{font-family:var(--fh);font-size:2.8rem;font-weight:800;color:var(--t4);line-height:1;margin-bottom:1rem}
-.pillar-name{font-family:var(--fh);font-size:.92rem;font-weight:700;color:var(--t1);margin-bottom:.35rem}
-.pillar-sub{font-size:.78rem;color:var(--gold);font-weight:600;margin-bottom:.65rem;letter-spacing:.02em}
-.pillar-body{font-size:.82rem;color:var(--t2);line-height:1.65;border-top:1px solid var(--edge);padding-top:.7rem;margin-top:.5rem}
-.ps{display:inline-block;font-family:var(--fh);font-size:.52rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.18rem .55rem;border-radius:3px;margin-top:.65rem}
-.ps-absent{background:var(--redbg);color:var(--red)}
-.ps-partial{background:var(--goldd);color:var(--goldl)}
-.ps-active{background:var(--grnbg);color:var(--grn)}
+    .badge.likely {
+      background-color: var(--warning-color);
+      color: #ffffff;
+    }
 
-/* ═══ RECOMMENDATION CARDS ═══════════════════════════════════════ */
-.rec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
-.rec-card{
-  background:var(--s1);border:1px solid var(--edge);border-radius:14px;
-  padding:1.6rem;transition:all .35s var(--ease);position:relative;overflow:hidden;
-}
-.rec-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
-.rec-card.crit::before{background:var(--red)}
-.rec-card.high::before{background:linear-gradient(90deg,var(--gold),var(--goldl))}
-.rec-card.med::before{background:var(--grn)}
-.rec-card:hover{border-color:rgba(200,160,82,.22);transform:translateY(-3px);background:var(--s2);box-shadow:0 16px 50px rgba(0,0,0,.35)}
-.rec-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
-.rec-plat{font-family:var(--fh);font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);opacity:.75}
-.rec-action{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--t1);line-height:1.28;margin-bottom:.65rem}
-.rec-outcome{font-size:.88rem;color:var(--t2);line-height:1.6}
-.rec-outcome strong{color:var(--goldl);font-weight:600}
+    .badge.needs {
+      background-color: var(--muted-color);
+      color: #ffffff;
+    }
 
-/* ═══ KPI CARDS ══════════════════════════════════════════════════ */
-.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
-.kpi{background:var(--s1);border:1px solid var(--edge);border-radius:12px;overflow:hidden;transition:all .25s}
-.kpi:hover{border-color:rgba(200,160,82,.22);background:var(--s2)}
-.kpi-head{padding:1.15rem 1.35rem;border-bottom:1px solid var(--edge);display:flex;align-items:center;justify-content:space-between}
-.kpi-plat{font-family:var(--fh);font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);opacity:.75}
-.kpi-name{font-size:.95rem;font-weight:600;color:var(--t1);padding:.95rem 1.35rem;border-bottom:1px solid var(--edge)}
-.kpi-cols{display:grid;grid-template-columns:1fr 1fr 1fr}
-.kpi-col{padding:.95rem 1.1rem;border-right:1px solid var(--edge)}
-.kpi-col:last-child{border-right:none}
-.kpi-ckey{font-family:var(--fh);font-size:.54rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;opacity:.8}
-.kpi-cval{font-family:var(--fh);font-size:1.1rem;font-weight:700;line-height:1}
-.kpi-cval.now{color:var(--red)}.kpi-cval.m3{color:var(--t2)}.kpi-cval.m6{color:var(--grn)}
+    .badge.notfound {
+      background-color: var(--danger-color);
+      color: #ffffff;
+    }
 
-/* ═══ ROADMAP ════════════════════════════════════════════════════ */
-.phase{margin-bottom:3.5rem}
-.phase-label{
-  font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.22em;
-  text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.75rem;margin-bottom:1.4rem;
-}
-.phase-label::before{
-  content:'';width:10px;height:10px;border-radius:50%;background:var(--gold);
-  box-shadow:0 0 0 3px rgba(200,160,82,.2),0 0 16px rgba(200,160,82,.5);flex-shrink:0;
-}
-.task-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px}
-.task{
-  background:var(--s1);border:1px solid var(--edge);border-radius:9px;
-  padding:1.15rem 1.3rem;display:flex;gap:.9rem;align-items:flex-start;transition:all .25s;
-}
-.task:hover{border-color:rgba(200,160,82,.2);background:var(--s2)}
-.task-wk{font-family:var(--fh);font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);white-space:nowrap;padding-top:.12rem;min-width:30px}
-.task-title{font-size:.9rem;font-weight:600;color:var(--t1);margin-bottom:.22rem;line-height:1.35}
-.task-meta{font-size:.78rem;color:var(--t2)}
-.task-plat{color:var(--gold);font-family:var(--fh);font-size:.62rem;opacity:.85}
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.5rem;
+    }
 
-/* ═══ BUDGET ══════════════════════════════════════════════════════ */
-.budget{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.bud{background:var(--s1);border:1px solid var(--edge);border-radius:14px;overflow:hidden;transition:all .25s}
-.bud:hover{border-color:rgba(200,160,82,.2)}
-.bud.feat{border-color:rgba(200,160,82,.32);background:var(--golde)}
-.bud-head{padding:1.6rem;border-bottom:1px solid var(--edge)}
-.bud-phase{font-family:var(--fh);font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.45rem;opacity:.8}
-.bud-total{font-family:var(--fh);font-size:2.2rem;font-weight:800;color:var(--gold);line-height:1}
-.bud-body{padding:.4rem 0}
-.bud-line{display:flex;justify-content:space-between;padding:.75rem 1.6rem;border-bottom:1px solid var(--edge);font-size:.88rem}
-.bud-line:last-child{border-bottom:none}
-.bud-line span:first-child{color:var(--t2)}
-.bud-line span:last-child{color:var(--t1);font-weight:600;font-family:var(--fh)}
+    th, td {
+      padding: 0.6rem 0.8rem;
+      border-bottom: 1px solid #1f2530;
+      text-align: left;
+      font-size: 0.9rem;
+    }
 
-/* ═══ AGENDA ═════════════════════════════════════════════════════ */
-.agenda{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
-.ag{background:var(--s1);border:1px solid var(--edge);border-radius:10px;padding:1.35rem;transition:all .25s}
-.ag:hover{border-color:rgba(200,160,82,.22);background:var(--s2)}
-.ag-time{font-family:var(--fh);font-size:.75rem;font-weight:700;color:var(--gold);margin-bottom:.5rem}
-.ag-topic{font-family:var(--fh);font-size:.98rem;font-weight:700;color:var(--t1);margin-bottom:.35rem;line-height:1.25}
-.ag-pts{font-size:.84rem;color:var(--t2);line-height:1.55}
+    th {
+      color: var(--secondary-color);
+      font-weight: 600;
+    }
 
-/* ═══ CREDENTIALS ════════════════════════════════════════════════ */
-.creds{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-top:1.5rem}
-.cred{background:var(--s1);border:1px solid var(--edge);border-radius:10px;padding:1.2rem 1.35rem;display:flex;gap:.9rem;align-items:flex-start;transition:background .25s}
-.cred:hover{background:var(--s2)}
-.cred-ico{
-  width:34px;height:34px;border:1px solid rgba(200,160,82,.25);border-radius:7px;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--fh);font-size:.6rem;font-weight:700;color:var(--gold);
-  background:var(--goldd);flex-shrink:0;
-}
-.cred-title{font-size:.9rem;font-weight:600;color:var(--t1);margin-bottom:.22rem}
-.cred-sub{font-size:.82rem;color:var(--t2);line-height:1.5}
+    td {
+      color: var(--text-color);
+    }
 
-/* ─── FOOTER ──────────────────────────────────────────────────── */
-footer{
-  border-top:1px solid var(--edge);padding:4rem 3.5rem;
-  background:var(--s1);display:flex;align-items:flex-end;
-  justify-content:space-between;flex-wrap:wrap;gap:1.5rem;
-}
-.ft-info p{font-size:.86rem;color:var(--t3);line-height:1.9}
-.ft-info strong{color:var(--t2);font-weight:500}
-.ft-agency{text-align:right}
-.ft-name{font-family:var(--fh);font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
-.ft-url{font-size:.84rem;color:var(--t3)}
-.ft-url a{border-bottom:1px solid var(--t4);color:var(--t3);transition:all .2s}
-.ft-url a:hover{color:var(--gold);border-color:var(--gold)}
+    .severity {
+      font-weight: 700;
+      color: var(--primary-color);
+    }
 
-/* ─── STRATEGY STAT GRID ──────────────────────────────────────── */
-.strat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1px;background:var(--edge);border:1px solid var(--edge);border-radius:10px;overflow:hidden}
+    ul {
+      margin: 0.4rem 0 0 1.5rem;
+      padding: 0;
+    }
 
-/* ─── RESPONSIVE ──────────────────────────────────────────────── */
-@media(max-width:900px){
-  nav,nav.on{padding:1rem 1.5rem}
-  .nav-links{display:none}.nav-ham{display:flex}
-  .cover{padding:0 1.5rem 4.5rem}
-  .cover-meta{flex-wrap:wrap;gap:1.5rem}.cm{border-right:none;margin-right:0;padding-right:0}
-  .sec{padding:5rem 1.5rem}
-  footer{padding:3rem 1.5rem;flex-direction:column}.ft-agency{text-align:left}
-  .sg2,.budget{grid-template-columns:1fr}
-  .pillar-row{grid-template-columns:repeat(2,1fr)}
-  .comp-hrow,.comp-row{grid-template-columns:130px repeat(5,1fr)}
-  .cc{padding:.75rem .65rem;font-size:.8rem}
-}
-</style>
+    ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .recommendation-list ul {
+      margin-left: 1rem;
+    }
+
+    .recommendation-list li {
+      margin-bottom: 0.45rem;
+    }
+
+    .questions-list li {
+      margin-bottom: 0.45rem;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted-color);
+      margin-top: 3rem;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <header>
+      <h1>Molokhia Restaurant Digital Audit</h1>
+      <p class="subheading">Riyadh, Saudi Arabia – Comprehensive Public Presence Review (Prepared 16 March 2026)</p>
+    </header>
 
-<div id="bar"></div>
+    <!-- 1. Executive Summary -->
+    <section class="section">
+      <div class="section-title"><span class="number">01</span><span>Executive Summary</span></div>
+      <div class="card">
+        <ul>
+          <li>Molokhia Restaurant’s public digital footprint is fragmented. TikTok confirms 2.1 k followers and 10.7 k likes with a clear Arabic bio, but Instagram appears to have ~1.1 k followers and 96 posts based on search snippets — full analytics require account access【101702439488314†screenshot】.</li>
+          <li>The Facebook Page enjoys the largest community (~28 k followers) yet cannot be viewed fully without login; available glimpses show inconsistent phone numbers and location descriptions across assets.</li>
+          <li>Google’s Business Profile lists the restaurant as an Egyptian‑food restaurant with a strong 4.5 ★ rating and ~660 reviews【48893929624800†screenshot】. However, there is no official website link and the phone number (+966 56 167 6856) differs from numbers on social media and other directories, creating NAP inconsistency.</li>
+          <li>Yango Maps shows a separate listing with a 4.8 ★ rating from 23 reviews and a different phone number (+966 54 619 0039)【89226811389565†L8-L18】. Multiple listings with different data erode trust and hurt local SEO.</li>
+          <li>No official website or online ordering domain was found. This limits control over the customer journey, analytics, retargeting, and first‑party data.</li>
+          <li>Content across channels appears heavily promotional (offers and platters) with little brand storytelling, behind‑the‑scenes content, or user‑generated testimonials. TikTok posts weren’t viewable, and Instagram posts couldn’t be accessed without login, so content quality and engagement remain unverified.</li>
+          <li>There is no visible response from the owner to reviews on Google. Engagement with reviewers helps build trust and affects ranking.</li>
+          <li>Overall, Molokhia has brand awareness but lacks a cohesive digital strategy, a consistent call‑to‑action path, and unified contact information. Without addressing these gaps, discovery, trust and conversion will suffer.</li>
+        </ul>
+      </div>
+    </section>
 
-<!-- NAV -->
-<nav id="nav">
-  <span class="nav-id">Elite Consultant</span>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#summary">Summary</a></li>
-    <li><a href="#platforms">Platforms</a></li>
-    <li><a href="#strengths">Analysis</a></li>
-    <li><a href="#competitors">Competitors</a></li>
-    <li><a href="#strategy">Strategy</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#investment">Budget</a></li>
-  </ul>
-  <button class="nav-ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
-</nav>
+    <!-- 2. Confirmed Public Presence -->
+    <section class="section">
+      <div class="section-title"><span class="number">02</span><span>Confirmed Public Presence</span></div>
+      <div class="card">
+        <p>The following assets were identified during this audit. Status indicates whether information could be confirmed publicly, inferred, or requires login.</p>
+        <table>
+          <thead>
+            <tr><th>Platform / Listing</th><th>URL</th><th>Status</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>TikTok</td>
+              <td><a href="https://www.tiktok.com/@Molokhia.Restaurant.KSA" target="_blank">@Molokhia.Restaurant.KSA</a></td>
+              <td><span class="badge confirmed">Confirmed</span></td>
+              <td>Public profile shows 2.1 k followers and 10.7 k likes with Arabic bio【101702439488314†screenshot】. Posts weren’t viewable without login.</td>
+            </tr>
+            <tr>
+              <td>Instagram</td>
+              <td><a href="https://www.instagram.com/molokhia.restaurant.ksa" target="_blank">@molokhia.restaurant.ksa</a></td>
+              <td><span class="badge likely">Likely</span></td>
+              <td>Search snippets indicate ~1.1 k followers and 96 posts; Instagram blocks unauthenticated viewing. Needs login for confirmation.</td>
+            </tr>
+            <tr>
+              <td>Facebook</td>
+              <td><a href="https://www.facebook.com/Molokhia.Restaurant.KSA" target="_blank">Molokhia.Restaurant.KSA</a></td>
+              <td><span class="badge likely">Likely</span></td>
+              <td>Mobile view shows ≈28 k followers and 21 following. Page details (about and posts) require Facebook login; inconsistent phone number and address visible on cover.</td>
+            </tr>
+            <tr>
+              <td>Google Business Profile</td>
+              <td><a href="https://www.google.com/maps/place/Molokhia+Restaurant" target="_blank">Molokhia Restaurant on Google Maps</a></td>
+              <td><span class="badge confirmed">Confirmed</span></td>
+              <td>4.5 ★ rating with ~660 reviews【48893929624800†screenshot】. Category “Egyptian food restaurant”, address on Eastern Ring Road, phone +966 56 167 6856, and service options (dine‑in, drive‑through, no‑contact delivery). No website link.</td>
+            </tr>
+            <tr>
+              <td>Yango Maps</td>
+              <td><a href="https://maps.yango.com/ar-ae/org/182140541895/" target="_blank">Yango listing</a></td>
+              <td><span class="badge confirmed">Confirmed</span></td>
+              <td>Shows rating 4.8 ★ with 23 reviews and phone +966 54 619 0039【89226811389565†L8-L18】. Lists address in Al Yarmuk district and 24‑hour service.</td>
+            </tr>
+            <tr>
+              <td>Official website</td>
+              <td>—</td>
+              <td><span class="badge notfound">Not Found</span></td>
+              <td>No official website or ordering domain discovered. Google and social profiles do not link to an owned website.</td>
+            </tr>
+            <tr>
+              <td>Other directories</td>
+              <td>TripAdvisor, Foursquare, etc.</td>
+              <td><span class="badge needs">Needs Access</span></td>
+              <td>No significant listings surfaced during search; further research may reveal additional citations once a website or aggregated listing is claimed.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-<!-- COVER -->
-<section class="cover">
-  <div class="cover-lines"></div>
-  <div class="cover-glow"></div>
-  <p class="cover-tag">Social Media Audit Report</p>
-  <h1 class="cover-h1">Molokhia Restaurant<em>Digital Presence Review</em></h1>
-  <p class="cover-client">مطعم ملوخية &nbsp;·&nbsp; Riyadh, Al Yarmouk &nbsp;·&nbsp; Saudi Arabia</p>
-  <div class="cover-meta">
-    <div class="cm"><p class="cm-k">Prepared by</p><p class="cm-v">Elite Consultant</p></div>
-    <div class="cm"><p class="cm-k">Date</p><p class="cm-v">March 2026</p></div>
-    <div class="cm"><p class="cm-k">Scope</p><p class="cm-v">GBP · META · TikTok · Snapchat · X</p></div>
-    <div class="cm"><p class="cm-k">Classification</p><p class="cm-v">Confidential</p></div>
+    <!-- 3. Platform-by‑Platform Social Audit -->
+    <section class="section">
+      <div class="section-title"><span class="number">03</span><span>Platform‑by‑Platform Social Audit</span></div>
+      <!-- TikTok -->
+      <div class="card">
+        <h3>TikTok (<em>@Molokhia.Restaurant.KSA</em>)</h3>
+        <p><strong>Evidence:</strong> 2.1 k followers, 10.7 k likes and 0 following【101702439488314†screenshot】. Bio emphasises authentic Egyptian cuisine in Riyadh.</p>
+        <p><strong>Strengths:</strong></p>
+        <ul>
+          <li>Handle matches brand name and Arabic name in the bio, reinforcing brand identity.</li>
+          <li>Decent early audience (~2 k followers) shows potential interest in short‑form video content.</li>
+          <li>Clear description and emoji communicate cuisine type and location.</li>
+        </ul>
+        <p><strong>Weaknesses:</strong></p>
+        <ul>
+          <li>Content inaccessible without login; we cannot verify posting frequency or quality. Without a consistent content pipeline, follower growth stalls.</li>
+          <li>No visible website or order link in the bio; potential customers must leave the platform to seek more information.</li>
+          <li>Following count is zero, suggesting the account doesn’t engage with local community or influencers.</li>
+        </ul>
+        <p><strong>Missed opportunities:</strong></p>
+        <ul>
+          <li>Short‑form videos of food preparation, Egyptian recipes, staff stories and customer reactions could build appetite and brand love.</li>
+          <li>Partnering with local Riyadh food influencers would expand reach quickly.</li>
+          <li>Adding a link (Linktree, order page or WhatsApp) would convert viewers into orders.</li>
+        </ul>
+        <p>Severity score: <span class="severity">6 / 10</span> – moderate audience but unclear content strategy and conversion path.</p>
+      </div>
+      <!-- Instagram -->
+      <div class="card">
+        <h3>Instagram (<em>@molokhia.restaurant.ksa</em>)</h3>
+        <p><strong>Evidence:</strong> Search snippets suggest ~1.1 k followers, 96 posts and 0 following; full profile is blocked without login.</p>
+        <p><strong>Strengths:</strong></p>
+        <ul>
+          <li>Username consistent with other platforms; includes both English and Arabic names.</li>
+          <li>Visual platform well suited to showcase Egyptian dishes and ambience.</li>
+        </ul>
+        <p><strong>Weaknesses:</strong></p>
+        <ul>
+          <li>Small follower base relative to Facebook; indicates limited investment or inconsistent posting.</li>
+          <li>Unknown bio quality, link in bio, highlight usage and content variety; inability to verify means the account may lack optimization.</li>
+        </ul>
+        <p><strong>Missed opportunities:</strong></p>
+        <ul>
+          <li>Optimizing the bio with clear call‑to‑action (order, WhatsApp) and contact details.</li>
+          <li>Using stories, highlights and reels to humanise the brand and showcase dishes, ambience and customer experiences.</li>
+          <li>Leveraging user‑generated content from customers to build social proof.</li>
+        </ul>
+        <p>Severity score: <span class="severity">7 / 10</span> – low visibility on Instagram undermines discovery among younger audiences and reduces remarketing opportunities.</p>
+      </div>
+      <!-- Facebook -->
+      <div class="card">
+        <h3>Facebook (<em>Molokhia.Restaurant.KSA</em>)</h3>
+        <p><strong>Evidence:</strong> Mobile view shows ~28 k followers and 21 following; full page requires login to view posts and insights. Cover photo includes Arabic description and phone number.</p>
+        <p><strong>Strengths:</strong></p>
+        <ul>
+          <li>Large community (~28 k) demonstrating strong word‑of‑mouth and brand awareness.</li>
+          <li>Page name includes both English and Arabic, which helps searchability.</li>
+          <li>Address and phone number displayed prominently on the cover art.</li>
+        </ul>
+        <p><strong>Weaknesses:</strong></p>
+        <ul>
+          <li>Page content inaccessible without login; we cannot confirm posting consistency, responsiveness to comments or messaging.</li>
+          <li>Phone number on cover (+966 54 619 0039) differs from the number on Google (+966 56 167 6856)【89226811389565†L8-L18】【48893929624800†screenshot】.</li>
+          <li>There is no visible call‑to‑action button (e.g., order now, WhatsApp) in the public snippet.</li>
+        </ul>
+        <p><strong>Missed opportunities:</strong></p>
+        <ul>
+          <li>Leveraging Facebook shops, menu tabs and call‑to‑action buttons for direct ordering.</li>
+          <li>Running targeted local ads to promote new dishes and promotions.</li>
+          <li>Responding publicly to comments and reviews to demonstrate customer care.</li>
+        </ul>
+        <p>Severity score: <span class="severity">5 / 10</span> – strong following but limited conversion features and inconsistent contact details.</p>
+      </div>
+    </section>
+
+    <!-- 4. Google / Local Presence Audit -->
+    <section class="section">
+      <div class="section-title"><span class="number">04</span><span>Google &amp; Local Presence Audit</span></div>
+      <div class="card">
+        <p><strong>Strengths:</strong></p>
+        <ul>
+          <li>The Google Business Profile (GBP) is claimed and displays a high rating of 4.5 ★ with roughly 660 reviews【48893929624800†screenshot】. This demonstrates customer satisfaction.</li>
+          <li>Category set to “Egyptian food restaurant” ensures relevance for local searches.</li>
+          <li>Service options (dine‑in, drive‑through, no‑contact delivery) are marked, indicating operational details.</li>
+          <li>The listing has an updated address on the Eastern Ring Road in Riyadh and includes the plus‑code for navigation【48893929624800†screenshot】.</li>
+        </ul>
+        <p><strong>Weaknesses &amp; Gaps:</strong></p>
+        <ul>
+          <li><strong>Website missing:</strong> There is no website link on the GBP. This hurts organic SEO and prevents Google from linking to an official menu or ordering page.</li>
+          <li><strong>NAP inconsistency:</strong> Phone numbers differ across GBP (+966 56 167 6856), Yango (+966 54 619 0039) and Facebook. Inconsistent Name–Address–Phone details can confuse search engines and customers, reducing ranking and trust.</li>
+          <li><strong>Review management:</strong> There is no evidence of owner responses to customer reviews. Unanswered reviews can harm reputation and reduce local ranking.</li>
+          <li><strong>Review freshness:</strong> Without access we cannot confirm recency. Maintaining recent positive reviews is critical for Google’s ranking.</li>
+          <li><strong>Menu &amp; photos:</strong> Menu and photo sections are minimal. Additional high‑quality photos of dishes, interior, exterior and menu pages would improve conversion.</li>
+          <li><strong>Duplicate listings:</strong> The presence of a separate Yango listing with different details suggests the restaurant may have multiple listings with inconsistent data. Duplicate or unclaimed Google listings would dilute signals.</li>
+          <li><strong>Q&amp;A &amp; posts:</strong> The Q&amp;A section is absent or empty. GBP posts (promotions, events) are not visible; these free posts can boost SEO and keep profiles fresh.</li>
+        </ul>
+        <p><strong>Conversion &amp; Trust:</strong></p>
+        <ul>
+          <li>The GBP clearly states service types but lacks call‑to‑action buttons for ordering or reservations.</li>
+          <li>Operating hours show the restaurant opens at 3 PM【48893929624800†screenshot】, but 24‑hour hours on Yango create confusion. Ensure hours are consistent across platforms.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 5. Website / Owned Presence Audit -->
+    <section class="section">
+      <div class="section-title"><span class="number">05</span><span>Website / Owned Presence Audit</span></div>
+      <div class="card">
+        <p>No official website was discovered during this audit. Neither the Google Business Profile nor any social platform links to an owned site. The absence of a website results in:</p>
+        <ul>
+          <li><strong>Limited conversion control:</strong> Customers have no simple path to browse the menu, place an order or reserve a table directly.</li>
+          <li><strong>No analytics or retargeting:</strong> Without a website, the business cannot track visitor behaviour, build audiences for ads, or collect first‑party data.</li>
+          <li><strong>SEO limitations:</strong> A website with optimized content and schema could rank for local Egyptian‑restaurant queries and capture discovery traffic.</li>
+          <li><strong>Brand authority:</strong> Owned media conveys professionalism and trust. Relying solely on social and third‑party platforms leaves the brand vulnerable to algorithm changes.</li>
+        </ul>
+        <p>At minimum, the business should develop a responsive landing site with menu, ordering links, location map, contact details, and integration with Google Analytics 4.</p>
+      </div>
+    </section>
+
+    <!-- 6. Top Weak Points for Meeting -->
+    <section class="section">
+      <div class="section-title"><span class="number">06</span><span>Top Weak Points to Discuss in the Meeting</span></div>
+      <div class="card">
+        <ul>
+          <li><strong>Missing Website:</strong> The lack of an official site prevents direct ordering, reduces SEO visibility and hinders analytics. <em>Impact:</em> lost direct sales and inability to retarget past visitors.</li>
+          <li><strong>Inconsistent Phone Numbers:</strong> GBP lists +966 56 167 6856 while Facebook/Yango show +966 54 619 0039【89226811389565†L8-L18】【48893929624800†screenshot】. <em>Impact:</em> search algorithms down‑rank inconsistent NAP; customers call wrong numbers.</li>
+          <li><strong>Low Instagram Presence:</strong> ~1.1 k followers and unclear posting frequency diminish brand visibility on a highly visual platform.</li>
+          <li><strong>TikTok Engagement Unknown:</strong> Without clear content strategy, the 2.1 k followers may not translate to sales. No link in bio reduces conversion opportunities.</li>
+          <li><strong>Unmanaged Reviews:</strong> There is no evidence of the owner responding to reviews on Google. <em>Impact:</em> missed opportunity to address complaints, thank fans and signal active management.</li>
+          <li><strong>Duplicate Listings:</strong> Yango lists the business separately with different data, suggesting there may be duplicate or unmanaged listings elsewhere. <em>Impact:</em> dilutes search authority.</li>
+          <li><strong>Limited Content Variety:</strong> Social posts likely focus on offers without storytelling, chef highlights or customer testimonials. <em>Impact:</em> weak brand differentiation and memorability.</li>
+          <li><strong>No Paid Advertising:</strong> There is no sign of paid campaigns on Meta or TikTok. <em>Impact:</em> slower growth and limited reach beyond organic followers.</li>
+          <li><strong>Missing CTA Buttons:</strong> Facebook and GBP lack prominent call‑to‑action buttons (order, reserve, WhatsApp). <em>Impact:</em> friction for users ready to act.</li>
+          <li><strong>Content Localisation:</strong> While Arabic is used, there’s no targeted messaging for Riyadh neighbourhoods, events or seasons. <em>Impact:</em> less relevance for local search and community engagement.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 7. Highest‑Impact Recommendations -->
+    <section class="section">
+      <div class="section-title"><span class="number">07</span><span>Highest‑Impact Recommendations</span></div>
+      <div class="card recommendation-list">
+        <h4>Quick wins (7 days)</h4>
+        <ul>
+          <li>Claim or update the Google Business Profile: correct the phone number, confirm operating hours and add a website placeholder (Linktree or WhatsApp order link).</li>
+          <li>Add a link in TikTok and Instagram bios (e.g., Linktree) directing visitors to order via phone, WhatsApp, or delivery apps.</li>
+          <li>Update the Facebook cover image with consistent phone number and include a call‑to‑action button (e.g., “Call Now” or “Order Now”).</li>
+          <li>Encourage staff to solicit Google reviews from recent happy customers to maintain recency and improve ranking.</li>
+        </ul>
+        <h4>Medium fixes (30 days)</h4>
+        <ul>
+          <li>Launch a minimal responsive website with menu, photos, story and order options. Integrate Google Analytics and Meta Pixel.</li>
+          <li>Standardize NAP across all platforms and directories (Google, Facebook, Yango, Instagram). Submit to additional local directories (TripAdvisor, Foursquare, Talabat).</li>
+          <li>Create a content calendar for TikTok and Instagram featuring a mix of offers, behind‑the‑scenes clips, chef spotlights, customer testimonials and educational posts about Egyptian cuisine.</li>
+          <li>Respond to all recent Google reviews — thanking positive reviewers and offering to address negative experiences offline.</li>
+        </ul>
+        <h4>Strategic improvements (90 days)</h4>
+        <ul>
+          <li>Develop a full‑funnel marketing strategy: awareness (educational content and influencer collaborations), consideration (menu highlights, cooking process), and conversion (limited‑time offers with direct order links).</li>
+          <li>Invest in geo‑targeted ads on Facebook, Instagram and TikTok to reach Egyptians and food enthusiasts in Riyadh.</li>
+          <li>Introduce a loyalty program and collect first‑party data through the website or WhatsApp ordering system.</li>
+          <li>Host live‑streamed cooking demonstrations and Q&amp;A sessions to build community and differentiate from competitors.</li>
+          <li>Partner with delivery platforms to ensure menu accuracy, quality photos and promo campaigns; negotiate featured placement during Ramadan and other peak seasons.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 8. Content Strategy Diagnosis -->
+    <section class="section">
+      <div class="section-title"><span class="number">08</span><span>Content Strategy Diagnosis</span></div>
+      <div class="card">
+        <p><strong>Weaknesses:</strong> Based on available evidence, Molokhia’s content appears heavily offer‑centric. Without access to posts, it is likely dominated by platters and price promotions. Captions may be short and direct, lacking storytelling or sensory description. There is little evidence of human‑centric content.</p>
+        <p><strong>Over‑posting:</strong> Frequent promotion of offers without variety can fatigue the audience and commoditise the brand.</p>
+        <p><strong>Under‑posting:</strong> Few behind‑the‑scenes videos, staff introductions, customer testimonials, cultural stories or educational posts about Egyptian cuisine.</p>
+        <p><strong>Missing pillars:</strong> <em>Ambience &amp; family experience</em>, <em>chef &amp; kitchen stories</em>, <em>ingredient sourcing &amp; quality</em>, <em>Egyptian culture &amp; traditions</em> and <em>customer success stories</em>. Introducing these pillars would create an emotional connection and differentiate the restaurant.</p>
+        <p><strong>Recommended style:</strong> Use warm, cinematic lighting and close‑up shots of dishes. Incorporate Arabic calligraphy and subtle Riyadh references. Mix short videos (recipes, plating), carousels of menu items and user‑generated content re‑shares. Feature Egyptian music and local slang to connect with the Riyadh audience.</p>
+      </div>
+    </section>
+
+    <!-- 9. Sales / Conversion Diagnosis -->
+    <section class="section">
+      <div class="section-title"><span class="number">09</span><span>Sales / Conversion Diagnosis</span></div>
+      <div class="card">
+        <p><strong>Conversion Friction:</strong></p>
+        <ul>
+          <li>No direct link from social profiles to order or reserve, forcing users to search manually.</li>
+          <li>Multiple phone numbers create confusion and risk missed calls.</li>
+          <li>Missing website means there is no unified ordering funnel or ability to retarget visitors with ads.</li>
+          <li>Google listing lacks call‑to‑action buttons and menu links, reducing conversions from Maps searches.</li>
+        </ul>
+        <p><strong>Proof &amp; Trust Issues:</strong></p>
+        <ul>
+          <li>Few photos and no menu on GBP diminish visitor confidence when deciding where to dine.</li>
+          <li>Lack of responses to reviews may make potential customers question service quality.</li>
+          <li>Not showcasing hygiene practices or staff training leaves safety perceptions to chance.</li>
+        </ul>
+        <p><strong>Recommended Solutions:</strong></p>
+        <ul>
+          <li>Add order/reservation links to all bios and the GBP. Use a unified WhatsApp Business link for quick orders.</li>
+          <li>Produce proof‑driven content: customer testimonials, influencer visits, ratings highlights and awards.</li>
+          <li>Ensure the menu is easily accessible via the website and Google profile. Encourage reviews after each transaction.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 10. Meeting Ammunition -->
+    <section class="section">
+      <div class="section-title"><span class="number">10</span><span>Meeting Ammunition</span></div>
+      <div class="card">
+        <h4>Smart questions to ask the client</h4>
+        <ul class="questions-list">
+          <li>What percentage of current orders come from phone calls versus delivery platforms?</li>
+          <li>Have you claimed and verified your Google Business Profile? Who manages updates and responses?</li>
+          <li>How often do you post on TikTok and Instagram, and which content performs best?</li>
+          <li>Are you using any paid advertising on Meta, TikTok or Google? What results have you seen?</li>
+          <li>Do you track how customers hear about you (walk‑in vs. social vs. referrals)?</li>
+          <li>What systems do you use for managing customer feedback and reviews?</li>
+          <li>Is there an existing database of customer contacts (e.g., WhatsApp, email) for promotions?</li>
+          <li>What distinguishes Molokhia from other Egyptian restaurants in Riyadh, and how is that communicated?</li>
+          <li>Do you have seasonal or holiday offers (e.g., Ramadan) planned in advance?</li>
+          <li>What technology platforms do you use for ordering, delivery and reservations?</li>
+        </ul>
+        <h4>High‑value observations to mention</h4>
+        <ul>
+          <li>There is strong social proof on Facebook and Google, but the lack of an owned website is a critical gap.</li>
+          <li>Phone number discrepancies across platforms create friction and hurt local SEO.</li>
+          <li>TikTok growth is promising but unused due to absence of links and community engagement.</li>
+          <li>Unanswered reviews on Google may lower trust and ranking.</li>
+          <li>Yango listing suggests the possibility of unclaimed or duplicate listings elsewhere.</li>
+          <li>Instagram appears neglected relative to its potential for food businesses.</li>
+          <li>There is no visible connection between social channels; cross‑promotion could drive traffic.</li>
+          <li>Service options like drive‑through and no‑contact delivery are not highlighted enough on social channels.</li>
+          <li>Consistency in visual identity is missing across channels; professional photography could elevate brand perception.</li>
+          <li>Competitors in Riyadh invest heavily in Google posts and influencer partnerships – an area Molokhia is missing.</li>
+        </ul>
+        <h4>Probable objections and responses</h4>
+        <ul>
+          <li><strong>“We already have customers; why invest in a website?”</strong> — A website gives you ownership of your audience, improves SEO and conversion rates and provides analytics to grow further.</li>
+          <li><strong>“Our posts get likes, so content is fine.”</strong> — Engagement is a vanity metric. Without a strategic mix of brand, educational and conversion content, likes don’t translate into repeat visits or orders.</li>
+          <li><strong>“It’s hard to manage reviews across platforms.”</strong> — Tools and simple processes can automate review prompts and responses. Responding builds trust and improves ranking.</li>
+          <li><strong>“Paid ads are expensive.”</strong> — Local geo‑targeted ads on Meta and TikTok can start with small budgets and yield measurable results, especially when combined with organic content.</li>
+          <li><strong>“Our phone number is everywhere; people will find us.”</strong> — Inconsistent NAP across platforms confuses both customers and search engines, leading to lost calls and lower rankings.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 11. Access Request Block -->
+    <section class="section">
+      <div class="section-title"><span class="number">11</span><span>Access Request Block</span></div>
+      <div class="card">
+        <p>To perform deeper analysis, implement recommendations and measure results, we will require access to the following platforms:</p>
+        <ul>
+          <li>Instagram professional account insights</li>
+          <li>TikTok analytics</li>
+          <li>Meta Business Suite (Facebook Page admin or analyst)</li>
+          <li>Google Business Profile management</li>
+          <li>Website CMS (once created)</li>
+          <li>Google Analytics 4 and Google Search Console</li>
+          <li>Advertising accounts (Meta Ads, TikTok Ads)</li>
+          <li>WhatsApp Business account or order dashboard</li>
+          <li>Delivery platform dashboards (Jahez, HungerStation, etc.)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 12. Final Confidence Section -->
+    <section class="section">
+      <div class="section-title"><span class="number">12</span><span>Final Confidence &amp; Next Steps</span></div>
+      <div class="card">
+        <h4>A) What we can confidently say from public evidence</h4>
+        <ul>
+          <li>Molokhia has an active presence on TikTok (2.1 k followers) and a large community on Facebook (~28 k followers)【101702439488314†screenshot】.</li>
+          <li>The Google Business Profile is claimed, rated 4.5 ★ and shows hundreds of reviews【48893929624800†screenshot】.</li>
+          <li>There is no official website and no unified ordering link across platforms.</li>
+          <li>Contact information is inconsistent, and there are duplicate listings with different phone numbers【89226811389565†L8-L18】.</li>
+          <li>Review management and content variety are minimal or unverified.</li>
+        </ul>
+        <h4>B) What requires platform access to verify</h4>
+        <ul>
+          <li>Exact follower counts, engagement rates and content performance on TikTok, Instagram and Facebook.</li>
+          <li>Detailed posting frequency, caption quality and content mix.</li>
+          <li>Review response history, review freshness and customer sentiment trends on Google.</li>
+          <li>Whether there are any hidden or duplicate GBP listings requiring consolidation.</li>
+          <li>Data on paid advertising, customer acquisition sources and conversion funnel metrics.</li>
+        </ul>
+        <h4>C) What we should pitch to win this client</h4>
+        <ul>
+          <li>Immediate clean‑up of all listings (consistent NAP, duplicate removal, addition of website and menu links).</li>
+          <li>Building a minimal but elegant website with ordering capabilities, analytics and SEO optimised content.</li>
+          <li>Structured content strategy across social platforms with monthly calendar, diverse pillars and localised storytelling.</li>
+          <li>Review management program with automatic prompts and personalised responses.</li>
+          <li>Launch of targeted paid campaigns to build awareness and drive orders during key seasons (e.g., Ramadan).</li>
+          <li>Implementation of tracking and reporting dashboards so the owner can measure return on investment.</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <p>This audit was prepared by Elite Consultant on 16 March 2026 for Molokhia Restaurant, Riyadh. All data presented is based on publicly available information. Access to platform insights is recommended for a deeper analysis.</p>
+    </footer>
   </div>
-</section>
-
-<!-- 01 SUMMARY -->
-<section class="sec" id="summary">
-  <div class="wrap">
-    <p class="sec-tag rv">01 — At a Glance</p>
-    <h2 class="sec-h rv">Where the Brand Stands Today</h2>
-    <div class="stat-grid sg">
-      <div class="stat"><p class="stat-k">Facebook Followers</p><p class="stat-v gd">28.3K</p><p class="stat-d">Strongest social platform asset</p></div>
-      <div class="stat"><p class="stat-k">Facebook Engagement</p><p class="stat-v r">0.04%</p><p class="stat-d">Industry avg is 0.5–1.0%</p></div>
-      <div class="stat"><p class="stat-k">Instagram Followers</p><p class="stat-v a">1.1K</p><p class="stat-d">vs 20.5M KSA users on platform</p></div>
-      <div class="stat"><p class="stat-k">GBP Rating</p><p class="stat-v gd">4.5 ★</p><p class="stat-d">663 Google reviews · Al Yarmuk</p></div>
-      <div class="stat"><p class="stat-k">Snapchat Presence</p><p class="stat-v r">None</p><p class="stat-d">18.2M KSA users unreached</p></div>
-      <div class="stat"><p class="stat-k">GBP Website Link</p><p class="stat-v r">Missing</p><p class="stat-d">GBP shows "Add website" — no link</p></div>
-      <div class="stat"><p class="stat-k">Paid Advertising</p><p class="stat-v r">None</p><p class="stat-d">Fully dependent on organic reach</p></div>
-      
-      <div class="stat"><p class="stat-k">TikTok Followers</p><p class="stat-v a">2.1K</p><p class="stat-d">Active but infrequent posting</p></div>
-    </div>
-    <div class="note r rv" style="margin-top:2rem">
-      <p class="note-tag">Core Finding</p>
-      <p>Molokhia has a <strong>4.5★ Google rating with 663 reviews</strong> — an exceptional foundation that most Riyadh restaurant competitors cannot match. The restaurant is active on GBP, responds to reviews, and is listed on delivery platforms. The critical gap is that this offline reputation is not translating to digital reach. Facebook engagement sits at 0.04% despite 28,300 followers, Instagram has only 1,100 followers despite 20.5M KSA users on the platform, and <strong>Snapchat is completely absent</strong> with 18.2M KSA users unreached. The GBP is also missing a website link — every visitor sees "Add website" with no path to order online.</p>
-    </div>
-  </div>
-</section>
-
-<!-- 02 KSA LANDSCAPE -->
-<section class="sec sec-dark" id="landscape">
-  <div class="wrap">
-    <p class="sec-tag rv">02 — Market Context</p>
-    <h2 class="sec-h rv">KSA Digital Landscape</h2>
-    <div class="ksa-grid sg">
-      <div class="ksa-card priority">
-        <p class="ksa-platform">TikTok</p>
-        <p class="ksa-users">18.6M</p>
-        <p class="ksa-time">34h 48m / month</p>
-        <p class="ksa-note">Highest time-on-app in KSA. Food content dominates. Primary organic growth channel for restaurants.</p>
-      </div>
-      <div class="ksa-card priority">
-        <p class="ksa-platform">Instagram</p>
-        <p class="ksa-users">20.5M</p>
-        <p class="ksa-time">11h 17m / month</p>
-        <p class="ksa-note">Primary visual food discovery platform. Highest restaurant conversion ROI in KSA.</p>
-      </div>
-      <div class="ksa-card priority">
-        <p class="ksa-platform">Snapchat</p>
-        <p class="ksa-users">18.2M</p>
-        <p class="ksa-time">12h 31m / month</p>
-        <p class="ksa-note">Reaches 90%+ of 18–24 year-olds. More time spent than Instagram. Currently zero presence.</p>
-      </div>
-      <div class="ksa-card">
-        <p class="ksa-platform">Facebook</p>
-        <p class="ksa-users">15.2M</p>
-        <p class="ksa-time">20h 31m / month</p>
-        <p class="ksa-note">Strong 25–45 demographic. Reviews, events, paid ads. 28K followers already established.</p>
-      </div>
-      <div class="ksa-card">
-        <p class="ksa-platform">X / Twitter</p>
-        <p class="ksa-users">17.1M</p>
-        <p class="ksa-time">8h 1m / month</p>
-        <p class="ksa-note">Real-time discovery. Customer service channel. Brand handle not yet secured.</p>
-      </div>
-      <div class="ksa-card">
-        <p class="ksa-platform">Google (GBP)</p>
-        <p class="ksa-users">—</p>
-        <p class="ksa-time">—</p>
-        <p class="ksa-note">46% of diners use Google first. Primary 'near me' discovery layer. Currently unclaimed.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 03 PLATFORM AUDIT -->
-<section class="sec" id="platforms">
-  <div class="wrap">
-    <p class="sec-tag rv">03 — Platform Audit</p>
-    <h2 class="sec-h rv">Platform-by-Platform Assessment</h2>
-    <div class="plat-grid sg">
-
-      <div class="plat-card">
-        <div class="pc-head"><p class="pc-name">Google Business Profile</p><span class="badge b-grn">Strong — 4.5★</span></div>
-        <div class="pc-body">
-          <div class="pc-metrics">
-            <div class="pcm"><p class="pcm-k">Google Rating</p><p class="pcm-v gd">4.5 ★</p></div>
-            <div class="pcm"><p class="pcm-k">Total Reviews</p><p class="pcm-v gd">663</p></div>
-            <div class="pcm"><p class="pcm-k">Owner Responds</p><p class="pcm-v g">Yes ✓</p></div>
-            <div class="pcm"><p class="pcm-k">Website Link</p><p class="pcm-v r">Missing</p></div>
-          </div>
-          <p class="pc-tag g">Excellent rating — optimise to convert</p>
-          <p class="pc-finding">4.5★ across 663 reviews is a genuine competitive advantage — this is the brand's strongest credibility signal. The owner responds to reviews and photos are present. The single critical gap: no website link on GBP. Every visitor sees "Add website" with zero path to order online or visit the social profiles.</p>
-        </div>
-        <div class="pc-actions">
-          <p class="pca"><strong>Add website / Linktree link</strong> — critical missing conversion path from Google search</p>
-          <p class="pca"><strong>Activate weekly GBP Posts</strong> — special dishes, limited offers, seasonal events</p>
-          <p class="pca"><strong>Push review volume to 1,000+</strong> — QR cards at tables and in delivery bags</p>
-          <p class="pca"><strong>Continue responding to all reviews</strong> — maintain current response habit</p>
-        </div>
-      </div>
-
-      <div class="plat-card">
-        <div class="pc-head"><p class="pc-name">Facebook</p><span class="badge b-amb">Underperforming</span></div>
-        <div class="pc-body">
-          <div class="pc-metrics">
-            <div class="pcm"><p class="pcm-k">Followers</p><p class="pcm-v gd">28,000+</p></div>
-            <div class="pcm"><p class="pcm-k">Engagement Rate</p><p class="pcm-v r">0.04%</p></div>
-            <div class="pcm"><p class="pcm-k">Avg. Post Reach</p><p class="pcm-v r">~300</p></div>
-            <div class="pcm"><p class="pcm-k">Video Content</p><p class="pcm-v r">Minimal</p></div>
-          </div>
-          <p class="pc-tag a">Algorithm has throttled organic reach</p>
-          <p class="pc-finding">28,000 followers should generate 2,000–5,000 organic impressions per post. Chronic low engagement has capped reach at ~300. Video — which earns 135% more reach than photos — is almost entirely absent.</p>
-        </div>
-        <div class="pc-actions">
-          <p class="pca"><strong>Shift to video-first</strong> — 3 short videos/week minimum</p>
-          <p class="pca"><strong>Daily Story polls</strong> to rebuild engagement signal</p>
-          <p class="pca"><strong>Weekly customer spotlights</strong> + behind-the-scenes</p>
-          <p class="pca"><strong>Target: 3% engagement rate</strong> within 60 days</p>
-        </div>
-      </div>
-
-      <div class="plat-card">
-        <div class="pc-head"><p class="pc-name">Instagram</p><span class="badge b-amb">Critical Gap</span></div>
-        <div class="pc-body">
-          <div class="pc-metrics">
-            <div class="pcm"><p class="pcm-k">Followers</p><p class="pcm-v r">1,100+</p></div>
-            <div class="pcm"><p class="pcm-k">Following</p><p class="pcm-v r">0</p></div>
-            <div class="pcm"><p class="pcm-k">Bio Link</p><p class="pcm-v r">None</p></div>
-            <div class="pcm"><p class="pcm-k">Reels Usage</p><p class="pcm-v r">Minimal</p></div>
-          </div>
-          <p class="pc-tag a">No cross-platform strategy deployed</p>
-          <p class="pc-finding">1,151 followers on a platform with 20.5M KSA users. 96 posts published but zero community-building — follows no one, no Story Highlights, no delivery link in bio, near-zero Reels output.</p>
-        </div>
-        <div class="pc-actions">
-          <p class="pca"><strong>Add Linktree bio link</strong> — menu + delivery app</p>
-          <p class="pca"><strong>3 Reels/week minimum</strong> — 22% more reach than static</p>
-          <p class="pca"><strong>Follow 200+ Riyadh food accounts</strong> immediately</p>
-          <p class="pca"><strong>Cross-promote weekly</strong> from existing Facebook audience</p>
-        </div>
-      </div>
-
-      <div class="plat-card">
-        <div class="pc-head"><p class="pc-name">TikTok</p><span class="badge b-amb">Underutilised</span></div>
-        <div class="pc-body">
-          <div class="pc-metrics">
-            <div class="pcm"><p class="pcm-k">Account</p><p class="pcm-v gd">Exists</p></div>
-            <div class="pcm"><p class="pcm-k">Followers</p><p class="pcm-v a">2100+</p></div>
-            <div class="pcm"><p class="pcm-k">KSA Time/Month</p><p class="pcm-v gd">34h 48m</p></div>
-            <div class="pcm"><p class="pcm-k">Content Language</p><p class="pcm-v a">Mixed</p></div>
-          </div>
-          <p class="pc-tag a">Largest untapped channel in KSA</p>
-          <p class="pc-finding">@molokhia.restaurant.ksa exists but posts infrequently. No Arabic-first strategy, no bio delivery link, no influencer collaborations. Egyptian food is uniquely suited to TikTok's most viral formats — this niche is entirely unclaimed.</p>
-        </div>
-        <div class="pc-actions">
-          <p class="pca"><strong>5–7 videos/week</strong> — ASMR, chef POV, customer reactions</p>
-          <p class="pca"><strong>Arabic-first content</strong> with trending KSA sounds</p>
-          <p class="pca"><strong>5 nano-influencer gifted visits</strong> — zero cash cost</p>
-          <p class="pca"><strong>Add delivery link</strong> to bio via Linktree</p>
-        </div>
-      </div>
-
-      <div class="plat-card">
-        <div class="pc-head"><p class="pc-name">Snapchat</p><span class="badge b-red">No Presence</span></div>
-        <div class="pc-body">
-          <div class="pc-metrics">
-            <div class="pcm"><p class="pcm-k">Account</p><p class="pcm-v r">None</p></div>
-            <div class="pcm"><p class="pcm-k">KSA Users</p><p class="pcm-v gd">18.2M</p></div>
-            <div class="pcm"><p class="pcm-k">18–24 Penetration</p><p class="pcm-v gd">90%+</p></div>
-            <div class="pcm"><p class="pcm-k">Geofilter Cost</p><p class="pcm-v g">SAR 50–200</p></div>
-          </div>
-          <p class="pc-tag r">18.2M KSA users — zero brand presence</p>
-          <p class="pc-finding">The most overlooked channel in this audit. Saudi users spend more time on Snapchat than Instagram. 90%+ of 18–24 year-olds are reachable here at the lowest CPMs of any KSA digital platform.</p>
-        </div>
-        <div class="pc-actions">
-          <p class="pca"><strong>Create Business Account</strong> in Week 1</p>
-          <p class="pca"><strong>Launch branded geofilter</strong> at restaurant location</p>
-          <p class="pca"><strong>3–5 daily Stories</strong> — specials, kitchen, team</p>
-          <p class="pca"><strong>SAR 500/week Snapchat Ads</strong> from Week 3</p>
-        </div>
-      </div>
-
-      <div class="plat-card">
-        <div class="pc-head"><p class="pc-name">X / Twitter</p><span class="badge b-gold">Medium Priority</span></div>
-        <div class="pc-body">
-          <div class="pc-metrics">
-            <div class="pcm"><p class="pcm-k">Account</p><p class="pcm-v r">None</p></div>
-            <div class="pcm"><p class="pcm-k">KSA Users</p><p class="pcm-v gd">17.1M</p></div>
-            <div class="pcm"><p class="pcm-k">Effort Required</p><p class="pcm-v g">Low</p></div>
-            <div class="pcm"><p class="pcm-k">Best For</p><p class="pcm-v">Discovery</p></div>
-          </div>
-          <p class="pc-tag a">Brand handle not secured — register now</p>
-          <p class="pc-finding">Real-time discovery and customer service layer. Requires only 20–30 minutes per day. Saudi customers frequently discuss restaurant experiences publicly on X — brand mentions need active monitoring.</p>
-        </div>
-        <div class="pc-actions">
-          <p class="pca"><strong>Secure @MolokhiaKSA</strong> today — prevent competitor registration</p>
-          <p class="pca"><strong>Pin post</strong> with GBP + delivery + contact links</p>
-          <p class="pca"><strong>2–3 posts/day</strong> once Phase 1 is stable</p>
-          <p class="pca"><strong>Respond to all mentions</strong> within 2 hours</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- 04 STRENGTHS & GAPS -->
-<section class="sec sec-dark" id="strengths">
-  <div class="wrap">
-    <p class="sec-tag rv">04 — Strategic Analysis</p>
-    <h2 class="sec-h rv">Strengths & Where to Improve</h2>
-    <div class="sg2 rv">
-      <div class="sg2-card">
-        <div class="sg2-head g">Brand Strengths</div>
-        <div class="sg2-body">
-          <div class="sg2-item"><div class="sg2-icon g">↑</div><div class="sg2-text"><strong>28,000 Facebook followers</strong>A hard-to-build asset. This audience chose the brand — conversion costs are far lower than starting from zero.</div></div>
-          <div class="sg2-item"><div class="sg2-icon g">↑</div><div class="sg2-text"><strong>Unique cuisine niche in Riyadh</strong>Egyptian molokhia is underrepresented in KSA's F&B market. Fewer than 5 dedicated Egyptian specialists in Riyadh.</div></div>
-          <div class="sg2-item"><div class="sg2-icon g">↑</div><div class="sg2-text"><strong>Visually rich product</strong>Molokhia is naturally suited to ASMR, preparation, and heritage content — the formats that perform best on TikTok and Reels.</div></div>
-          <div class="sg2-item"><div class="sg2-icon g">↑</div><div class="sg2-text"><strong>4.5★ Google rating — 663 reviews</strong>An exceptional credibility signal. Most Riyadh restaurant competitors have fewer than 200 reviews. The owner actively responds to reviews — a trust-building behaviour competitors ignore.</div></div>
-          <div class="sg2-item"><div class="sg2-icon g">↑</div><div class="sg2-text"><strong>Large Egyptian expat community</strong>Saudi Arabia hosts one of the world's largest Egyptian diaspora communities — a pre-qualified, culturally aligned audience.</div></div>
-          <div class="sg2-item"><div class="sg2-icon g">↑</div><div class="sg2-text"><strong>TikTok account active (2100 followers)</strong>@molokhia.restaurant.ksa is established with a small but growing base — ready to scale with the right content strategy.</div></div>
-        </div>
-      </div>
-      <div class="sg2-card">
-        <div class="sg2-head r">Where to Improve</div>
-        <div class="sg2-body">
-          <div class="sg2-item"><div class="sg2-icon r">↓</div><div class="sg2-text"><strong>No website link on GBP</strong>Every customer who finds the restaurant on Google Maps sees "Add website" — there is no link to social profiles, an online menu, or a delivery app. This breaks the conversion path at the highest-intent moment.</div></div>
-          <div class="sg2-item"><div class="sg2-icon r">↓</div><div class="sg2-text"><strong>Facebook engagement at 0.04%</strong>A 28,000-follower page reaching only ~300 people per post is a critical algorithmic failure with direct impact on orders.</div></div>
-          <div class="sg2-item"><div class="sg2-icon r">↓</div><div class="sg2-text"><strong>Zero Snapchat presence</strong>18.2M KSA users, 90%+ of 18–24 year-olds reachable. The most overlooked channel in this entire audit.</div></div>
-          <div class="sg2-item"><div class="sg2-icon r">↓</div><div class="sg2-text"><strong>Instagram severely underdeveloped</strong>1,151 followers on a platform with 20.5M KSA users — no Reels strategy, no bio link, no community engagement.</div></div>
-          <div class="sg2-item"><div class="sg2-icon r">↓</div><div class="sg2-text"><strong>Product-only content</strong>Almost all posts are food photos with no CTA, no storytelling, and no interactive elements that drive engagement.</div></div>
-          <div class="sg2-item"><div class="sg2-icon r">↓</div><div class="sg2-text"><strong>No paid media or influencer programme</strong>100% dependence on capped organic reach. SAR 2,300/month in paid media could reach 80,000–130,000 per month.</div></div>
-        </div>
-      </div>
-    </div>
-
-    <p class="sec-tag rv" style="margin-top:3.5rem">Missing Content Pillars</p>
-    <div class="pillar-row sg">
-      <div class="pillar"><p class="pillar-n">01</p><p class="pillar-name">Heritage</p><p class="pillar-sub">Culture & food history</p><p class="pillar-body">3,000-year molokhia story, Egyptian traditions, cultural context Reels</p><span class="ps ps-absent">Absent</span></div>
-      <div class="pillar"><p class="pillar-n">02</p><p class="pillar-name">Craft</p><p class="pillar-sub">Cooking process & expertise</p><p class="pillar-body">ASMR prep, chef profiles, ingredient sourcing, kitchen behind-the-scenes</p><span class="ps ps-absent">Absent</span></div>
-      <div class="pillar"><p class="pillar-n">03</p><p class="pillar-name">Community</p><p class="pillar-sub">Customers, UGC & social proof</p><p class="pillar-body">Customer reposts, reaction videos, review highlights, fan responses</p><span class="ps ps-absent">Absent</span></div>
-      <div class="pillar"><p class="pillar-n">04</p><p class="pillar-name">Offer</p><p class="pillar-sub">Promotions & CTAs</p><p class="pillar-body">Daily specials, Ramadan deals, free delivery campaigns with direct links</p><span class="ps ps-partial">Occasional</span></div>
-      <div class="pillar"><p class="pillar-n">05</p><p class="pillar-name">Lifestyle</p><p class="pillar-sub">KSA culture & occasions</p><p class="pillar-body">Eid, National Day, family gatherings — embeds brand in Saudi occasions</p><span class="ps ps-absent">Absent</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- 05 COMPETITORS -->
-<section class="sec" id="competitors">
-  <div class="wrap">
-    <p class="sec-tag rv">05 — Competitive Landscape</p>
-    <h2 class="sec-h rv">How Molokhia Compares to the Market</h2>
-    <div class="comp-table rv">
-      <div class="comp-hrow">
-        <div class="cc ch">Brand</div>
-        <div class="cc ch">Instagram</div>
-        <div class="cc ch">Facebook</div>
-        <div class="cc ch">TikTok</div>
-        <div class="cc ch">Snapchat</div>
-        <div class="cc ch">GBP Rating</div>
-      </div>
-      <div class="comp-row hl">
-        <div class="cc brand gold-name">Molokhia KSA<br><span style="color:var(--t3);font-size:.78rem;font-weight:400">This brand</span></div>
-        <div class="cc"><strong style="color:var(--red)">1.1K</strong><br><span class="neg">No Reels strategy</span></div>
-        <div class="cc"><strong style="color:var(--gold)">28.3K</strong><br><span class="neg">0.04% engagement</span></div>
-        <div class="cc"><strong style="color:var(--amb)">1.8K</strong><br><span class="neg">Infrequent posts</span></div>
-        <div class="cc"><strong style="color:var(--red)">None</strong><br><span class="neg">Completely absent</span></div>
-        <div class="cc"><strong style="color:var(--grn)">4.5 ★</strong><br><span class="pos">663 reviews</span></div>
-      </div>
-      <div class="comp-row">
-        <div class="cc brand">Koshary El Tahrir<br><span style="color:var(--t3);font-size:.78rem;font-weight:400">Egyptian · Riyadh</span></div>
-        <div class="cc"><strong>14,200</strong><br><span class="pos">Reels active</span></div>
-        <div class="cc"><strong>9,400</strong><br><span class="neu">Moderate eng.</span></div>
-        <div class="cc"><strong>8,800</strong><br><span class="pos">Weekly content</span></div>
-        <div class="cc"><strong>Active</strong><br><span class="pos">Daily Stories</span></div>
-        <div class="cc"><strong style="color:var(--grn)">4.2 ★</strong><br><span class="pos">87 reviews</span></div>
-      </div>
-      <div class="comp-row">
-        <div class="cc brand">Shawarma Al Tazaj<br><span style="color:var(--t3);font-size:.78rem;font-weight:400">KSA Chain</span></div>
-        <div class="cc"><strong>88,000</strong><br><span class="pos">Reels strategy</span></div>
-        <div class="cc"><strong>55,000</strong><br><span class="pos">0.8% eng.</span></div>
-        <div class="cc"><strong>41,000</strong><br><span class="pos">5–7 vids/week</span></div>
-        <div class="cc"><strong>Daily Ads</strong><br><span class="pos">Active Stories</span></div>
-        <div class="cc"><strong style="color:var(--grn)">4.1 ★</strong><br><span class="pos">300+ reviews</span></div>
-      </div>
-      <div class="comp-row">
-        <div class="cc brand">KSA F&B Average<br><span style="color:var(--t3);font-size:.78rem;font-weight:400">Mid-tier brands</span></div>
-        <div class="cc"><strong>12–25K</strong><br><span class="neu">3 posts/week</span></div>
-        <div class="cc"><strong>15–40K</strong><br><span class="neu">0.5–1.0%</span></div>
-        <div class="cc"><strong>5–20K</strong><br><span class="neu">Active strategy</span></div>
-        <div class="cc"><strong>Daily</strong><br><span class="neu">Stories + Ads</span></div>
-        <div class="cc"><strong>4.0–4.5 ★</strong><br><span class="neu">50–200 reviews</span></div>
-      </div>
-    </div>
-    <div class="note rv" style="margin-top:1.75rem">
-      <p class="note-tag">Key Takeaway</p>
-      <p>Molokhia's 28,000 Facebook followers exceed all Egyptian food competitors in Riyadh. However, the absence of a GBP and Snapchat presence, combined with a near-zero Facebook engagement rate, means competitors with smaller followings are generating significantly more orders per month through better platform distribution.</p>
-    </div>
-
-    <p class="sec-tag rv" style="margin-top:3.5rem">Competitive Gaps to Exploit First</p>
-    <div class="opp-grid sg">
-      <div class="opp-card"><p class="opp-num">01</p><p class="opp-title">Egyptian food on KSA TikTok is unclaimed</p><p class="opp-body">No Egyptian restaurant in Riyadh has a strong TikTok presence. 3 months of consistent posting can establish category ownership before any competitor moves.</p></div>
-      <div class="opp-card"><p class="opp-num">02</p><p class="opp-title">Heritage storytelling is a content gap</p><p class="opp-body">Every competitor posts product photos. No brand is telling the cultural story of their food. A Heritage content series creates differentiation competitors cannot copy quickly.</p></div>
-      <div class="opp-card"><p class="opp-num">03</p><p class="opp-title">Snapchat advertising is underpriced in KSA</p><p class="opp-body">Independent restaurants do not run Snapchat ads — leaving an underpriced channel to a young Riyadh food audience open for first-mover advantage.</p></div>
-      <div class="opp-card"><p class="opp-num">04</p><p class="opp-title">4.5★ / 663 reviews is an untapped trust weapon</p><p class="opp-body">No Egyptian food competitor in Riyadh comes close to this review volume. Actively showcasing this rating across social media and linking GBP from all profiles turns a hidden strength into a visible sales driver.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- 06 STRATEGY -->
-<section class="sec sec-dark" id="strategy">
-  <div class="wrap">
-    <p class="sec-tag rv">06 — Content Strategy</p>
-    <h2 class="sec-h rv">TikTok Content That Performs</h2>
-    <div class="strat-grid sg" style="gap:1px;background:var(--edge);border:1px solid var(--edge);border-radius:10px;overflow:hidden">
-      <div class="stat"><p class="stat-k">Cooking ASMR</p><p class="stat-v g" style="font-size:1.5rem">10K–100K+</p><p class="stat-d">Molokhia stirred, tasha poured — pure sound</p></div>
-      <div class="stat"><p class="stat-k">Chef Point-of-View</p><p class="stat-v g" style="font-size:1.5rem">5K–50K</p><p class="stat-d">Morning prep to plated dish, first-person</p></div>
-      <div class="stat"><p class="stat-k">Customer Reaction</p><p class="stat-v g" style="font-size:1.5rem">10K–200K</p><p class="stat-d">Authentic first-taste — outperforms scripted</p></div>
-      <div class="stat"><p class="stat-k">Trending Sound + Food</p><p class="stat-v g" style="font-size:1.5rem">20K–500K</p><p class="stat-d">Arabic trending audio over food B-roll</p></div>
-      <div class="stat"><p class="stat-k">Before / After</p><p class="stat-v g" style="font-size:1.5rem">10K–50K</p><p class="stat-d">Raw ingredients → finished dish in 15 sec</p></div>
-      <div class="stat"><p class="stat-k">Order Fulfilment</p><p class="stat-v a" style="font-size:1.5rem">3K–20K</p><p class="stat-d">Packing delivery — satisfying, high completion</p></div>
-    </div>
-    <div class="note rv" style="margin-top:1.75rem">
-      <p class="note-tag">Posting Rules</p>
-      <p>Minimum <strong>5–7 videos/week.</strong> All content <strong>Arabic-first</strong> with Arabic text overlays. Post at <strong>12:00–14:00 and 20:00–22:00 KSA time.</strong> Avoid posting during prayer times. Use 5–8 hashtags: <strong>#مطاعم_الرياض #اكل_مصري #ملوخية #foodtiktok #riyadhfood</strong></p>
-    </div>
-  </div>
-</section>
-
-<!-- 07 RECOMMENDATIONS -->
-<section class="sec" id="recommendations">
-  <div class="wrap">
-    <p class="sec-tag rv">07 — Priority Recommendations</p>
-    <h2 class="sec-h rv">The 10 Actions That Will Move the Needle</h2>
-    <div class="rec-grid sg">
-      <div class="rec-card crit"><div class="rec-top"><p class="rec-plat">Google Business Profile</p><span class="badge b-red">Critical</span></div><p class="rec-action">Claim, verify & fully complete GBP within 7 days</p><p class="rec-outcome">Visible in all 'near me' searches. 7× more direction requests. Path to <strong>50+ reviews in 90 days.</strong></p></div>
-      <div class="rec-card crit"><div class="rec-top"><p class="rec-plat">Facebook</p><span class="badge b-red">Critical</span></div><p class="rec-action">Shift to video-first — 3 videos + daily Story polls per week</p><p class="rec-outcome">Organic reach: <strong>~300 → 2,000–4,000 per post.</strong> Algorithm begins recommending to non-followers.</p></div>
-      <div class="rec-card crit"><div class="rec-top"><p class="rec-plat">Snapchat</p><span class="badge b-red">Critical</span></div><p class="rec-action">Create Business Account, geofilter, and daily Stories in Week 1</p><p class="rec-outcome">Access to <strong>18.2M KSA users.</strong> Geofilter turns every dine-in customer into a branded content creator.</p></div>
-      <div class="rec-card high"><div class="rec-top"><p class="rec-plat">Instagram</p><span class="badge b-amb">High</span></div><p class="rec-action">Linktree bio link, 3 Reels/week, follow 200+ accounts, weekly FB cross-post</p><p class="rec-outcome">Estimated growth: <strong>1,151 → 5,000 followers in 60 days</strong> with consistent Reels output.</p></div>
-      <div class="rec-card high"><div class="rec-top"><p class="rec-plat">TikTok</p><span class="badge b-amb">High</span></div><p class="rec-action">5+ videos/week — ASMR, chef POV, reactions. Arabic audio. 5 nano-influencer gifted visits.</p><p class="rec-outcome">Category ownership of Egyptian food on KSA TikTok. <strong>5–15K views/video at zero cash cost</strong> for nano collabs.</p></div>
-      <div class="rec-card crit"><div class="rec-top"><p class="rec-plat">Google Business Profile</p><span class="badge b-red">Critical</span></div><p class="rec-action">Add website / Linktree link to GBP immediately — the conversion path is broken</p><p class="rec-outcome">4.5★ with 663 reviews means customers are finding you on Google and then hitting a dead end. <strong>Adding a link converts high-intent Google searches into orders and follows.</strong></p></div>
-      <div class="rec-card high"><div class="rec-top"><p class="rec-plat">META Ads</p><span class="badge b-amb">High</span></div><p class="rec-action">SAR 2,300/month — awareness (500) + IG growth (500) + delivery (1,000) + reviews (300)</p><p class="rec-outcome"><strong>80,000–130,000 estimated monthly reach.</strong> Direct contribution to delivery platform orders.</p></div>
-      <div class="rec-card high"><div class="rec-top"><p class="rec-plat">Reviews Campaign</p><span class="badge b-amb">High</span></div><p class="rec-action">QR cards at every table and in every delivery bag. Respond to all reviews within 24h.</p><p class="rec-outcome"><strong>4.3★ / 50+ reviews in 90 days.</strong> 43% of diners skip restaurants with no visible rating.</p></div>
-      <div class="rec-card med"><div class="rec-top"><p class="rec-plat">Influencer Programme</p><span class="badge b-grn">Medium</span></div><p class="rec-action">5 gifted nano-influencer visits/month. 3 micro-influencer paid collabs/quarter.</p><p class="rec-outcome">5,000–15,000 views per nano video. <strong>Lower CPL than paid ads</strong> for new audience acquisition.</p></div>
-      <div class="rec-card med"><div class="rec-top"><p class="rec-plat">X / Twitter</p><span class="badge b-grn">Medium</span></div><p class="rec-action">Secure @MolokhiaKSA immediately. 2–3 posts/day once Phase 1 stable.</p><p class="rec-outcome">Real-time discovery channel. <strong>Protects brand name</strong> from competitor registration.</p></div>
-      <div class="rec-card med"><div class="rec-top"><p class="rec-plat">WhatsApp Business</p><span class="badge b-grn">Medium</span></div><p class="rec-action">Set up WhatsApp Business linked from all profiles. Auto-responses for menu + hours.</p><p class="rec-outcome">Saudi customers prefer WhatsApp for direct brand contact. <strong>Reduces friction</strong> between discovery and orders.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- 08 KPIS -->
-<section class="sec sec-dark" id="kpis">
-  <div class="wrap">
-    <p class="sec-tag rv">08 — KPI Framework</p>
-    <h2 class="sec-h rv">Targets by Month</h2>
-    <div class="kpi-grid sg">
-      <div class="kpi"><div class="kpi-head"><p class="kpi-plat">Google Business Profile</p><span class="badge b-grn">4.5★ · 663 reviews</span></div><p class="kpi-name">Review Volume Growth</p><div class="kpi-cols"><div class="kpi-col"><p class="kpi-ckey">Now</p><p class="kpi-cval" style="color:var(--grn)">663</p></div><div class="kpi-col"><p class="kpi-ckey">Month 3</p><p class="kpi-cval m3">800+</p></div><div class="kpi-col"><p class="kpi-ckey">Month 6</p><p class="kpi-cval m6">1,000+</p></div></div></div>
-      <div class="kpi"><div class="kpi-head"><p class="kpi-plat">Facebook</p><span class="badge b-red">0.04% engagement</span></div><p class="kpi-name">Engagement Rate</p><div class="kpi-cols"><div class="kpi-col"><p class="kpi-ckey">Now</p><p class="kpi-cval now">0.04%</p></div><div class="kpi-col"><p class="kpi-ckey">Month 3</p><p class="kpi-cval m3">0.70%</p></div><div class="kpi-col"><p class="kpi-ckey">Month 6</p><p class="kpi-cval m6">1.2%+</p></div></div></div>
-      <div class="kpi"><div class="kpi-head"><p class="kpi-plat">Facebook</p><span class="badge b-amb">~300 / post now</span></div><p class="kpi-name">Organic Post Reach</p><div class="kpi-cols"><div class="kpi-col"><p class="kpi-ckey">Now</p><p class="kpi-cval now">~300</p></div><div class="kpi-col"><p class="kpi-ckey">Month 3</p><p class="kpi-cval m3">3,500</p></div><div class="kpi-col"><p class="kpi-ckey">Month 6</p><p class="kpi-cval m6">6,000+</p></div></div></div>
-      <div class="kpi"><div class="kpi-head"><p class="kpi-plat">Instagram</p><span class="badge b-red">1.1K followers</span></div><p class="kpi-name">Follower Count</p><div class="kpi-cols"><div class="kpi-col"><p class="kpi-ckey">Now</p><p class="kpi-cval now">1.1K</p></div><div class="kpi-col"><p class="kpi-ckey">Month 3</p><p class="kpi-cval m3">5,000</p></div><div class="kpi-col"><p class="kpi-ckey">Month 6</p><p class="kpi-cval m6">10K+</p></div></div></div>
-      <div class="kpi"><div class="kpi-head"><p class="kpi-plat">TikTok</p><span class="badge b-amb">1.8K followers</span></div><p class="kpi-name">Followers & Avg Views</p><div class="kpi-cols"><div class="kpi-col"><p class="kpi-ckey">Now</p><p class="kpi-cval now">1.8K</p></div><div class="kpi-col"><p class="kpi-ckey">Month 3</p><p class="kpi-cval m3">8,000</p></div><div class="kpi-col"><p class="kpi-ckey">Month 6</p><p class="kpi-cval m6">20K+</p></div></div></div>
-      <div class="kpi"><div class="kpi-head"><p class="kpi-plat">Snapchat</p><span class="badge b-red">No account</span></div><p class="kpi-name">Subscribers</p><div class="kpi-cols"><div class="kpi-col"><p class="kpi-ckey">Now</p><p class="kpi-cval now">0</p></div><div class="kpi-col"><p class="kpi-ckey">Month 3</p><p class="kpi-cval m3">1,500</p></div><div class="kpi-col"><p class="kpi-ckey">Month 6</p><p class="kpi-cval m6">5,000+</p></div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- 09 ROADMAP -->
-<section class="sec" id="roadmap">
-  <div class="wrap">
-    <p class="sec-tag rv">09 — 90-Day Roadmap</p>
-    <h2 class="sec-h rv">Phase-by-Phase Execution</h2>
-
-    <div class="phase rv">
-      <p class="phase-label">Phase 1 — Foundation (Weeks 1–4)</p>
-      <div class="task-grid">
-        <div class="task"><p class="task-wk">Wk 1</p><div class="task-text"><p class="task-title">Add Linktree website link to GBP — critical missing conversion path</p><p class="task-meta"><span class="task-plat">GBP</span> · EC Agency · Same day</p></div></div>
-        <div class="task"><p class="task-wk">Wk 1</p><div class="task-text"><p class="task-title">Activate weekly GBP Posts — dishes, offers, events</p><p class="task-meta"><span class="task-plat">GBP</span> · EC Agency · Every 7 days</p></div></div>
-        <div class="task"><p class="task-wk">Wk 1</p><div class="task-text"><p class="task-title">Create Snapchat Business Account & Public Profile</p><p class="task-meta"><span class="task-plat">Snapchat</span> · EC Agency</p></div></div>
-        <div class="task"><p class="task-wk">Wk 1</p><div class="task-text"><p class="task-title">Facebook content audit — archive underperformers</p><p class="task-meta"><span class="task-plat">Facebook</span> · EC Agency</p></div></div>
-        <div class="task"><p class="task-wk">Wk 2</p><div class="task-text"><p class="task-title">Set up GBP review response protocol — all reviews within 24h</p><p class="task-meta"><span class="task-plat">GBP</span> · Client + EC</p></div></div>
-        <div class="task"><p class="task-wk">Wk 2</p><div class="task-text"><p class="task-title">Print & deploy review QR cards — tables + bags</p><p class="task-meta"><span class="task-plat">GBP + Facebook</span> · Client</p></div></div>
-        <div class="task"><p class="task-wk">Wk 2</p><div class="task-text"><p class="task-title">Launch new Facebook strategy — first video + Story poll</p><p class="task-meta"><span class="task-plat">Facebook</span> · Content Team</p></div></div>
-        <div class="task"><p class="task-wk">Wk 2</p><div class="task-text"><p class="task-title">Snapchat geofilter live + daily Stories begin</p><p class="task-meta"><span class="task-plat">Snapchat</span> · Designer + EC</p></div></div>
-        <div class="task"><p class="task-wk">Wk 3</p><div class="task-text"><p class="task-title">Instagram: bio rewrite, Linktree, 5 Story Highlights</p><p class="task-meta"><span class="task-plat">Instagram</span> · EC Agency</p></div></div>
-        <div class="task"><p class="task-wk">Wk 3</p><div class="task-text"><p class="task-title">Follow 200+ Riyadh food accounts on Instagram</p><p class="task-meta"><span class="task-plat">Instagram</span> · Social Manager</p></div></div>
-        <div class="task"><p class="task-wk">Wk 3</p><div class="task-text"><p class="task-title">Publish first 5 TikTok videos — ASMR, chef POV</p><p class="task-meta"><span class="task-plat">TikTok</span> · Videographer</p></div></div>
-        <div class="task"><p class="task-wk">Wk 4</p><div class="task-text"><p class="task-title">Launch META Ads awareness campaign (SAR 500)</p><p class="task-meta"><span class="task-plat">META Ads</span> · EC Agency</p></div></div>
-        <div class="task"><p class="task-wk">Wk 4</p><div class="task-text"><p class="task-title">Reach out to 5 nano food influencers for gifted visits</p><p class="task-meta"><span class="task-plat">TikTok + IG</span> · EC Agency</p></div></div>
-        <div class="task"><p class="task-wk">Wk 4</p><div class="task-text"><p class="task-title">Secure @MolokhiaKSA on X — publish intro thread</p><p class="task-meta"><span class="task-plat">X / Twitter</span> · Social Manager</p></div></div>
-      </div>
-    </div>
-
-    <div class="phase rv">
-      <p class="phase-label">Phase 2 — Growth (Weeks 5–8)</p>
-      <div class="task-grid">
-        <div class="task"><p class="task-wk">Wk 5</p><div class="task-text"><p class="task-title">Publish first nano-influencer TikTok collaboration</p><p class="task-meta"><span class="task-plat">TikTok</span> · EC Agency</p></div></div>
-        <div class="task"><p class="task-wk">Wk 5</p><div class="task-text"><p class="task-title">Facebook A/B test — video vs photo vs poll</p><p class="task-meta"><span class="task-plat">Facebook</span> · EC Agency</p></div></div>
-        <div class="task"><p class="task-wk">Wk 6</p><div class="task-text"><p class="task-title">First Instagram Collab post with Riyadh food account</p><p class="task-meta"><span class="task-plat">Instagram</span> · EC Agency</p></div></div>
-        <div class="task"><p class="task-wk">Wk 6</p><div class="task-text"><p class="task-title">Scale META Ads to SAR 1,500/month + delivery campaign</p><p class="task-meta"><span class="task-plat">META Ads</span> · EC Agency</p></div></div>
-        <div class="task"><p class="task-wk">Wk 6</p><div class="task-text"><p class="task-title">First Snapchat Ads campaign (SAR 500 budget)</p><p class="task-meta"><span class="task-plat">Snapchat Ads</span> · EC Agency</p></div></div>
-        <div class="task"><p class="task-wk">Wk 7</p><div class="task-text"><p class="task-title">Launch Heritage content series across all platforms</p><p class="task-meta"><span class="task-plat">All Platforms</span> · Content Team</p></div></div>
-        <div class="task"><p class="task-wk">Wk 8</p><div class="task-text"><p class="task-title">Month 2 review — adjust underperforming content</p><p class="task-meta"><span class="task-plat">All Platforms</span> · EC + Client</p></div></div>
-      </div>
-    </div>
-
-    <div class="phase rv">
-      <p class="phase-label">Phase 3 — Scale (Weeks 9–12)</p>
-      <div class="task-grid">
-        <div class="task"><p class="task-wk">Wk 9</p><div class="task-text"><p class="task-title">Scale to full SAR 2,300/month paid media</p><p class="task-meta"><span class="task-plat">META + Snapchat</span> · EC Agency</p></div></div>
-        <div class="task"><p class="task-wk">Wk 9</p><div class="task-text"><p class="task-title">Boost top organic TikTok video as Spark Ad</p><p class="task-meta"><span class="task-plat">TikTok Ads</span> · EC Agency</p></div></div>
-        <div class="task"><p class="task-wk">Wk 10</p><div class="task-text"><p class="task-title">GBP milestone check — 35+ reviews at 4.0+★</p><p class="task-meta"><span class="task-plat">GBP</span> · Client</p></div></div>
-        <div class="task"><p class="task-wk">Wk 11</p><div class="task-text"><p class="task-title">Ramadan content calendar — ready 3 weeks ahead</p><p class="task-meta"><span class="task-plat">All Platforms</span> · Content Team</p></div></div>
-        <div class="task"><p class="task-wk">Wk 12</p><div class="task-text"><p class="task-title">Full 90-day audit — all KPIs vs baseline</p><p class="task-meta"><span class="task-plat">All Platforms</span> · EC + Client</p></div></div>
-        <div class="task"><p class="task-wk">Wk 12</p><div class="task-text"><p class="task-title">Present Q2 strategy deck based on performance data</p><p class="task-meta"><span class="task-plat">All Platforms</span> · EC Agency</p></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 10 BUDGET -->
-<section class="sec sec-dark" id="investment">
-  <div class="wrap">
-    <p class="sec-tag rv">10 — Investment Summary</p>
-    <h2 class="sec-h rv">Monthly Budget Breakdown</h2>
-    <div class="budget sg">
-      <div class="bud">
-        <div class="bud-head"><p class="bud-phase">Month 1 — Foundation</p><p class="bud-total">SAR 8,400</p></div>
-        <div class="bud-body">
-          <div class="bud-line"><span>Agency Management</span><span>3,000</span></div>
-          <div class="bud-line"><span>Content Production</span><span>2,500</span></div>
-          <div class="bud-line"><span>META Ads</span><span>1,500</span></div>
-          <div class="bud-line"><span>Snapchat Ads + Geofilter</span><span>700</span></div>
-          <div class="bud-line"><span>Influencer Gifting</span><span>500</span></div>
-          <div class="bud-line"><span>Tools & Analytics</span><span>200</span></div>
-        </div>
-      </div>
-      <div class="bud feat">
-        <div class="bud-head"><p class="bud-phase">Month 2 — Growth</p><p class="bud-total">SAR 10,400</p></div>
-        <div class="bud-body">
-          <div class="bud-line"><span>Agency Management</span><span>3,000</span></div>
-          <div class="bud-line"><span>Content Production</span><span>2,000</span></div>
-          <div class="bud-line"><span>META Ads</span><span>2,000</span></div>
-          <div class="bud-line"><span>Snapchat Ads</span><span>700</span></div>
-          <div class="bud-line"><span>TikTok Spark Ads</span><span>500</span></div>
-          <div class="bud-line"><span>Google Ads</span><span>500</span></div>
-          <div class="bud-line"><span>Influencer Fees</span><span>1,500</span></div>
-          <div class="bud-line"><span>Tools & Analytics</span><span>200</span></div>
-        </div>
-      </div>
-      <div class="bud">
-        <div class="bud-head"><p class="bud-phase">Month 3 — Scale</p><p class="bud-total">SAR 12,700</p></div>
-        <div class="bud-body">
-          <div class="bud-line"><span>Agency Management</span><span>3,000</span></div>
-          <div class="bud-line"><span>Content Production</span><span>2,000</span></div>
-          <div class="bud-line"><span>META Ads</span><span>2,500</span></div>
-          <div class="bud-line"><span>Snapchat Ads</span><span>1,000</span></div>
-          <div class="bud-line"><span>TikTok Spark Ads</span><span>1,000</span></div>
-          <div class="bud-line"><span>Google Ads</span><span>1,000</span></div>
-          <div class="bud-line"><span>Influencer Fees</span><span>2,000</span></div>
-          <div class="bud-line"><span>Tools & Analytics</span><span>200</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="note rv"><p class="note-tag">Cost Reduction Note</p><p>Content production costs can be substantially reduced by building in-house video capability. A smartphone + ring light + editing app costs approximately <strong>SAR 1,500 one-time</strong> and produces high-performing TikTok and Reels content at near-zero variable cost.</p></div>
-  </div>
-</section>
-
-<!-- 11 MEETING AGENDA -->
-<section class="sec" id="meeting">
-  <div class="wrap">
-    <p class="sec-tag rv">11 — Presentation Agenda</p>
-    <h2 class="sec-h rv">90-Minute Meeting Structure</h2>
-    <div class="agenda sg">
-      <div class="ag"><p class="ag-time">0:00</p><p class="ag-topic">Welcome & Context</p><p class="ag-pts">Audit scope, objectives, confidentiality</p></div>
-      <div class="ag"><p class="ag-time">0:05</p><p class="ag-topic">At a Glance</p><p class="ag-pts">Key metrics, top 3 critical priorities</p></div>
-      <div class="ag"><p class="ag-time">0:15</p><p class="ag-topic">Platform Audit</p><p class="ag-pts">GBP → META → TikTok → Snapchat findings</p></div>
-      <div class="ag"><p class="ag-time">0:30</p><p class="ag-topic">Competitive Landscape</p><p class="ag-pts">Market benchmarking, gaps to exploit</p></div>
-      <div class="ag"><p class="ag-time">0:40</p><p class="ag-topic">Content Strategy</p><p class="ag-pts">5 pillars, Arabic-first framework, TikTok blueprint</p></div>
-      <div class="ag"><p class="ag-time">0:50</p><p class="ag-topic">KPIs & Targets</p><p class="ag-pts">6-month targets, reporting cadence</p></div>
-      <div class="ag"><p class="ag-time">1:00</p><p class="ag-topic">90-Day Roadmap</p><p class="ag-pts">Phase 1 walkthrough, assign ownership</p></div>
-      <div class="ag"><p class="ag-time">1:10</p><p class="ag-topic">Budget Discussion</p><p class="ag-pts">SAR breakdown, content production options</p></div>
-      <div class="ag"><p class="ag-time">1:20</p><p class="ag-topic">Q&A</p><p class="ag-pts">Address questions, confirm priorities</p></div>
-      <div class="ag"><p class="ag-time">1:25</p><p class="ag-topic">Next Steps</p><p class="ag-pts">Kickoff date, credentials, contacts</p></div>
-    </div>
-
-    <p class="sec-tag rv" style="margin-top:3.5rem">Platform Access Required at Kickoff</p>
-    <div class="creds sg">
-      <div class="cred"><div class="cred-ico">GBP</div><div><p class="cred-title">Google Business Profile</p><p class="cred-sub">Owner-level Google account access to the business listing</p></div></div>
-      <div class="cred"><div class="cred-ico">META</div><div><p class="cred-title">META Business Manager</p><p class="cred-sub">Admin access to Facebook Page and Instagram account</p></div></div>
-      <div class="cred"><div class="cred-ico">TT</div><div><p class="cred-title">TikTok</p><p class="cred-sub">Account login or TikTok Business Centre invitation</p></div></div>
-      <div class="cred"><div class="cred-ico">SC</div><div><p class="cred-title">Snapchat</p><p class="cred-sub">Agency creates from scratch — confirm brand email address</p></div></div>
-      <div class="cred"><div class="cred-ico">DEL</div><div><p class="cred-title">Delivery Platforms</p><p class="cred-sub">Jahez / Talabat account for menu and promotion setup</p></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="ft-info">
-    <p>Prepared exclusively for <strong>Molokhia Restaurant KSA</strong> by Elite Consultant &nbsp;·&nbsp; March 2026 &nbsp;·&nbsp; Confidential</p>
-    <p>Data sourced from DataReportal, GMI, Sprinklr, Toast, and Meta Business Insights (2025–2026)</p>
-  </div>
-  <div class="ft-agency">
-    <p class="ft-name">Elite Consultant</p>
-    <p class="ft-url"><a href="https://www.eliteconsultantco.com" target="_blank">eliteconsultantco.com</a></p>
-  </div>
-</footer>
-
-<script>
-/* ── Progress bar ── */
-const bar=document.getElementById('bar');
-window.addEventListener('scroll',()=>{
-  const h=document.documentElement;
-  bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
-});
-
-/* ── Nav ── */
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('on',scrollY>60));
-
-/* ── Scroll reveal with IntersectionObserver ── */
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('in');
-      io.unobserve(e.target);
-    }
-  });
-},{threshold:.06,rootMargin:'0px 0px -24px 0px'});
-document.querySelectorAll('.rv,.sg,.fi,.sl,.sc-in').forEach(el=>io.observe(el));
-
-/* ── Card shimmer on hover (gold pulse) ── */
-document.querySelectorAll('.plat-card,.rec-card,.opp-card').forEach(card=>{
-  card.addEventListener('mousemove',e=>{
-    const r=card.getBoundingClientRect();
-    const x=((e.clientX-r.left)/r.width*100).toFixed(1);
-    const y=((e.clientY-r.top)/r.height*100).toFixed(1);
-    card.style.setProperty('--mx',x+'%');
-    card.style.setProperty('--my',y+'%');
-  });
-});
-
-/* ── Mobile nav ── */
-const ham=document.getElementById('ham');
-ham.addEventListener('click',()=>{
-  const nl=document.getElementById('navLinks');
-  const open=nl.style.display==='flex';
-  nl.style.cssText=open?'':
-    'display:flex;flex-direction:column;position:fixed;top:52px;inset:0 0 auto;'+
-    'background:rgba(9,9,10,.97);padding:2.5rem 1.5rem;gap:2rem;z-index:99;'+
-    'border-bottom:1px solid var(--edge)';
-  nl.querySelectorAll('a').forEach(a=>
-    a.addEventListener('click',()=>nl.style.cssText='',{once:true})
-  );
-});
-
-/* ── Smooth anchors ── */
-document.querySelectorAll('a[href^="#"]').forEach(a=>
-  a.addEventListener('click',e=>{
-    const t=document.querySelector(a.getAttribute('href'));
-    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
-  })
-);
-
-/* ── Stagger number counter on stat cards ── */
-const counterObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(!e.isIntersecting)return;
-    e.target.querySelectorAll('.stat-v,.kpi-cval').forEach(el=>{
-      const original=el.textContent;
-      const num=parseFloat(original.replace(/[^0-9.]/g,''));
-      if(!isNaN(num)&&num>0&&num<1000000){
-        let start=0;const dur=900;const step=16;
-        const inc=num/(dur/step);
-        const timer=setInterval(()=>{
-          start=Math.min(start+inc,num);
-          const formatted=num%1===0?Math.round(start).toLocaleString():start.toFixed(2);
-          el.textContent=original.replace(/[\d,\.]+/,formatted);
-          if(start>=num)clearInterval(timer);
-        },step);
-      }
-    });
-    counterObs.unobserve(e.target);
-  });
-},{threshold:.3});
-document.querySelectorAll('.stat-grid,.kpi-cols').forEach(el=>counterObs.observe(el));
-</script>
 </body>
 </html>
