@@ -562,9 +562,149 @@
       border-top: 1px solid rgba(214, 188, 126, 0.08);
     }
 
+
+
+    .platform-cards {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .platform-card {
+      position: relative;
+      background:
+        radial-gradient(circle at 50% 22%, rgba(25, 42, 92, 0.20), rgba(11, 17, 31, 0.96) 60%),
+        linear-gradient(180deg, rgba(12, 18, 32, 0.96), rgba(9, 14, 26, 0.98));
+      border: 1px solid rgba(214, 188, 126, 0.10);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      overflow: hidden;
+      min-height: 100%;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+
+    .platform-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .platform-kicker {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(214, 188, 126, 0.16);
+      background: rgba(255,255,255,0.02);
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+    }
+
+    .platform-status {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .metric-stack {
+      display: grid;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .metric-item {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(214, 188, 126, 0.08);
+    }
+
+    .metric-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .metric-label {
+      color: rgba(243, 239, 231, 0.70);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .metric-value {
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      text-align: right;
+      line-height: 1.35;
+    }
+
+    .pros-cons {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .pros-box,
+    .cons-box {
+      padding: 14px 14px 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(214, 188, 126, 0.08);
+    }
+
+    .pros-box h5,
+    .cons-box h5 {
+      margin: 0 0 10px;
+      font-size: 13px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .mini-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .mini-list li {
+      position: relative;
+      padding-left: 16px;
+      color: rgba(243, 239, 231, 0.78);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .mini-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.7em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, var(--gold), var(--gold-2));
+      transform: translateY(-50%);
+    }
+
     @media (max-width: 1180px) {
       .nav { display: none; }
       .grid.cols-4, .grid.cols-3, .grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .platform-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 820px) {
@@ -592,6 +732,7 @@
       .hero { padding-top: 42px; }
       .hero p { font-size: 17px; }
       .grid.cols-4, .grid.cols-3, .grid.cols-2 { grid-template-columns: 1fr; }
+      .platform-cards { grid-template-columns: 1fr; }
       .card { padding: 22px 20px; border-radius: 18px; }
       .card h4 { font-size: 21px; }
       table { min-width: 760px; }
@@ -709,112 +850,240 @@
     <section class="section" id="platforms">
       <div class="section-header">
         <div>
-          <div class="section-kicker"><span class="section-number">02</span> Platform Presence</div>
-          <h2 class="section-title">Public platform review</h2>
-          <div class="section-description">Each platform below reflects what is publicly identifiable from open-facing brand assets during this audit.</div>
+          <div class="section-kicker"><span class="section-number">02</span> Platform Snapshot</div>
+          <h2 class="section-title">Platform cards with numbers, strengths, and gaps</h2>
+          <div class="section-description">This section summarizes where Molokhia stands today across the five most relevant public-facing platform layers for restaurant discovery and demand capture in Saudi Arabia.</div>
         </div>
       </div>
 
-      <div class="grid cols-4">
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">Google Business Profile</div>
-              <h4>Local discovery and trust</h4>
-              <div class="card-subtitle">Publicly identified</div>
+      <div class="grid cols-1">
+        <div class="platform-cards">
+          <article class="platform-card">
+            <div class="platform-top">
+              <span class="platform-kicker">GBP</span>
+              <span class="platform-status status-confirmed">Strong Public Asset</span>
             </div>
-            <span class="status-badge status-confirmed">Verified Publicly</span>
-          </div>
-          <p>Strong rating and substantial review depth make Google the most influential public proof channel in the current ecosystem.</p>
-        </article>
+            <h4>Google Business Profile</h4>
+            <div class="card-subtitle">Primary local discovery and trust layer</div>
+            <div class="metric-stack">
+              <div class="metric-item">
+                <div class="metric-label">Google rating</div>
+                <div class="metric-value">4.5 ★</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Google reviews</div>
+                <div class="metric-value">663</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Owner responses</div>
+                <div class="metric-value">Yes</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Website link</div>
+                <div class="metric-value">Missing</div>
+              </div>
+            </div>
+            <div class="pros-cons">
+              <div class="pros-box">
+                <h5>Advantages</h5>
+                <ul class="mini-list">
+                  <li>High review volume creates immediate trust.</li>
+                  <li>Strong rating gives the brand a real competitive edge.</li>
+                  <li>Owner response activity supports credibility.</li>
+                </ul>
+              </div>
+              <div class="cons-box">
+                <h5>Disadvantages</h5>
+                <ul class="mini-list">
+                  <li>No website link means the highest-intent visitor has no owned next step.</li>
+                  <li>Conversion path from Google search is incomplete.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
 
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">Facebook</div>
-              <h4>Community visibility</h4>
-              <div class="card-subtitle">Public brand page identified</div>
+          <article class="platform-card">
+            <div class="platform-top">
+              <span class="platform-kicker">Meta</span>
+              <span class="platform-status status-partial">Mixed Performance</span>
             </div>
-            <span class="status-badge status-confirmed">Verified Publicly</span>
-          </div>
-          <p>The restaurant has a visible Facebook presence that supports broad audience reach and local familiarity.</p>
-        </article>
+            <h4>Facebook and Instagram</h4>
+            <div class="card-subtitle">Large Facebook base, underdeveloped Instagram scale</div>
+            <div class="metric-stack">
+              <div class="metric-item">
+                <div class="metric-label">Facebook followers</div>
+                <div class="metric-value">28.3K</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Facebook engagement</div>
+                <div class="metric-value">0.04%</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Instagram followers</div>
+                <div class="metric-value">1.1K</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Instagram bio link</div>
+                <div class="metric-value">None visible</div>
+              </div>
+            </div>
+            <div class="pros-cons">
+              <div class="pros-box">
+                <h5>Advantages</h5>
+                <ul class="mini-list">
+                  <li>Facebook already holds a large audience asset.</li>
+                  <li>Instagram profile exists and can support food-led visual discovery.</li>
+                  <li>Meta remains the easiest ecosystem for local remarketing and paid growth.</li>
+                </ul>
+              </div>
+              <div class="cons-box">
+                <h5>Disadvantages</h5>
+                <ul class="mini-list">
+                  <li>Facebook engagement is far below healthy organic benchmarks.</li>
+                  <li>Instagram scale is weak relative to the Saudi opportunity.</li>
+                  <li>No visible bio-link routing reduces conversion efficiency.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
 
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">TikTok</div>
-              <h4>Short-form awareness</h4>
-              <div class="card-subtitle">Public brand profile identified</div>
+          <article class="platform-card">
+            <div class="platform-top">
+              <span class="platform-kicker">TikTok</span>
+              <span class="platform-status status-partial">Underutilized</span>
             </div>
-            <span class="status-badge status-confirmed">Verified Publicly</span>
-          </div>
-          <p>TikTok provides clear audience-facing visibility and remains a strong channel for food-led discovery.</p>
-        </article>
+            <h4>TikTok</h4>
+            <div class="card-subtitle">Active account, but posting cadence appears light</div>
+            <div class="metric-stack">
+              <div class="metric-item">
+                <div class="metric-label">Followers</div>
+                <div class="metric-value">2.1K</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Posting pattern</div>
+                <div class="metric-value">Active but infrequent</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">KSA market relevance</div>
+                <div class="metric-value">Very high</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Bio-link path</div>
+                <div class="metric-value">Not visible in audit notes</div>
+              </div>
+            </div>
+            <div class="pros-cons">
+              <div class="pros-box">
+                <h5>Advantages</h5>
+                <ul class="mini-list">
+                  <li>The account already exists and has a live base to build on.</li>
+                  <li>Egyptian comfort food is well suited to short-form video formats.</li>
+                  <li>TikTok is one of the strongest awareness channels in Saudi Arabia.</li>
+                </ul>
+              </div>
+              <div class="cons-box">
+                <h5>Disadvantages</h5>
+                <ul class="mini-list">
+                  <li>Infrequent posting limits algorithmic momentum.</li>
+                  <li>No visible Arabic-first scaling system was identified in the audit inputs.</li>
+                  <li>No clear order or delivery path is visible from the platform snapshot.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
 
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">Instagram</div>
-              <h4>Visual brand presence</h4>
-              <div class="card-subtitle">Public brand profile identified</div>
+          <article class="platform-card">
+            <div class="platform-top">
+              <span class="platform-kicker">Snapchat</span>
+              <span class="platform-status status-unverified">No Active Presence</span>
             </div>
-            <span class="status-badge status-confirmed">Verified Publicly</span>
-          </div>
-          <p>Instagram is active publicly and should remain a priority platform for menu presentation, ambience, and proof-led content.</p>
-        </article>
+            <h4>Snapchat</h4>
+            <div class="card-subtitle">Large market opportunity with no current brand footprint identified</div>
+            <div class="metric-stack">
+              <div class="metric-item">
+                <div class="metric-label">Brand account</div>
+                <div class="metric-value">None identified</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Saudi ad reach</div>
+                <div class="metric-value">25.3M</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Eligible audience reach</div>
+                <div class="metric-value">91.8%</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Current brand visibility</div>
+                <div class="metric-value">0</div>
+              </div>
+            </div>
+            <div class="pros-cons">
+              <div class="pros-box">
+                <h5>Advantages</h5>
+                <ul class="mini-list">
+                  <li>Snapchat remains one of the biggest consumer-reach channels in Saudi Arabia.</li>
+                  <li>Daily story content and local filters can be deployed quickly.</li>
+                  <li>Restaurant moments translate naturally into casual story content.</li>
+                </ul>
+              </div>
+              <div class="cons-box">
+                <h5>Disadvantages</h5>
+                <ul class="mini-list">
+                  <li>No brand presence means zero reach on a major platform today.</li>
+                  <li>The restaurant is absent from a channel with strong youth and daily-use behavior.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
 
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">Snapchat</div>
-              <h4>Public brand account status</h4>
-              <div class="card-subtitle">No verified brand account identified in this pass</div>
+          <article class="platform-card">
+            <div class="platform-top">
+              <span class="platform-kicker">X</span>
+              <span class="platform-status status-unverified">Opportunity Layer</span>
             </div>
-            <span class="status-badge status-unverified">Not Verified Publicly</span>
-          </div>
-          <p>No public Molokhia Restaurant Snapchat brand profile was confirmed during this audit. This should be reviewed directly with the business.</p>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">YouTube</div>
-              <h4>Public channel status</h4>
-              <div class="card-subtitle">No verified brand channel identified in this pass</div>
+            <h4>X</h4>
+            <div class="card-subtitle">Useful for discovery, mentions, and customer-service visibility</div>
+            <div class="metric-stack">
+              <div class="metric-item">
+                <div class="metric-label">Brand account</div>
+                <div class="metric-value">Not publicly verified</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Saudi ad reach</div>
+                <div class="metric-value">15.7M</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Role in funnel</div>
+                <div class="metric-value">Discovery and service</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-label">Effort level</div>
+                <div class="metric-value">Low to moderate</div>
+              </div>
             </div>
-            <span class="status-badge status-unverified">Not Verified Publicly</span>
-          </div>
-          <p>No official Molokhia Restaurant YouTube channel was confirmed during this audit. A branded presence may still be possible if held privately or under another naming structure.</p>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">Official Website</div>
-              <h4>Owned digital hub</h4>
-              <div class="card-subtitle">No official site identified publicly</div>
+            <div class="pros-cons">
+              <div class="pros-box">
+                <h5>Advantages</h5>
+                <ul class="mini-list">
+                  <li>Can support real-time visibility, updates, and public mention monitoring.</li>
+                  <li>Useful as a customer-service layer once core channels are organized.</li>
+                  <li>Requires less content production than video-first platforms.</li>
+                </ul>
+              </div>
+              <div class="cons-box">
+                <h5>Disadvantages</h5>
+                <ul class="mini-list">
+                  <li>No verified branded presence was identified in the public review.</li>
+                  <li>It is not the first channel to fix, but it remains a gap in brand coverage.</li>
+                </ul>
+              </div>
             </div>
-            <span class="status-badge status-critical">Not Identified</span>
-          </div>
-          <p>The absence of an owned site limits direct conversion, search authority, analytics visibility, and brand control.</p>
-        </article>
-
-        <article class="card">
-          <div class="card-header">
-            <div>
-              <div class="inline-label">Directory Coverage</div>
-              <h4>External listings</h4>
-              <div class="card-subtitle">Additional citation work recommended</div>
-            </div>
-            <span class="status-badge status-partial">Review Needed</span>
-          </div>
-          <p>Directory consistency should be reviewed to ensure contact details, operating hours, and location signals are aligned across all public touchpoints.</p>
-        </article>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="findings">
+<section class="section" id="findings">
       <div class="section-header">
         <div>
           <div class="section-kicker"><span class="section-number">03</span> Key Findings</div>
